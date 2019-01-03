@@ -5,10 +5,10 @@
 ## Paradigm:
 
 1. Same as recursion
-  - Manually change problem by performing first step
-  - Call recursive function for the remaining problem
+    - Manually change problem by performing first step
+    - Call recursive function for the remaining problem
 2. Check if we have reached a valid result
-  - If yes, print/store result
+    - If yes, print/store result
 3. **This is new**: Undo the changes made in step 1
 
 ## When to use this:
