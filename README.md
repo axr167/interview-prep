@@ -1,4 +1,4 @@
-# interview-prep
+# Interview Prep
 Various notes I have compiled while preparing for interviews
 
 ## 1. Java Collections Cheatsheet:
