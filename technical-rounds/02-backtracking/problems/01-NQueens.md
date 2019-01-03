@@ -1,11 +1,9 @@
 
 ## Paradigm:
 
-1. Same as recursion : Manually do the first step
-2. Check if we have reached a valid result
-    - If yes, print/store result
-    - Else call recursive function for the remaining problem
-3. Undo the changes made in step 1 after performing recursion
+1. Choost the first row's queen
+2. Perform recursion on the remaining subproblem
+3. Unchoose the queen and proceed
 
 ## Functions:
 
@@ -28,12 +26,9 @@
           }
       }
 
-- Start at 0,0
-- Step 1 of paradigm: If it is safe to place queen, place it
-- Step 2 of paradigm: Have we reached result? 
-    - If yes save to list
-    - Else call recursive function for remaining board
-- Step 3 of paradigm: Remove previously placed queen
+- Choose the position of the queen for current row
+- If we have reached the goal state save it else perform recursion on remaining problem 
+- Undo the changes made after recursion is performed
 
 ## Full code
 
