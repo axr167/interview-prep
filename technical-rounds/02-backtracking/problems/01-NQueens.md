@@ -1,7 +1,7 @@
 
 ## Paradigm:
 
-1. Same as recursion : Manually change problem by performing first step
+1. Same as recursion : Manually do the first step
 2. Check if we have reached a valid result
     - If yes, print/store result
     - Else call recursive function for the remaining problem
