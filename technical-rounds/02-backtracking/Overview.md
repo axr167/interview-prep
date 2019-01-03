@@ -1,5 +1,5 @@
 
-# Backtracking/Exhaustive search
+# Backtracking/Exhaustive search (In progress)
 
 
 ## Paradigm:
@@ -17,3 +17,4 @@ Use backtracking/exhaustive search when you either have to go back or when the p
 1. N Queens (Leetcode 51)
 2. Permutations of a given string (Leetcode 46)
 3. Word Ladder (Leetcode 127)
+4. Sudoku solver (Leetcode 37)
