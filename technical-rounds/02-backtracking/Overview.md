@@ -4,11 +4,9 @@
 
 ## Paradigm:
 
-1. Same as recursion : Manually do the first step
-2. Check if we have reached a valid result
-    - If yes, print/store result
-    - Else call recursive function for the remaining problem
-3. **This is new**: Undo the changes made in step 1 after performing recursion
+1. Do the first step
+2. Perform recursion on the remaining subproblem
+3. Undo the first step and proceed
 
 ## When to use this:
 
