@@ -1,9 +1,9 @@
 
 ## Paradigm:
 
-1. Choost the first row's queen
+1. Choose position of the first row's queen
 2. Perform recursion on the remaining subproblem
-3. Unchoose the queen and proceed
+3. Unchoose the position chosen and proceed
 
 ## Functions:
 
