@@ -320,10 +320,14 @@ Note: This will be edited later
                 res.add(new ArrayList<Integer>(chosen));
             } else if(target > 0) {
                 for(int i = start; i<a.length; i++) {
+                
+                    // Choose number
                     chosen.add(a[i]);
-
+                    
+                    // Recurse
                     solve(a, (target-a[i]), chosen, res, i);
 
+                    // Undo changes
                     chosen.remove(chosen.size()-1);
                 }
             }
