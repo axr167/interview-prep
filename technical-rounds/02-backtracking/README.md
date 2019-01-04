@@ -24,7 +24,7 @@ Use backtracking/exhaustive search when you either have to go back or when the p
 ## Problems:
 
 1. N Queens (Leetcode 51)
-2. Permutations of a given string (Leetcode 46)
+2. Permutations of an array (Leetcode 46)
 3. Word Search (Leetcode 79)
 4. Sudoku solver (Leetcode 37)
 5. Combination Sum (Leetcode 39)
