@@ -6,6 +6,8 @@
 
 1. Do the first step
 2. Perform recursion on the remaining subproblem
+    - If base case save/print current result
+    - Else recurse
 3. Undo the first step and proceed
 
 ## When to use this:
