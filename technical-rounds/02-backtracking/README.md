@@ -25,9 +25,8 @@ Use backtracking/exhaustive search when you either have to go through entire sea
 
 1. N Queens (Leetcode 51)
 2. Permutations of an array (Leetcode 46)
-3. Word Search (Leetcode 79)
-4. Sudoku solver (Leetcode 37)
-5. Combination Sum (Leetcode 39)
+3. Sudoku solver (Leetcode 37)
+4. Combination Sum (Leetcode 39)
 
 
 # 1. N Queens
@@ -235,9 +234,8 @@ Full code as follows:
           }
       }
 
-# 3. Word Search (In progress)
 
-# 4. Sudoku Solver (In Progress)
+# 3. Sudoku Solver (In Progress)
 
 
 Note: This will be edited later
@@ -309,7 +307,7 @@ Note: This will be edited later
     }
 
 
-# 5. Combination Sum (In Progress)
+# 4. Combination Sum (In Progress)
 
 Note: This will be edited later
 
