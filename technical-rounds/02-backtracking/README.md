@@ -19,7 +19,7 @@ Paradigm is:
 
 ## When to use this:
 
-Use backtracking/exhaustive search when you either have to go back or when the problem may have more than 1 result and you want all of them.
+Use backtracking/exhaustive search when you either have to go through entire search space.
 
 ## Problems:
 
