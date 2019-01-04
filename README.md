@@ -1,10 +1,10 @@
-# Interview Prep
+# Interview Prep (Work in progress)
 Various notes I have compiled while preparing for interviews
 
 ## Resources:
    - Java collections cheatsheet: Overview of methods for java.util.Collections. Some content taken from [here](https://courses.cs.washington.edu/courses/cse143/17su/exams/final/cheat_sheet.pdf). (WORK IN PROGRESS)
    - Regex Cheatsheet: Overview of regular expressions
-   - Coming soon: Design patterns cheatsheet; Spring overview
+   - Coming soon: Design patterns cheatsheet; Spring overview; SQL cheatsheet
 
 # Problem Solving Paradigms
 
