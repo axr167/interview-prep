@@ -37,7 +37,7 @@
 - If list is empty, chosen contains a possible result. Add it to list of results
 - Sequentially choose elements from list and add them to chosen
     - Permute the remaining elements
-- Unchoose element from list by adding it back to the list and removing from chosen.
+    - Unchoose element from list by adding it back to the list and removing from chosen.
 
 ## Full code
 
