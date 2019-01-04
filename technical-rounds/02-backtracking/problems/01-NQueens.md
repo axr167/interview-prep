@@ -1,11 +1,11 @@
 
 ## Paradigm:
 
-1. Choose position of the first row's queen
-2. Perform recursion on the remaining subproblem
-      - If base case (row == board.length-1) save it
-      - Else recurse
-3. Unchoose the position chosen and proceed
+1. If base case, save/print result
+2. Else recurse and backtrack
+    - Do first step to reduce problem size
+    - Recurse
+    - Undo changes and proceed
 
 ## Functions:
 
@@ -15,22 +15,31 @@
 
 ## Backtracking algorithm
 
-      private void nQueenBacktrack(int row, char[][] board, List<List<String>> list) {
-          for(int i=0; i< board.length; i++) {
-              if(isSafe(row, i, board)) {
-                  board[row][i] = 'Q';
-                  if(row == board.length-1)
-                      saveBoard(board, list);
-                  else
-                      nQueenBacktrack(row+1, board, list);
-                  board[row][i] = '.';
-              }
-          }
-      }
+    private void nQueenBacktrack(int row, char[][] board, List<List<String>> list) {
+        if(row == board.length)                         // BASE CASE
+            saveBoard(board, list);
+        else {                                          // INDUCTION STEP
+            for(int i=0; i< board.length; i++) {
+                if(isSafe(row, i, board)) {
+                    
+                    // Choose queen
+                    board[row][i] = 'Q';
+                    
+                    // Recurse
+                    nQueenBacktrack(row+1, board, list);
+                    
+                    // Undo Changes
+                    board[row][i] = '.';
+                }
+            }
+        }
+    }
 
-- Choose the position of the queen for current row
-- If we have reached the goal state save it else perform recursion on remaining problem 
-- Undo the changes made after recursion is performed
+- If we have filled last row, we have a result. Save board to list
+- Else for each column in board to check if it is safe. If safe do:
+      - Add queen to position
+      - Recurse for remaining board
+      - Undo changes
 
 ## Full code
 
