@@ -148,3 +148,197 @@ Full code as follows:
             return list;
         }
     }
+
+# 2. Permutations of an array
+
+
+## Paradigm:
+
+1. If base case, save/print result
+2. Else recurse and backtrack
+    - Do first step to reduce problem size
+    - Recurse
+    - Undo changes and proceed
+
+## Functions:
+
+- **void permute(list, chosen, res)**: Backtracking algorithm that gets permutations of list and stores them in result
+
+## Backtracking algorithm
+
+      private void permute(List<Integer> list, List<Integer> chosen, List<List<Integer>> res) {
+          if(list.isEmpty()) {                          // BASE CASE
+              res.add(new ArrayList<Integer>(chosen));
+          } else {                                      // INDUCTION STEP
+              for(int i=0; i< list.size(); i++) {
+
+                  // choose element from list and add to chosen
+                  int x = list.get(i);
+                  chosen.add(x);
+                  list.remove(i);
+
+                  // Recurse
+                  permute(list, chosen, res);
+
+                  // Undo changes
+                  list.add(i, x);
+                  chosen.remove(chosen.size()-1);
+              }
+          }
+      }
+
+- If list is empty, chosen contains a possible result. Add it to list of results
+- Sequentially choose elements from list and add them to chosen
+    - Permute the remaining elements
+    - Unchoose element from list by adding it back to the list and removing from chosen.
+
+## Full code
+
+Full code as follows:
+
+      class Solution {
+
+          private void permute(List<Integer> list, List<Integer> chosen, List<List<Integer>> res) {
+              if(list.isEmpty()) {
+                  res.add(new ArrayList<Integer>(chosen));
+              } else {
+                  for(int i=0; i< list.size(); i++) {
+
+                      // choose element from list and add to chosen
+                      int x = list.get(i);
+                      chosen.add(x);
+                      list.remove(i);
+
+                      // Recurse
+                      permute(list, chosen, res);
+
+                      // Undo changes
+                      list.add(i, x);
+                      chosen.remove(chosen.size()-1);
+                  }
+              }
+          }
+
+          public List<List<Integer>> permute(int[] nums) {
+
+              List<List<Integer>> res = new ArrayList<>();
+              List <Integer> chosen = new ArrayList<>();
+              List <Integer> list = new ArrayList<>();
+
+              for(int i: nums){
+                  list.add(i);
+              }
+
+              permute(list, chosen, res);
+              return res;
+
+          }
+      }
+
+# 3. Word Search (In progress)
+
+# 4. Sudoku Solver (In Progress)
+
+
+Note: This will be edited later
+
+
+    class Solution {
+
+        private boolean isSafe(char val, int row, int col, char[][] board) {
+
+            // Check if row is safe
+            for(int i = 0; i< board.length; i++) {
+                if(board[i][col] == val)
+                    return false;
+            }
+
+            // Check if col is safe
+            for(int i = 0; i< board.length; i++) {
+                if(board[row][i] == val)
+                    return false;
+            }
+
+            // check if grid is safe
+            int row_end = (row/3)+1;
+            int col_end = (col/3)+1;
+
+            row_end = row_end*3;
+            col_end = col_end*3;
+
+            for(int i = row_end-3; i<row_end; i++) {
+                for (int j = col_end-3; j < col_end; j++) {
+                    if(board[i][j] == val)
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        private boolean solve(char[][] board) {
+            for(int row = 0; row < board.length; row++) {
+                for(int col = 0; col < board[0].length; col++) {
+                    if(board[row][col] == '.') {
+                        for(char val = '1' ; val<= '9' ; val++) {
+                            if(isSafe(val, row, col, board)) {
+
+                                // Add number to board
+                                board[row][col] = val;
+
+                                // Recurse
+                                if(solve(board))
+                                    return true;
+
+                                // Undo Changes
+                                board[row][col] = '.';
+
+                            }
+                        } 
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+
+        public void solveSudoku(char[][] board) {
+            solve(board);
+        }
+    }
+
+
+# 5. Combination Sum (In Progress)
+
+Note: This will be edited later
+
+    class Solution {
+
+        private void solve(int[] a, int target, List<Integer> chosen, List<List<Integer>> res, int start) {
+            if(target == 0) {
+                res.add(new ArrayList<Integer>(chosen));
+            } else if(target > 0) {
+                for(int i = start; i<a.length; i++) {
+                    chosen.add(a[i]);
+
+                    solve(a, (target-a[i]), chosen, res, i);
+
+                    chosen.remove(chosen.size()-1);
+                }
+            }
+        }
+
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+
+            List<List<Integer>> res = new ArrayList<>();
+            List<Integer> chosen = new ArrayList<>();
+            Arrays.sort(candidates);
+
+            solve(candidates, target, chosen, res, 0);
+            return res;
+
+        }
+    }
+
+
