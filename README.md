@@ -8,21 +8,21 @@ Various notes I have compiled while preparing for interviews
 
 # Problem Solving Paradigms
 
-**1. Simplify and Delegate: Basic recursion/induction**
+**1. Simplify and Delegate: Basic recursion/induction** (not started)
   - If given instance of the problem can be solved directly, solve it (BASE CASE)
   - Otherwise do the following: (INDUCTION STEP)
     - Assume any smaller instance of the problem can be solved by your function
     - Perform a single step to reduce problem size
     - Call same function for smaller problem. We know this can be solved due to our assumption (see strong mathematical induction)
     
-**2. Exhaustive Search: Need to traverse through entire search space - can use either iteration of backtracking. Iteration is straightforward. Backtracking described below.**
+**2. Exhaustive Search: Need to traverse through entire search space - can use either iteration of backtracking. Iteration is straightforward. Backtracking described below.** (In progress)
   - If base case store/print/return
   - Else do the following:
     - Perform single step to reduce problem size
     - Call recursive function
     - Undo changes made and continue
 
-**3. Greedy: If locally optimal choice is solution for problem.**
+**3. Greedy: If locally optimal choice is solution for problem.** (not started)
   - Needs optimal substructure and greedy property (we do not look back to previous picks)
 
-**4. Dynamic Programming: Use cache/memory to quickly access data as opposed to doing recursion again**
+**4. Dynamic Programming: Use cache/memory to quickly access data as opposed to doing recursion again** (not started)
