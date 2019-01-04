@@ -4,11 +4,17 @@
 
 ## Paradigm:
 
-1. Do the first step
-2. Perform recursion on the remaining subproblem
-    - If base case save/print current result
-    - Else recurse
-3. Undo the first step and proceed
+- Similar to recursion but with a minor difference: Base case is result so instead of returning, save/print result
+- In induction step after performing recursion undo changes to reset problem to original state
+
+Paradigm is:
+
+- If base case Save/print output
+- Else do induction step
+    - Do first step reducing problem size
+    - Recurse for subproblem
+    - Undo all changes
+      
 
 ## When to use this:
 
