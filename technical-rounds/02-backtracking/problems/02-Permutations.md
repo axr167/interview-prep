@@ -43,41 +43,41 @@
 
 Full code as follows:
 
-  class Solution {
+      class Solution {
 
-      private void permute(List<Integer> list, List<Integer> chosen, List<List<Integer>> res) {
-          if(list.isEmpty()) {
-              res.add(new ArrayList<Integer>(chosen));
-          } else {
-              for(int i=0; i< list.size(); i++) {
+          private void permute(List<Integer> list, List<Integer> chosen, List<List<Integer>> res) {
+              if(list.isEmpty()) {
+                  res.add(new ArrayList<Integer>(chosen));
+              } else {
+                  for(int i=0; i< list.size(); i++) {
 
-                  // choose element from list and add to chosen
-                  int x = list.get(i);
-                  chosen.add(x);
-                  list.remove(i);
+                      // choose element from list and add to chosen
+                      int x = list.get(i);
+                      chosen.add(x);
+                      list.remove(i);
 
-                  // Recurse
-                  permute(list, chosen, res);
+                      // Recurse
+                      permute(list, chosen, res);
 
-                  // Undo changes
-                  list.add(i, x);
-                  chosen.remove(chosen.size()-1);
+                      // Undo changes
+                      list.add(i, x);
+                      chosen.remove(chosen.size()-1);
+                  }
               }
           }
-      }
 
-      public List<List<Integer>> permute(int[] nums) {
+          public List<List<Integer>> permute(int[] nums) {
 
-          List<List<Integer>> res = new ArrayList<>();
-          List <Integer> chosen = new ArrayList<>();
-          List <Integer> list = new ArrayList<>();
+              List<List<Integer>> res = new ArrayList<>();
+              List <Integer> chosen = new ArrayList<>();
+              List <Integer> list = new ArrayList<>();
 
-          for(int i: nums){
-              list.add(i);
+              for(int i: nums){
+                  list.add(i);
+              }
+
+              permute(list, chosen, res);
+              return res;
+
           }
-
-          permute(list, chosen, res);
-          return res;
-
       }
-  }
