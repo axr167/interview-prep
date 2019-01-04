@@ -85,14 +85,21 @@ Full code as follows:
         }
 
         private void nQueenBacktrack(int row, char[][] board, List<List<String>> list) {
-            for(int i=0; i< board.length; i++) {
-                if(isSafe(row, i, board)) {
-                    board[row][i] = 'Q';
-                    if(row == board.length-1)
-                        saveBoard(board, list);
-                    else
+            if(row == board.length)                         // BASE CASE
+                saveBoard(board, list);
+            else {                                          // INDUCTION STEP
+                for(int i=0; i< board.length; i++) {
+                    if(isSafe(row, i, board)) {
+
+                        // Choose queen
+                        board[row][i] = 'Q';
+
+                        // Recurse
                         nQueenBacktrack(row+1, board, list);
-                    board[row][i] = '.';
+
+                        // Undo Changes
+                        board[row][i] = '.';
+                    }
                 }
             }
         }
