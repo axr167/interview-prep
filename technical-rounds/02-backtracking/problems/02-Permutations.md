@@ -1,11 +1,11 @@
 
 ## Paradigm:
 
-1. Choose number from list and store it in chosen
-2. If chosen contains a possible result
-    - Add to list of lists
-    - Else recurse
-3. Undo changes and proceed
+1. If base case, save/print result
+2. Else recurse and backtrack
+    - Do first step to reduce problem size
+    - Recurse
+    - Undo changes and proceed
 
 ## Functions:
 
@@ -14,9 +14,9 @@
 ## Backtracking algorithm
 
       private void permute(List<Integer> list, List<Integer> chosen, List<List<Integer>> res) {
-          if(list.isEmpty()) {
+          if(list.isEmpty()) {                          // BASE CASE
               res.add(new ArrayList<Integer>(chosen));
-          } else {
+          } else {                                      // INDUCTION STEP
               for(int i=0; i< list.size(); i++) {
 
                   // choose element from list and add to chosen
