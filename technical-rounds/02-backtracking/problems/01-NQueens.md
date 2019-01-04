@@ -3,6 +3,8 @@
 
 1. Choose position of the first row's queen
 2. Perform recursion on the remaining subproblem
+      - If base case (row == board.length-1) save it
+      - Else recurse
 3. Unchoose the position chosen and proceed
 
 ## Functions:
