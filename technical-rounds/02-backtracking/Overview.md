@@ -10,7 +10,7 @@
 Paradigm is:
 
 - If base case Save/print output
-- Else do induction step
+- Else do induction step - This is done a finite 'n' number of times which is equal to the search space
     - Do first step reducing problem size
     - Recurse for subproblem
     - Undo all changes
