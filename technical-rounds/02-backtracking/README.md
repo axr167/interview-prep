@@ -4,7 +4,8 @@
 
 ## Paradigm:
 
-- Similar to recursion but with a minor difference: Base case is result so instead of returning, save/print result
+- Iterative exhaustive search is straightforward. Have a bunch of nested loops and loop through all possible values. Filter out all unneeded values.
+- Recursive backtracking is similar to recursion but with a minor difference: Base case is result so instead of returning, save/print result
 - In induction step after performing recursion undo changes to reset problem to original state
 
 Paradigm is:
