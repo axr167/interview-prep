@@ -1,6 +1,66 @@
 
+# 1. Fibonacci
 
-# 1. 0/1 Knapsack Problem
+import java.util.*;
+
+public class Solution{
+    
+    /*
+    
+        Converting Brute force to Top Down DP 
+            - Do base case as usual
+            - In the recursive step:
+                - If cache has the answer then return it
+                - Else recurse and store answer in cache
+                - Return value in cache
+    
+    */
+    
+    
+    /* BRUTE FORCE */
+    private static int fib(int n) {
+        // BASE CASE
+        if(n==0 || n==1)
+            return 1;
+        // RECURSIVE STEP
+        else 
+            return fib(n-1) + fib(n-2);
+    }
+    
+    /* MEMOIZATION */
+    private static int mem_fib(int n, int[] dp) {
+        // BASE CASE
+        if(n==0 || n==1)
+            return 1;
+        // RECURSIVE STEP
+        else {
+            // If cache has answer return it else recurse and store answer in cache
+            if(dp[n]!= -1)
+                return dp[n];
+            else {
+                dp[n] = fib(n-1) + fib(n-2);
+            }
+            return dp[n];
+        }
+    }
+    
+    
+    
+    public static void main(String []args){
+        
+        int[] dp = new int[20];
+        Arrays.fill(dp, -1);
+        
+        for(int i = 0; i<20; i++) {
+            System.out.println("i, fib, memfib: " + i + " " + fib(i) + " " + mem_fib(i, dp) );
+        }
+        
+        
+    }
+}
+
+
+# 2. 0/1 Knapsack Problem
 
 
 Main function:
