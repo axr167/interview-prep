@@ -67,3 +67,7 @@ Hence the code is:
 
             return dp[currentItem][totalWeight];
     }
+  
+This can be converted into bottom up as follows:
+
+    //Placeholder for code
