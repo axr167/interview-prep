@@ -27,11 +27,11 @@ Brute force:
         }
     }
 
-- Moving variable current moves from 0 to w.length
-- There are 2 subproblems
-    - knapsack(w,v,W,V,current+1)
-    - knapsack(w,v,W-w[current], V+v[current], current+1)
-- Notice that subproblems overlap because
-    - moving variable from subproblem 1 moves from 0 to w.length
-    - moving variable from subproblem 2 moves from 0 to w.length
-- Hence we must use DP. Size of cache = 0 to w.length-1.
+    - Moving variable current moves from 0 to w.length
+    - There are 2 subproblems
+        - knapsack(w,v,W,V,current+1)
+        - knapsack(w,v,W-w[current], V+v[current], current+1)
+    - Notice that subproblems overlap because
+        - moving variable from subproblem 1 moves from 0 to w.length
+        - moving variable from subproblem 2 moves from 0 to w.length
+    - Hence we must use DP. Size of cache = 0 to w.length-1.
