@@ -27,7 +27,7 @@ Brute force:
         }
     }
 
-- current moves from 0 to w.length
+- Moving variable current moves from 0 to w.length
 - There are 2 subproblems
     - knapsack(w,v,W,V,current+1)
     - knapsack(w,v,W-w[current], V+v[current], current+1)
