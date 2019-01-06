@@ -62,72 +62,46 @@ public class Solution{
 
 # 2. 0/1 Knapsack Problem
 
+    import java.util.*;
 
-Main function:
-
-    public static void main(String []args){
-        int[] w = {4,1,2,3,2,2};
-        int[] v = {5,8,4,0,5,3};
-
-        int W = 3;
-
-        System.out.println(knapsack(w,v,W,0,0));
-
-    }
-
-Brute force:
+    public class Solution{
 
 
-        /* BRUTE FORCE */
-        private static int knapsack(int[] weight, int[] value, int totalWeight, int currentItem) {
-            // BASE CASE
-            if(currentItem == weight.length)
+        // If current = w.length return 0 (BASE CASE)
+        // if W > w
+        //      f(W, c) = max(f(W, c+1), v[i]+f(W-w[c], c+1))
+        // Else f(W, c) = f(W, c+1)
+
+       private static int mem_knap(int[] w, int[] v, int W, int i, int[][] dp) {
+            if(i == w.length)
                 return 0;
-            // RECURSIVE STEP
             else {
-                if(totalWeight >= weight[currentItem])
-                    return Math.max( knapsack (weight, value, totalWeight, currentItem+1), 
-                             value[currentItem] + knapsack (weight, value, totalWeight - weight[currentItem], currentItem+1) );
-                else
-                    return knapsack (weight, value, totalWeight, currentItem+1);
+                if(dp[i][W] != -1)
+                    return dp[i][W];
+                else {
+                    if(W >= w[i] )
+                        dp[i][W] = Math.max( mem_knap(w,v,W,i+1,dp), 
+                                v[i] + mem_knap(w,v,W-w[i],i+1,dp) );
+                    else
+                        dp[i][W] = mem_knap(w,v,W,i+1,dp);
+                }
+                System.out.println(Arrays.deepToString(dp));
+                return dp[i][W];
             }
+       }
+
+        public static void main(String []args){
+            int[] w = {4,1,2,3,2,2}; // item weights
+            int[] v = {5,8,4,0,5,3}; // item values
+
+            int W = 3; // Total knapsack capacity
+
+            int[][] dp = new int[w.length][W+1];
+            for(int[] row : dp)
+                Arrays.fill(row, -1);
+
+
+            System.out.println(mem_knap(w,v,W,0, dp));
+
         }
-
-Notes:
-
-    - Moving variables that determine output V are as follows:
-        - current: moves from 0 to w.length
-        - W: moves from W to 0
-    - There are 2 subproblems
-        - knapsack(w,v,W,V,current+1)
-        - knapsack(w,v,W-w[current], V+v[current], current+1)
-    - Notice that subproblems overlap
-    - Hence we must use DP. Size of cache = 0 to w.length-1.
-    
-
-Hence the code is:
-
-    private static int mem_knap(int[] weight, int[] value, int totalWeight, int currentItem, int[][] dp) {
-        // BASE CASE
-        if(currentItem == weight.length){
-            return 0;
-        }
-        // RECURSIVE STEP
-        else {
-            // If cache has answer return it else recurse and store answer in cache
-            if (dp[currentItem][totalWeight] != -1)
-                return dp[currentItem][totalWeight];
-            else{
-                if(totalWeight >= weight[currentItem])
-                    dp[currentItem][totalWeight] =  Math.max( mem_knap (weight, value, totalWeight, currentItem+1, dp), 
-                            value[currentItem]+ mem_knap(weight, value, totalWeight-weight[currentItem], currentItem+1,dp));
-                else
-                    dp[currentItem][totalWeight] =  mem_knap (weight, value, totalWeight, currentItem+1, dp);
-            }
-
-            return dp[currentItem][totalWeight];
     }
-  
-This can be converted into bottom up as follows:
-
-    //Placeholder for code
