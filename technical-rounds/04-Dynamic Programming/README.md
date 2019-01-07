@@ -103,6 +103,16 @@ Bottom up DP has a few advantages over top down DP
 
 However on the other hand it can be a bit tricky and harder to implement when compared to Top-Down DP.
 
+
+# Example Problems
+
+All the examples will have both the top down and the bottom up solutions. Each example will add someting new so I highly recommend reading through all of them. The examples are:
+
+1. nth Fibonacci Number: Introduces the basic concepts of DP and how space can be optimized through bottom up DP
+2. Longest Increasing Path in a Matrix (Leetcode 329): A slightly more compex problem
+3. Bytelandian gold coins (Codechef): Shows a case where Top-Down DP is better than Bottom-Up DP and how recurrence relation of Bottom-Up DP can be changed in order to make it as good as the Top-Down version.
+4.
+
 # 1. Fibonacci
 
 import java.util.*;
