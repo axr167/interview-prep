@@ -1,4 +1,77 @@
 
+# Prerequisites
+
+The following are prerequisites to understand this text:
+
+1. You should be able to come up with brute force solutions to problems
+2. You must have a good understanding of recursion and recurrence relations
+3. If you think you do not have a firm understanding of the above, please read my notes on recursion which is also in this repository.
+
+# Overview of Dynamic Programming (DP)
+
+Sometimes when solving a problem using recursion, the same problems are computed over and over. This increases the time complexity.
+
+Take for example the fibonacci sequence. Here the recurrence relation is:
+- f(n) = f(n-1) + f(n-2)
+
+So suppose we have n = 100
+
+- We have 2 subproblems for f(n) these are f(n-1) and f(n-2)
+- We compute f(99) (Subproblem 1) and f(98) (Subproblem 2)
+- When computing Subproblem 1 we compute:
+    - f(98) and f(97) and this continues for the 2 other subproblems generated
+- We then compute Subproblem 2 f(98)
+    - However notice that we have already computed f(98) in Subproblem 1.
+    - But we sitll compute it again anyway because we have to do it
+    - If we had stored f(98) from subproblem 1 somewhere we could just avoid computing Subproblem 2 and use the stored value instead
+
+That is the bacic idea of DP. Whenever we encounter subproblems that overlap as in the case of Subproblems 1 and 2, instead of computing the Subproblems all over again, we store each computation in a cache like an array or a matrix. Then if we ever need to compute something a second time, we simply get the value from the cache greatly decreasing the time complexity.
+
+This is Dynamic Programming.
+
+# When to use DP
+
+DP should be used if:
+
+1. The problem is split into 2 or more subproblems AND
+2. The subproblems overlap
+
+**So how to determine if the subproblems overlap?**
+This can be determined by looking at the recurrence relation. The recurrence relation depends on 1 or more input variables that are changing in some way.
+- In the relation f(n) = f(n-1) + f(n-2) the variable n is changing across the 2 subproblems.
+
+The way I visialize this is as follows:
+
+- Let 'n' be a very large number say a million or a billion. The numbers we care about is n-1 and n-2 since those are in the subproblems.
+- Draw a line for Subproblem 1 that goes from n-1 to the base case (1). Draw another line for Subproblem 2 that goes from n-2 to the base case (1).
+- If the 2 lines overlap, the subproblems overlap.
+- An illustration for the above is shown below:
+
+![Overlap](https://i.imgur.com/DJTyVsV.png)
+
+# Determining the size of the cache
+
+The cache size can be determined by looking at the recurrence relation. The recurrence relation has a variable that always 
+
+# The two types of DP
+
+There are 2 ways by which we can solve a DP problem. The first is Top Down and the second is Bottom Up. They are described below.
+
+## 1. Top-Down DP
+
+This is just recursion with caching. The paradigm is:
+
+- If base case, store in cache and return the answer
+- Else:
+    - Check cache for answer. If answer exists return it
+    - Otherwise recurse and store result in cache
+    - Return result from cache
+
+## 2. Bottom-Up DP
+
+Here instead of
+
+
 # 1. Fibonacci
 
 import java.util.*;
