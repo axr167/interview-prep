@@ -29,7 +29,7 @@ That is the bacic idea of DP. Whenever we encounter subproblems that overlap as 
 
 This is Dynamic Programming.
 
-# When to use DP
+# When to use DP?
 
 DP should be used if:
 
@@ -37,6 +37,7 @@ DP should be used if:
 2. The subproblems overlap
 
 **So how to determine if the subproblems overlap?**
+
 This can be determined by looking at the recurrence relation. The recurrence relation depends on 1 or more input variables that are changing in some way.
 - In the relation f(n) = f(n-1) + f(n-2) the variable n is changing across the 2 subproblems.
 
@@ -49,9 +50,13 @@ The way I visialize this is as follows:
 
 ![Overlap](https://i.imgur.com/DJTyVsV.png)
 
-# Determining the size of the cache
+Now let us consider something like Binary search.
+- The recurrence relation is: f([0...n]) = f([0 ... n/2]) | f([n/2+1 ... n]) where n is the size of the array
+- Here the 2 subproblems do not
 
-The cache size can be determined by looking at the recurrence relation. The recurrence relation has a variable that always 
+# How to determine the size of the cache?
+
+The cache size can be determined by looking at changing input variables in the recurrence relation. If   
 
 # The two types of DP
 
