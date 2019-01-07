@@ -111,7 +111,7 @@ All the examples will have both the top down and the bottom up solutions. Each e
 1. nth Fibonacci Number: Introduces the basic concepts of DP and how space can be optimized through bottom up DP
 2. Min path sum (Leetcode): A slightly more compex problem
 3. Bytelandian gold coins (Codechef): Shows a case where Top-Down DP is better than Bottom-Up DP and how recurrence relation of Bottom-Up DP can be changed in order to make it as good as the Top-Down version.
-4. Longest Increasing Path in a Matrix: Shows a case where it is extremely difficult to get a Bottom Up solution which is equivalent to the corresponding top down solution
+4. Longest Increasing Path in a Matrix: Shows a case where it is extremely difficult to get a Bottom Up solution which is equivalent to the corresponding top down solution (to do that we must model it as a graph and use topological sort)
 
 # 1. Fibonacci
 
