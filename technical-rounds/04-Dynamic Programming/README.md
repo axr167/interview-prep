@@ -43,6 +43,8 @@ This can be determined by looking at the recurrence relation. The recurrence rel
 
 The way I visialize this is as follows:
 
+Let us consider the fibonacci sequence where problems overlap
+
 - Let 'n' be a very large number say a million or a billion. The numbers we care about is n-1 and n-2 since those are in the subproblems.
 - Draw a line for Subproblem 1 that goes from n-1 to the base case (1). Draw another line for Subproblem 2 that goes from n-2 to the base case (1).
 - If the 2 lines overlap, the subproblems overlap.
@@ -50,9 +52,11 @@ The way I visialize this is as follows:
 
 ![overlap](https://i.imgur.com/DJTyVsV.png)
 
-Now let us consider something like Binary search.
+Now let us consider something like Binary search where problems DO NOT overlap
+
 - The recurrence relation is: f([0...n]) = f([0 ... n/2]) | f([n/2+1 ... n]) where n is the size of the array
-- Here the 2 subproblems do not overlap. This is illustrated below
+- Here the 2 subproblems do not overlap no matter how large n becomes. 
+- This is illustrated below
 
 ![no-overlap](https://i.imgur.com/6PDI4ps.png)
 
