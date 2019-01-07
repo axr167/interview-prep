@@ -307,40 +307,5 @@ Note: This will be edited later
     }
 
 
-# 4. Combination Sum (In Progress)
-
-Note: This will be edited later
-
-    class Solution {
-
-        private void solve(int[] a, int target, List<Integer> chosen, List<List<Integer>> res, int start) {
-            if(target == 0) {
-                res.add(new ArrayList<Integer>(chosen));
-            } else if(target > 0) {
-                for(int i = start; i<a.length; i++) {
-                
-                    // Choose number
-                    chosen.add(a[i]);
-                    
-                    // Recurse
-                    solve(a, (target-a[i]), chosen, res, i);
-
-                    // Undo changes
-                    chosen.remove(chosen.size()-1);
-                }
-            }
-        }
-
-        public List<List<Integer>> combinationSum(int[] candidates, int target) {
-
-            List<List<Integer>> res = new ArrayList<>();
-            List<Integer> chosen = new ArrayList<>();
-            Arrays.sort(candidates);
-
-            solve(candidates, target, chosen, res, 0);
-            return res;
-
-        }
-    }
 
 
