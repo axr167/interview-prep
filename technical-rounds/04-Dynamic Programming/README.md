@@ -48,11 +48,13 @@ The way I visialize this is as follows:
 - If the 2 lines overlap, the subproblems overlap.
 - An illustration for the above is shown below:
 
-![Overlap](https://i.imgur.com/DJTyVsV.png)
+![overlap](https://i.imgur.com/DJTyVsV.png)
 
 Now let us consider something like Binary search.
 - The recurrence relation is: f([0...n]) = f([0 ... n/2]) | f([n/2+1 ... n]) where n is the size of the array
-- Here the 2 subproblems do not
+- Here the 2 subproblems do not overlap. This is illustrated below
+
+![no-overlap](https://i.imgur.com/6PDI4ps.png)
 
 # How to determine the size of the cache?
 
