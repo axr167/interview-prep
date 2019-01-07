@@ -64,7 +64,7 @@ Now let us consider something like Binary search where problems DO NOT overlap
 
 The cache size can be determined by looking at changing input variables in the recurrence relation. If there exists 1 variable n that changes in the relation, then the size of cache is at most 'n' if there exist 2 variables (m, n) the size of the cache is at most mxn and so on.
 
-**[NOTE]: The size of the cache can be reduced this is just the upper limit**
+**[NOTE]: The size of the cache can be reduced in many cases. This is just the upper limit**
 
 Let us consider some examples. Consider the recurrence relations below:
 
@@ -87,8 +87,21 @@ This is just recursion with caching. The paradigm is:
 
 ## 2. Bottom-Up DP
 
-Here instead of
+Here instead of using recursion, we go bottom up using for-loops. The direction of the loops can be estimated by looking at the recurrence relation.
 
+Consider the following recurrence relation: f(n) = f(n+1) + f(n+2)
+
+- There is 1 changing input variable n so there exists 1 for loop.
+- The value of f(n) depends on n+1 and n+2
+    - This implies that in the cache, cache[n+1] and cache[n+2] are filled before cache[n] is filled
+    - So the loop travels backwards from n to 0
+ 
+Bottom up DP has a few advantages over top down DP
+
+- Since there is no recursion involved there are no overheads related to the recursion stack
+- It is easy to optimize the size of the cache simply by observing how the cache is filled (this will be discussed in the problems)
+
+However on the other hand it can be a bit tricky and harder to implement when compared to Top-Down DP.
 
 # 1. Fibonacci
 
