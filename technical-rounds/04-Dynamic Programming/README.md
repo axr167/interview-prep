@@ -62,7 +62,14 @@ Now let us consider something like Binary search where problems DO NOT overlap
 
 # How to determine the size of the cache?
 
-The cache size can be determined by looking at changing input variables in the recurrence relation. If   
+The cache size can be determined by looking at changing input variables in the recurrence relation. If there exists 1 variable n that changes in the relation, then the size of cache is at most 'n' if there exist 2 variables (m, n) the size of the cache is at most mxn and so on.
+
+**[NOTE]: The size of the cache can be reduced this is just the upper limit**
+
+Let us consider some examples. Consider the recurrence relations below:
+
+1. f(n) = f(n-1) + f(n-2): Here the maximum size of the cache is 'n'
+2. f(i, j) = max(f(i+1, j), f(i, j+1): Here the maxumum size of the cache is ixj.
 
 # The two types of DP
 
