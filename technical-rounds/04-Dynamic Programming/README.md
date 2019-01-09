@@ -173,8 +173,90 @@ public class Solution{
     }
 }
 
+# 2. Min path sum
 
-# 2. 0/1 Knapsack Problem
+Recurrence relation:
+
+    // f(i,j) = a[i][j] if i == m j == n
+    // f(i,j) = a[i][j] + f(i, j+1) if i == m
+    // f(i,j) = a[i][j] + f(i+1, j) if j == n
+    // f(i,j) = a[i][j] + min(f(i, j+1), f(i+1, j)) otherwise
+
+Recursion:
+
+    private int f(int[][] a, int i, int j) {
+        if(i == a.length-1 && j == a[0].length-1)
+            return a[i][j];
+        else if(i == a.length-1)
+            return a[i][j] + f(a, i, j+1);
+        else if(j == a[0].length-1)
+            return a[i][j] + f(a, i+1, j);
+        else
+            return a[i][j] + Math.min( f(a, i, j+1), f(a, i+1, j) );
+    }
+
+Top-Down:
+    
+    private int f(int[][] a, int i, int j, int[][] dp) {
+        if(i == a.length-1 && j == a[0].length-1) {
+            if(dp[i][j] == 0)
+                dp[i][j] = a[i][j];
+        } else if (i == a.length-1) {
+            if(dp[i][j] == 0)
+                dp[i][j] = a[i][j] + f(a, i, j+1, dp);
+        } else if (j == a[0].length-1) {
+            if(dp[i][j] == 0)
+                dp[i][j] = a[i][j] + f(a, i+1, j, dp);
+        } else {
+            if(dp[i][j] == 0)
+                dp[i][j] = a[i][j] + Math.min(f(a, i, j+1, dp), f(a, i+1, j, dp));
+        }
+        return dp[i][j];
+    }
+    
+
+Bottom-Up
+
+    private int f(int[][] a) {
+        int[][] dp = new int[a.length][a[0].length];
+        for(int i = a.length-1; i>=0; i--) {
+            for(int j = a[0].length-1; j >=0; j--) {
+                if(i==a.length-1 && j == a[0].length-1)
+                    dp[i][j] = a[i][j];
+                else if(i==a.length-1)
+                    dp[i][j] = a[i][j] + dp[i][j+1];
+                else if(j ==a[0].length-1)
+                    dp[i][j] = a[i][j] + dp[i+1][j];
+                else
+                    dp[i][j] = a[i][j] + Math.min(dp[i][j+1], dp[i+1][j]);
+            }
+        }
+        return dp[0][0];
+    }
+    
+
+Bottom-Up Space Optimized
+
+    private int f(int[][] a) {
+        int[] row1 = new int[a[0].length];
+        int[] row2 = new int[a[0].length];
+        for(int i = a.length-1; i>=0; i--) {
+            for(int j = a[0].length-1; j >=0; j--) {
+                if(i == a.length-1 && j == a[0].length-1)
+                    row1[j] = a[i][j];
+                else if(i == a.length-1)
+                    row1[j] = a[i][j] + row1[j+1];
+                else if(j == a[0].length-1)
+                    row1[j] = a[i][j]+ row2[j];
+                else
+                    row1[j] = a[i][j] + Math.min(row1[j+1], row2[j]);
+            }
+            row2 = row1;
+        }
+        return row1[0];
+    }
+
+# 3. 0/1 Knapsack Problem
 
     import java.util.*;
 
