@@ -17,14 +17,14 @@ The technique of saving computed values into a cache so we do not have to comput
 
 The following subproblems overlap:
 
-	f(i, j) = f(i+1, j) + f(i, j-1)
-	f(x) = f(x+2) - f(x+3)
-	f(a, b) = max( f(a, b), f(a, b-array[i])
+	1. f(i, j) = f(i+1, j) + f(i, j-1)
+	2. f(x) = f(x+2) - f(x+3)
+	3. f(a, b) = max( f(a, b), f(a, b-array[i])
 
 The following subproblems do not overalp:
 
-	f(a) = f(a-1)
-	f(a[0 ... n]) = f(a[0 ... n/2]) & f(a[n/2 ... n])
+	1. f(a) = f(a-1)
+	2. f(a[0 ... n]) = f(a[0 ... n/2]) & f(a[n/2 ... n])
 
 ### How to determine the size of the cache?
 
