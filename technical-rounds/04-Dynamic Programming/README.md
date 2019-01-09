@@ -62,7 +62,7 @@ Now let us consider something like Binary search where problems DO NOT overlap
 
 # How to determine the size of the cache?
 
-The cache size can be determined by looking at changing input variables in the recurrence relation. If there exists 1 variable n that changes in the relation, then the size of cache is at most 'n' if there exist 2 variables (m, n) the size of the cache is at most mxn and so on.
+Look at all the variables (v1, v2, ... vn) in the recurrence that are involved in conditional statements. The size of the cache is: (v1 x v2 x ... vn)
 
 **[NOTE]: The size of the cache can be reduced in many cases. This is just the upper limit**
 
@@ -258,46 +258,27 @@ Bottom-Up Space Optimized
 
 # 3. 0/1 Knapsack Problem
 
-    import java.util.*;
+We define items as follows:
 
-    public class Solution{
-
-
-        // If current = w.length return 0 (BASE CASE)
-        // if W > w
-        //      f(W, c) = max(f(W, c+1), v[i]+f(W-w[c], c+1))
-        // Else f(W, c) = f(W, c+1)
-
-       private static int mem_knap(int[] w, int[] v, int W, int i, int[][] dp) {
-            if(i == w.length)
-                return 0;
-            else {
-                if(dp[i][W] != -1)
-                    return dp[i][W];
-                else {
-                    if(W >= w[i] )
-                        dp[i][W] = Math.max( mem_knap(w,v,W,i+1,dp), 
-                                v[i] + mem_knap(w,v,W-w[i],i+1,dp) );
-                    else
-                        dp[i][W] = mem_knap(w,v,W,i+1,dp);
-                }
-                System.out.println(Arrays.deepToString(dp));
-                return dp[i][W];
+    public class KnapsackItems {
+        public int[] wt;
+        public int[] val;
+        public KnapsackItems(int[]x, int[] y) {
+            wt = new int[x.length];
+            val = new int[y.length];
+            for(int i = 0; i<x.length; i++) {
+                wt[i] = x[i];
+                val[i] = y[i];
             }
-       }
-
-        public static void main(String []args){
-            int[] w = {4,1,2,3,2,2}; // item weights
-            int[] v = {5,8,4,0,5,3}; // item values
-
-            int W = 3; // Total knapsack capacity
-
-            int[][] dp = new int[w.length][W+1];
-            for(int[] row : dp)
-                Arrays.fill(row, -1);
-
-
-            System.out.println(mem_knap(w,v,W,0, dp));
-
         }
     }
+
+Main program:
+
+    public static void main(String[] args) {
+		int[] w = {4,1,2,3,2,2}; // item weights
+		int[] v = {5,8,4,0,5,3}; // item values
+		KnapsackItems I = new KnapsackItems(w, v);
+		Solution s = new Solution();
+		System.out.println(s.solve(I, 3) );
+	}
