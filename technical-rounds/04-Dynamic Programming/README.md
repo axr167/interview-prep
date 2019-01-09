@@ -195,7 +195,7 @@ Top-Down:
 Bottom-Up
 
     private int f(int[][] a) {
-        int[][] dp = new int[a.length][a[0].length];
+        int[][] dp = new int[a.length+1][a[0].length+1];
         for(int i = a.length-1; i>=0; i--) {
             for(int j = a[0].length-1; j >=0; j--) {
                 if(i==a.length-1 && j == a[0].length-1)
@@ -252,10 +252,87 @@ We define items as follows:
 
 Main program:
 
-    public static void main(String[] args) {
+    	public static void main(String[] args) {
 		int[] w = {4,1,2,3,2,2}; // item weights
 		int[] v = {5,8,4,0,5,3}; // item values
 		KnapsackItems I = new KnapsackItems(w, v);
 		Solution s = new Solution();
 		System.out.println(s.solve(I, 3) );
+	}
+	
+Recurrence relation:
+
+	/* 
+	 * RECURRENCE:
+	 *  f(W, i, v) = v // i >= n
+	 *  f(W, i, v) = f(W, i+1, v)  // w[i] > W
+	 *  f(W, i, v) = max( f(W, i+1, v), f(W-w[i], i+1, v+v[i]) ) // otherwise
+	 */
+
+Recursive:
+
+	private int f(KnapsackItems I, int W, int i, int v) {
+		int n = I.wt.length;
+		if(i == n)
+			return v;
+		if(I.wt[i] > W)
+			return f(I, W, i+1, v);
+		else
+			return Math.max(f(I, W, i+1, v), f(I, W-I.wt[i], i+1, v+I.val[i]));
+	}
+
+Top-Down:
+
+	private int f(KnapsackItems I, int W, int i, int v, int[][]dp) {
+		int n = I.wt.length;
+		if(dp[i][W] != 0)
+			return dp[i][W];
+		if(i == n) 
+			dp[i][W] = v;
+		else if(I.wt[i] > W)
+			dp[i][W] = f(I, W, i+1, v, dp);
+		else
+			dp[i][W] = Math.max(f(I, W, i+1, v), f(I, W-I.wt[i], i+1, v+I.val[i]));
+		return dp[i][W];
+	}
+
+Bottom-Up:
+
+	private int f(KnapsackItems I, int W) {
+		int n = I.wt.length;
+		int[][] dp = new int[n+1][W+1];
+		
+		for(int i= n-1; i>=0; i--) {
+			for(int j=0; j<W+1; j++) {
+				if(i >= n)
+					dp[i][j] = 0;
+				else if(I.wt[i] > j)
+					dp[i][j] = dp[i+1][j];
+				else
+					dp[i][j] = Math.max(dp[i+1][j], I.val[i]+dp[i+1][j-I.wt[i]]);
+			}
+		}
+		return dp[0][W];
+	}
+
+Bottom-Up space optimized
+
+	private int fs(KnapsackItems I, int W) {
+		int n = I.wt.length;
+		int[] row1 = new int[W+1];
+		int[] row2 = new int[W+1];
+		
+		for(int i = n-1; i>=0; i--) {
+			for(int j=0; j<W+1; j++) {
+				if(i >=n)
+					row1[j] = 0;
+				else if(I.wt[i] > j)
+					row1[j] = row2[j];
+				else
+					row1[j] = Math.max(row2[j], I.val[i]+row2[j-I.wt[i]]);
+			}
+			for(int j=0; j<W+1; j++)
+				row2[j] = row1[j];
+		}
+		return row1[W];
 	}
