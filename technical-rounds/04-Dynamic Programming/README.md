@@ -43,6 +43,11 @@ Example 2 (Knapsack):
 	f(W, i, v) = max( f(W, i+1, v), f(W-w[i], i+1, v+v[i]) ) // otherwise
 Here 2 variables i, W are in the conditional so max cache size is in the order of: i * W
 
+**Tips on setting up the cache**
+
+- If your recurrence relation is in the form: f(i) = max(f(i+1), f(i)):
+	- It is always safe to make your array of size [i+1] instead of [i] to accomodate for base cases.
+
 ### The two methods to solve DP
 
 There are 2 methods for solving a DP problem. The first is Top-Down and the second is Bottom-Up. They are described below.
