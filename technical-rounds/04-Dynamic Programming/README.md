@@ -13,7 +13,7 @@ When multiple subproblems in a recurrence overlap, recursion or brute force comp
 
 The technique of saving computed values into a cache so we do not have to compute them again is known as DP. It should be used if there are multiple subproblems AND the subproblems overlap
 
-**Overlapping Subproblems**
+### Overlapping Subproblems
 
 The following subproblems overlap:
 
@@ -26,7 +26,7 @@ The following subproblems do not overalp:
 - f(a) = f(a-1)
 - f(a[0 ... n]) = f(a[0 ... n/2]) & f(a[n/2 ... n])
 
-**How to determine the size of the cache?**
+### How to determine the size of the cache?
 
 Look at all the variables (v1, v2, ... vn) in the recurrence that are involved in conditional statements. The size of the cache is: (v1 x v2 x ... vn)
 
@@ -43,19 +43,11 @@ Example 2 (Knapsack):
 	f(W, i, v) = max( f(W, i+1, v), f(W-w[i], i+1, v+v[i]) ) // otherwise
 Here 2 variables i, W are in the conditional so max cache size is in the order of: i * W
 
+### The two methods to solve DP
 
-**NOTE: The size of the cache can be reduced in many cases. This is just the upper limit**
+There are 2 methods for solving a DP problem. The first is Top-Down and the second is Bottom-Up. They are described below.
 
-Let us consider some examples. Consider the recurrence relations below:
-
-1. f(n) = f(n-1) + f(n-2): Here the maximum size of the cache is 'n'
-2. f(i, j) = max(f(i+1, j), f(i, j+1): Here the maxumum size of the cache is ixj.
-
-# The two types of DP
-
-There are 2 ways by which we can solve a DP problem. The first is Top Down and the second is Bottom Up. They are described below.
-
-## 1. Top-Down DP
+**1. Top-Down DP**
 
 This is just recursion with caching. The paradigm is:
 
@@ -65,7 +57,7 @@ This is just recursion with caching. The paradigm is:
     - Otherwise recurse and store result in cache
     - Return result from cache
 
-## 2. Bottom-Up DP
+**2. Bottom-Up DP**
 
 Here instead of using recursion, we go bottom up using for-loops. The direction of the loops can be estimated by looking at the recurrence relation.
 
