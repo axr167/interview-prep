@@ -336,3 +336,56 @@ Bottom-Up space optimized
 		}
 		return row1[W];
 	}
+
+# 4. Longest Pallindromic substring
+
+
+Bottom-Up
+
+    private String solve(String s) {
+        String[][] dp = new String[s.length()+1][s.length()+1];
+        for(int i = s.length()-1; i >= 0; i--) {
+            for(int j = 0; j<=s.length(); j++) {
+                if(j<=i)
+                    dp[i][j] = "";
+                else {
+                    if(isP(s.substring(i,j))) {
+                        dp[i][j] = s.substring(i,j);
+                    } else {
+                        if(dp[i][j-1].length() > dp[i+1][j].length())
+                            dp[i][j] = dp[i][j-1];
+                        else
+                            dp[i][j] = dp[i+1][j];
+                    }
+                }
+            }
+        }
+        return dp[0][s.length()];
+    }
+    
+
+Bottom-Up space optimized
+
+    private String solve(String s) {
+        String[] row1 = new String[s.length()+1];
+        String[] row2 = new String[s.length()+1];
+        for(int i = s.length()-1; i >= 0; i--) {
+            for(int j = 0; j<=s.length(); j++) {
+                if(i>=j)
+                    row1[j] = "";
+                else if (isP(s.substring(i,j)))
+                    row1[j] = s.substring(i,j);
+                else {
+                    if(row1[j-1].length() > row2[j].length())
+                        row1[j] = row1[j-1];
+                    else
+                        row1[j] = row2[j];
+                }
+            }
+            for(int x = 0; x< row1.length; x++) {
+                row2[x] = row1[x];
+            }
+        }
+        return row1[s.length()];
+    }
+
