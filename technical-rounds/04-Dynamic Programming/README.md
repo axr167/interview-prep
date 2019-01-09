@@ -9,62 +9,42 @@ The following are prerequisites to understand this text:
 
 # Overview of Dynamic Programming (DP)
 
-Sometimes when solving a problem using recursion, the same problems are computed over and over. This increases the time complexity.
+When multiple subproblems in a recurrence overlap, recursion or brute force computes certain precomputed values over and over again. To avoid this, we save already computed values into a cache where precomputed values can be retreived in constant time (such as an array or a hashmap).
 
-Take for example the fibonacci sequence. Here the recurrence relation is:
-- f(n) = f(n-1) + f(n-2)
+The technique of saving computed values into a cache so we do not have to compute them again is known as DP. It should be used if there are multiple subproblems AND the subproblems overlap
 
-So suppose we have n = 100
+**Overlapping Subproblems**
 
-- We have 2 subproblems for f(n) these are f(n-1) and f(n-2)
-- We compute f(99) (Subproblem 1) and f(98) (Subproblem 2)
-- When computing Subproblem 1 we compute:
-    - f(98) and f(97) and this continues for the 2 other subproblems generated
-- We then compute Subproblem 2 f(98)
-    - However notice that we have already computed f(98) in Subproblem 1.
-    - But we sitll compute it again anyway because we have to do it
-    - If we had stored f(98) from subproblem 1 somewhere we could just avoid computing Subproblem 2 and use the stored value instead
+The following subproblems overlap:
 
-That is the bacic idea of DP. Whenever we encounter subproblems that overlap as in the case of Subproblems 1 and 2, instead of computing the Subproblems all over again, we store each computation in a cache like an array or a matrix. Then if we ever need to compute something a second time, we simply get the value from the cache greatly decreasing the time complexity.
+- f(i, j) = f(i+1, j) + f(i, j-1)
+- f(x) = f(x+2) - f(x+3)
+- f(a, b) = max( f(a, b), f(a, b-array[i])
 
-This is Dynamic Programming.
+The following subproblems do not overalp:
 
-# When to use DP?
+- f(a) = f(a-1)
+- f(a[0 ... n]) = f(a[0 ... n/2]) & f(a[n/2 ... n])
 
-DP should be used if:
-
-1. The problem is split into 2 or more subproblems AND
-2. The subproblems overlap
-
-**So how to determine if the subproblems overlap?**
-
-This can be determined by looking at the recurrence relation. The recurrence relation depends on 1 or more input variables that are changing in some way.
-- In the relation f(n) = f(n-1) + f(n-2) the variable n is changing across the 2 subproblems.
-
-The way I visialize this is as follows:
-
-Let us consider the fibonacci sequence where problems overlap
-
-- Let 'n' be a very large number say a million or a billion. The numbers we care about is n-1 and n-2 since those are in the subproblems.
-- Draw a line for Subproblem 1 that goes from n-1 to the base case (1). Draw another line for Subproblem 2 that goes from n-2 to the base case (1).
-- If the 2 lines overlap, the subproblems overlap.
-- An illustration for the above is shown below:
-
-![overlap](https://i.imgur.com/DJTyVsV.png)
-
-Now let us consider something like Binary search where problems DO NOT overlap
-
-- The recurrence relation is: f([0...n]) = f([0 ... n/2]) | f([n/2+1 ... n]) where n is the size of the array
-- Here the 2 subproblems do not overlap no matter how large n becomes. 
-- This is illustrated below
-
-![no-overlap](https://i.imgur.com/6PDI4ps.png)
-
-# How to determine the size of the cache?
+**How to determine the size of the cache?**
 
 Look at all the variables (v1, v2, ... vn) in the recurrence that are involved in conditional statements. The size of the cache is: (v1 x v2 x ... vn)
 
-**[NOTE]: The size of the cache can be reduced in many cases. This is just the upper limit**
+Example 1 (Fibonacci):
+
+	f(n) = 1 if n == 0 or 1
+	f(n) = f(n-1) + f(n-2) otherwise
+Here 1 variable n is in the conditional so max cache size is in the order of: n
+
+Example 2 (Knapsack):
+
+	f(W, i, v) = v // i >= n
+	f(W, i, v) = f(W, i+1, v)  // w[i] > W
+	f(W, i, v) = max( f(W, i+1, v), f(W-w[i], i+1, v+v[i]) ) // otherwise
+Here 2 variables i, W are in the conditional so max cache size is in the order of: i * W
+
+
+**NOTE: The size of the cache can be reduced in many cases. This is just the upper limit**
 
 Let us consider some examples. Consider the recurrence relations below:
 
