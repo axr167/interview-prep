@@ -122,7 +122,7 @@ For example if n=1000, Bottom-Up would compute states where n ranges from 500 to
 Here we must convert the recurrence as follows:
 
 	f(n) = max(n, f(n/2) + f(n/3))
-	=> f( n/(2 <sup>0</sup> * 3 <sup>0</sup>) ) = max( (n /(2 <sup>0</sup> * 3 <sup>0</sup>)), f( n/(2 <sup>1</sup> * 3 <sup>0</sup>) ) + f( n/(2 <sup>0</sup> * 3 <sup>1</sup>) ) )
+	=> f( n/(2^0 * 3^0) ) = max( (n /(2^0 * 3^0)), f( n/(2^1 * 3^0) ) + f( n/(2^0 * 3^1) ) )
 	=> f( n/(2^i * 3^j) ) = max( (n /(2^i * 3^j)), f( n/(2^i+1 * 3^j) ) + f( n/(2^i * 3^j+1) ) )
 	=> f(i,j) = max( (n /(2^i * 3^j), f(i+1,j) + f(i, j+1))
 
