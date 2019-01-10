@@ -463,6 +463,12 @@ Recurrence:
         f(prev, i) = 0 // if i = a.length
         f(prev, i) = max(1+f(a[i], i+1), f(prev, i+1)) // if(a[i] > prev)
         f(prev, i) = f(prev, i+1) otherwise
+	
+	let prev = a[j]
+	
+	f(prev, i) = 0 // if i = a.length
+        f(prev, i) = max(1+f(a[i], i+1), f(prev, i+1)) // if(a[i] > prev)
+        f(prev, i) = f(prev, i+1) otherwise
         
 Recursion:
 
