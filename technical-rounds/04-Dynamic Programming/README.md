@@ -73,12 +73,62 @@ Consider the following recurrence relation: f(n) = f(n+1) + f(n+2)
     - This implies that in the cache, cache[n+1] and cache[n+2] are filled before cache[n] is filled
     - So the loop travels backwards from n to 0
  
-Bottom up DP has a few advantages over top down DP
+**Optimizing Space complexity using Bottom-up DP**
 
-- Since there is no recursion involved there are no overheads related to the recursion stack
-- It is easy to optimize the size of the cache simply by observing how the cache is filled (this will be discussed in the problems)
+It is possible to optimize space complexity when using Bottom-Up DP. This is possible when we have a recurrence in the form f(n) = f(n+c) or f(n) = f(n-c) where 'c' is a constant. 
 
-However on the other hand it can be a bit tricky and harder to implement when compared to Top-Down DP.
+In this case the space complexity can be reduced by upto one dimension in the order of n. Instead of n, instead of 'n', the space can be reduced to just 'c'.
+
+So the expressions: 
+
+- f(n) = f(n-1) + f(n-2) can be reduced from n to just 2.
+- f(i,j) = max(f(i+1, j) + f(i, j+1)) can be reduced from i * j to just j
+- f(i, j) = max(f(i+1,j), f(i, j-a[n])) can be reduced from i * j to just j
+
+Let us take example 2 - here the values of row i depends only on the values of row i+1. It does not depend on values of rows i+2, i+3 etc so instead of maintaining space for all the rows, we can just discard all the useless ones and save space only for what we need.
+
+**Top-Down vs Bottom-Up**
+
+Some comparisons between Top-Down and Bottom-Up are:
+
+	1. Bottom-up can be space optimized unlike top-down
+	2. Bottom-up does not use recursion so there is no extra overhead for recursive calls
+	3. Top-down is easier to implement as it is essentially the same as recursion. Implementing Bottom-up is a bit trickier.
+	4. Top-down can sometimes have better time complexity because top down only evaluates subproblems that it needs however since we perform iteration in Bottom-up, every state (even ones that we do not need) are evaluated. This is true for type 3 problems below.
+
+### Three types of DP problems
+
+I have come up with 3 distinct types of DP problems based on what their recurrence relations look like.
+
+**Type 1: When the recurrence has simple addition/subtraction**
+
+For example:
+
+	f(n) = f(n-1) + f(n-2)
+	f(i,j) = max(f(i-1,j), f(i,j+1))
+
+This is the simplest form of DP problem. Just solve it using bottom up
+
+**Type 2: When the recurrence has division**
+
+For example:
+
+	f(n) = max(n, f(n/2) + f(n/3))
+
+Here doing Bottom-Up DP will have a space and time complexity of 'n' which is not good as all states are computed. Since Top-Down only computes the states that is necessary, it will be significantly faster. 
+
+For example if n=1000, Bottom-Up would compute states where n ranges from 500 to 1000 which is unnecessary as it will never be used.
+
+Here we must convert the recurrence as follows:
+
+	f(n) = max(n, f(n/2) + f(n/3))
+	=> f( n/(2<sup>0</sup> * 3<sup>0</sup>) ) = max( (n /(2<sup>0</sup> * 3<sup>0</sup>)), f( n/(2<sup>1</sup> * 3<sup>0</sup>) ) + f( n/(2<sup>0</sup> * 3<sup>1</sup>) ) )
+	=> f( n/(2^i * 3^j) ) = max( (n /(2^i * 3^j)), f( n/(2^i+1 * 3^j) ) + f( n/(2^i * 3^j+1) ) )
+	=> f(i,j) = max( (n /(2^i * 3^j), f(i+1,j) + f(i, j+1))
+
+Here the size of i and j are: log
+	
+	
 
 
 # Example Problems
