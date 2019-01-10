@@ -472,14 +472,14 @@ Recurrence:
         
 Recursion:
 
-    public int lis(int[] a, int j, int i) {
+    public int lis(int[] a, int i, int j) {
         int val = ((j==-1) ? Integer.MIN_VALUE : a[j]);
         if(i == a.length)
             return 0;
         if(a[i] > val)
-            return Math.max(1+lis(a, i, i+1), lis(a, j, i+1));
+            return Math.max(1+lis(a, i+1, i), lis(a, i+1, j));
         else
-            return lis(a, j, i+1);
+            return lis(a,i+1,j);
     }
     
 Top-Down:
