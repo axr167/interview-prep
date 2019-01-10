@@ -91,10 +91,10 @@ Let us take example 2 - here the values of row i depends only on the values of r
 
 Some comparisons between Top-Down and Bottom-Up are:
 
-	1. Bottom-up can be space optimized unlike top-down
-	2. Bottom-up does not use recursion so there is no extra overhead for recursive calls
-	3. Top-down is easier to implement as it is essentially the same as recursion. Implementing Bottom-up is a bit trickier.
-	4. Top-down can sometimes have better time complexity because top down only evaluates subproblems that it needs however since we perform iteration in Bottom-up, every state (even ones that we do not need) are evaluated. This is true for type 3 problems below.
+1. Bottom-up can be space optimized unlike top-down
+2. Bottom-up does not use recursion so there is no extra overhead for recursive calls
+3. Top-down is easier to implement as it is essentially the same as recursion. Implementing Bottom-up is a bit trickier.
+4. Top-down can sometimes have better time complexity because top down only evaluates subproblems that it needs however since we perform iteration in Bottom-up, every state (even ones that we do not need) are evaluated. This is true for type 3 problems below.
 
 ### Three types of DP problems
 
@@ -122,7 +122,7 @@ For example if n=1000, Bottom-Up would compute states where n ranges from 500 to
 Here we must convert the recurrence as follows:
 
 	f(n) = max(n, f(n/2) + f(n/3))
-	=> f( n/(2<sup>0</sup> * 3<sup>0</sup>) ) = max( (n /(2<sup>0</sup> * 3<sup>0</sup>)), f( n/(2<sup>1</sup> * 3<sup>0</sup>) ) + f( n/(2<sup>0</sup> * 3<sup>1</sup>) ) )
+	=> f( n/(2 <sup>0</sup> * 3 <sup>0</sup>) ) = max( (n /(2 <sup>0</sup> * 3 <sup>0</sup>)), f( n/(2 <sup>1</sup> * 3 <sup>0</sup>) ) + f( n/(2 <sup>0</sup> * 3 <sup>1</sup>) ) )
 	=> f( n/(2^i * 3^j) ) = max( (n /(2^i * 3^j)), f( n/(2^i+1 * 3^j) ) + f( n/(2^i * 3^j+1) ) )
 	=> f(i,j) = max( (n /(2^i * 3^j), f(i+1,j) + f(i, j+1))
 
