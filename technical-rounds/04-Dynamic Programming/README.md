@@ -107,7 +107,9 @@ For example:
 	f(n) = f(n-1) + f(n-2)
 	f(i,j) = max(f(i-1,j), f(i,j+1))
 
-This is the simplest form of DP problem. Just solve it using bottom up
+This is the simplest form of DP problem. 
+
+To solve Type 1 problems solve using bottom up
 
 **Type 2: When the recurrence has division**
 
@@ -126,9 +128,24 @@ Here we must convert the recurrence as follows:
 	=> f( n/(2^i * 3^j) ) = max( (n /(2^i * 3^j)), f( n/(2^i+1 * 3^j) ) + f( n/(2^i * 3^j+1) ) )
 	=> f(i,j) = max( (n /(2^i * 3^j), f(i+1,j) + f(i, j+1))
 
-Here the size of i and j are: log
+Notice the term: (n /(2^i * 3^j)
+
+	Hence we know max possible values of i, j are: n = 2^i and n = 3^j
+	Hence max values of i, j are: log_2(n) and log_3(n)	
 	
-	
+Thus the problem is reduced from size n to just (log(n))^2 which is much better.
+
+To solve Type 2 DP problems optimize the recurrance and solve using Bottom-Up DP.
+
+**Type 3: When the recurrence has a variable term**
+
+For example:
+
+	f(i, j) = max(f(i+1, j), f(i, j-arr[i])) where arr is some array containing values
+
+Here Top-Down will have better time complexity as some states are useless and Bottom-Up evaluates them anyway however on the other hand with Bottom-Up there is potential for optimizing the space complexity.
+
+To solve Type 3 problems do either depending on what you need.
 
 
 # Example Problems
