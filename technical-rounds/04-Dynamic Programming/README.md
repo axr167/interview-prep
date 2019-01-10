@@ -456,3 +456,24 @@ Bottom-Up space optimized
         return row1[s.length()];
     }
 
+# Longest Increasing Subsequence
+
+Recurrence:
+        
+        f(prev, i) = 0 // if i = a.length
+        f(prev, i) = max(1+f(a[i], i+1), f(prev, i+1)) // if(a[i] > prev)
+        f(prev, i) = f(prev, i+1) otherwise
+        
+Recursion:
+
+    public int lis(int[] a, int j, int i) {
+        int val = ((j==-1) ? Integer.MIN_VALUE : a[j]);
+        if(i == a.length)
+            return 0;
+        if(a[i] > val)
+            return Math.max(1+lis(a, i, i+1), lis(a, j, i+1));
+        else
+            return lis(a, j, i+1);
+    }
+    
+Top-Down:
