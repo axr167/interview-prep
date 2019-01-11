@@ -472,14 +472,48 @@ Recurrence:
         
 Recursion:
 
-    public int lis(int[] a, int i, int j) {
-        int val = ((j==-1) ? Integer.MIN_VALUE : a[j]);
-        if(i == a.length)
+    private int f(int[] a, int p, int i) {
+        if(i==a.length)
             return 0;
-        if(a[i] > val)
-            return Math.max(1+lis(a, i+1, i), lis(a, i+1, j));
+        if(a[i] > a[p])
+            return Math.max(f(a, p, i+1), 1+f(a, i, i+1));
         else
-            return lis(a,i+1,j);
+            return f(a, p, i+1);
     }
     
 Top-Down:
+
+    private int fm(int[] a, int p, int i, int[][] dp) {
+        if(i == a.length) {
+            dp[p][i] = 0;
+            return dp[p][i];
+        }
+        if(dp[p][i] != 0)
+            return dp[p][i];
+        if(a[i] > a[p])
+            dp[p][i] = Math.max(fm(a, p, i+1, dp), 1+fm(a, i, i+1, dp));
+        else
+            dp[p][i] = fm(a, p, i+1, dp);
+        return dp[p][i];
+    }
+
+Bottom-Up:
+
+    private int fd(int[] a) {
+        int[][] dp = new int[a.length+1][a.length+1];
+        for(int p = a.length-1; p >=0; p--) {
+            for(int i = a.length-1; i >=0; i--) {
+                if(i >= a.length)
+                    dp[p][i] = 0;
+                else if(a[i] > a[p])
+                    dp[p][i] = Math.max(dp[p][i+1], 1 + dp[i][i+1]);
+                else
+                    dp[p][i] = dp[p][i+1];
+            }
+        }
+        return dp[0][0];
+    }
+
+Bottom-Up Space Optimized
+
+
