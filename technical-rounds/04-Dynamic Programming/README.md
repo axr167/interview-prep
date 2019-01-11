@@ -87,7 +87,7 @@ So the expressions:
 
 Let us take example 2 - here the values of row i depends only on the values of row i+1. It does not depend on values of rows i+2, i+3 etc so instead of maintaining space for all the rows, we can just discard all the useless ones and save space only for what we need.
 
-**Note: Order of the loops when performing space optimization matters. The loop that iterates on the dimension to be reduced MUST be the outermost loop.
+**Note: Order of the loops when performing space optimization matters. The loop that iterates on the dimension to be reduced MUST be the outermost loop.**
 
 ## Top-Down vs Bottom-Up
 
