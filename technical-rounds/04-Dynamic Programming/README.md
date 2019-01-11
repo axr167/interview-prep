@@ -132,8 +132,8 @@ Here we must convert the recurrence as follows:
 
 Notice the term: (n /(2^i * 3^j)
 
-	Hence we know max possible values of i, j are: n = 2^i and n = 3^j
-	Hence max values of i, j are: log_2(n) and log_3(n)	
+	We know max possible values of i, j are: n = 2^i and n = 3^j
+	Hence max values of i, j are: log_2(n) and log_3(n) [add 1 to max value them just to be safe]
 	
 Thus the problem is reduced from size n to just (log(n))^2 which is much better.
 
