@@ -535,3 +535,50 @@ Bottom-Up Space Optimized: Only outer loop can be optimized so make 'i' the oute
     }
 
 
+# Longest Common Subsequence
+
+Recurrence relation:
+
+    /*
+        Recurrence:
+            f(i, j) = 0 //if i=0 || j = 0
+            f(i, j) = 1 + f(i+1, j+1) //if(s1[i] = s2[j])
+            f(i, j) = max(f(i,j+1), f(i+1, j)) // otherwise
+        
+    */
+
+
+Recursion:
+
+    private int f(int[] a, int[] b, int i, int j) {
+        if(i == a.length || j == b.length)
+            return 0;
+        else if(a[i] == b[j])
+            return 1+f(a,b,i+1, j+1);
+        else
+            return Math.max(f(a, b, i, j+1), f(a, b, i+1, j));
+    }
+
+Top-Down:
+
+    private int fm(int[] a, int[] b, int i, int j, int[][] dp) {
+        if(i == a.length || j == b.length) {
+            dp[i][j] = 0;
+            return dp[i][j];
+        }
+        if(dp[i][j] != 0)
+            return dp[i][j];
+        if(a[i] == b[j])
+            dp[i][j] = 1+fm(a,b,i+1, j+1, dp);
+        else
+            dp[i][j] = Math.max(fm(a, b, i, j+1, dp), fm(a, b, i+1, j, dp));
+        return dp[i][j];
+    }
+
+Bottom-Up:
+
+
+# Longest Common Subarray/Substring
+
+
+
