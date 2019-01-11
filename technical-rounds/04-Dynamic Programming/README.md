@@ -514,6 +514,22 @@ Bottom-Up:
         return dp[0][0];
     }
 
-Bottom-Up Space Optimized
+Bottom-Up Space Optimized: Only outer loop can be optimized so make 'i' the outer loop and 'p' the inner loop
+
+    private int dp_optimized(int[] a) {
+        int[] col1 = new int[a.length+1];
+        int[] col2 = new int[a.length+1];
+        for(int i = a.length-1; i >=0; i--) {
+            for(int p = a.length-1; p >=0; p--) {
+                if(a[i] > a[p]) 
+                    col1[p] = Math.max(col2[p], 1+col2[i]);
+                else
+                    col1[p] = col2[p];
+            }
+            for(int p=0; p< col1.length; p++)
+                col2[p] = col1[p];
+        }
+        return col1[0];
+    }
 
 
