@@ -13,7 +13,7 @@ When multiple subproblems in a recurrence overlap, recursion or brute force comp
 
 The technique of saving computed values into a cache so we do not have to compute them again is known as DP. It should be used if there are multiple subproblems AND the subproblems overlap
 
-### Overlapping Subproblems
+## Overlapping Subproblems
 
 The following subproblems overlap:
 
@@ -26,7 +26,7 @@ The following subproblems do not overalp:
 	1. f(a) = f(a-1)
 	2. f(a[0 ... n]) = f(a[0 ... n/2]) & f(a[n/2 ... n])
 
-### How to determine the size of the cache?
+## How to determine the size of the cache?
 
 Look at all the variables (v1, v2, ... vn) in the recurrence that are involved in conditional statements. The size of the cache is: (v1 x v2 x ... vn)
 
@@ -48,7 +48,7 @@ Here 2 variables i, W are in the conditional so max cache size is in the order o
 - If your recurrence relation is in the form: f(i) = max(f(i+1), f(i)):
 	- It is always safe to make your array of size [i+1] instead of [i] to accomodate for base cases.
 
-### The two methods to solve DP
+## The two methods to solve DP
 
 There are 2 methods for solving a DP problem. The first is Top-Down and the second is Bottom-Up. They are described below.
 
@@ -73,9 +73,9 @@ Consider the following recurrence relation: f(n) = f(n+1) + f(n+2)
     - This implies that in the cache, cache[n+1] and cache[n+2] are filled before cache[n] is filled
     - So the loop travels backwards from n to 0
  
-**Optimizing Space complexity using Bottom-up DP**
+## Optimizing Space complexity using Bottom-up DP
 
-It is possible to optimize space complexity when using Bottom-Up DP. This is possible when we have a recurrence in the form f(n) = f(n+c) or f(n) = f(n-c) where 'c' is a constant. 
+It is possible to optimize space complexity when using Bottom-Up DP. This is possible when we have a subproblem in the form f(n) = f(n+c) or f(n) = f(n-c) where 'c' is a constant. 
 
 In this case the space complexity can be reduced by upto one dimension in the order of n. Instead of n, instead of 'n', the space can be reduced to just 'c'.
 
@@ -87,7 +87,9 @@ So the expressions:
 
 Let us take example 2 - here the values of row i depends only on the values of row i+1. It does not depend on values of rows i+2, i+3 etc so instead of maintaining space for all the rows, we can just discard all the useless ones and save space only for what we need.
 
-**Top-Down vs Bottom-Up**
+**Note: Order of the loops when performing space optimization matters. The loop that iterates on the dimension to be reduced MUST be the outermost loop.
+
+## Top-Down vs Bottom-Up
 
 Some comparisons between Top-Down and Bottom-Up are:
 
@@ -96,11 +98,11 @@ Some comparisons between Top-Down and Bottom-Up are:
 3. Top-down is easier to implement as it is essentially the same as recursion. Implementing Bottom-up is a bit trickier.
 4. Top-down can sometimes have better time complexity because top down only evaluates subproblems that it needs however since we perform iteration in Bottom-up, every state (even ones that we do not need) are evaluated. This is true for type 3 problems below.
 
-### Three types of DP problems
+## Three types of DP problems
 
 I have come up with 3 distinct types of DP problems based on what their recurrence relations look like.
 
-**Type 1: When the recurrence has simple addition/subtraction**
+### Type 1: When the recurrence has simple addition/subtraction with a constant term
 
 For example:
 
@@ -111,7 +113,7 @@ This is the simplest form of DP problem.
 
 To solve Type 1 problems solve using bottom up
 
-**Type 2: When the recurrence has division**
+### Type 2: When the recurrence has division
 
 For example:
 
@@ -137,7 +139,7 @@ Thus the problem is reduced from size n to just (log(n))^2 which is much better.
 
 To solve Type 2 DP problems optimize the recurrance and solve using Bottom-Up DP.
 
-**Type 3: When the recurrence has a variable term**
+### Type 3: When the recurrence has a variable term
 
 For example:
 
@@ -516,7 +518,7 @@ Bottom-Up:
 
 Bottom-Up Space Optimized: Only outer loop can be optimized so make 'i' the outer loop and 'p' the inner loop
 
-    private int dp_optimized(int[] a) {
+    private int fs(int[] a) {
         int[] col1 = new int[a.length+1];
         int[] col2 = new int[a.length+1];
         for(int i = a.length-1; i >=0; i--) {
