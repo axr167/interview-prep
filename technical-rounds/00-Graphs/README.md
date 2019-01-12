@@ -42,7 +42,7 @@ This is shown in the following image:
 
 - Aim is to have a 1:1 correspondence between set 1 and set 2
 - 'n' jobs and 'n' people. A person can do only 1 job. Can we perform a matching between the 2? Problem: Not every person can do every job. Can we perform a matching given those conditions?
-  - If jobs have weights can you maximize weights?
+  - If edges have weights can you maximize weights?
 
   
   
