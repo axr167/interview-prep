@@ -24,7 +24,7 @@ How Connected Components problems are different from Shortest Paths problems:
 
 ## Type 3: Dependency Ordering
   - Problems where if there is an edge from A to B, there is NEVER an edge from B to A. This is strictly directional.
-  - For directed graph problems and is solved using Topological Sort
+  - These are directed acyclic (no cycles between nodes) graph problems and is solved using Topological Sort
  
 This is shown in the following image:
 ![dep ordering](https://i.imgur.com/oX4nniz.png)
