@@ -7,13 +7,33 @@ The point of graph algorithms:
 
 Classes of problems we can solve using graphs:
 
-1. Shortest path problems:
+## Type 1: Shortest path problems:
   - Can be undirected or directed: This doesnt matter much and same algo can be used for either one
   - Can be unweighted or weighted: Here the distinction matters. Unweighted uses BFS; Weighted uses Dijkstra
 
-2. Connected Components:
-  - Things that has items/elements that are connected to each other. Examples include number of islands problem, Evaluate division etc
-  - Unlike shortest paths here we only need to know that a path exists. And unlike shortest paths where we have a source and a destination, we care about all the vertices.
+## Type 2: Connected Components:
+  - Things that has items/elements that are connected to each other. Examples include number of islands problem, Evaluate division, Photoshop's magic wand etc
   - Here we have a couple of different algorithms that we can use such as DFS
 
+How Connected Components problems are different from Shortest Paths problems:
+
+- Unlike shortest paths here we only need to know that a path exists. 
+- We care about all the vertices unlike shortest paths problem where we have a fixed source and destination
+- Weights are ignored because it is about connectivity
+  - Directed/undirected graphs are a bit trickier because A may be connected to B but B may not be connected to A. In this case we say B is downstream from A or the level of B is lower than that of A.
+
+## Type 3: Dependency Ordering
+  - Problems where if there is an edge from A to B, there is NEVER an edge from B to A. This is strictly directional.
+  - For directed graph problems and is solved using Topological Sort
+ 
+This is shown in the following image:
+![dep ordering](https://i.imgur.com/oX4nniz.png)
+
+- Here D depends on B and C both of which depend on A. So there are 2 ways to do D: Either do [A,B,C,D] or do [A,C,B,D]
+- Similarly the graph can be represented in the form of a layering of the things that can be done in parallel. Here A is done first. B, C are in the same layer and can be done parallel. D must be done last
+- It is mostly used for unweighted problems but we may have weighted variations. So we can ask something like what is the critical/slowest path (26) etc.
+
+
+  
+  
 
