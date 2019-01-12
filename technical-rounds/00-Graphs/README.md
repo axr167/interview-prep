@@ -33,6 +33,16 @@ This is shown in the following image:
 - Similarly the graph can be represented in the form of a layering of the things that can be done in parallel. Here A is done first. B, C are in the same layer and can be done parallel. D must be done last
 - It is mostly used for unweighted problems but we may have weighted variations. So we can ask something like what is the critical/slowest path (26) etc.
 
+## Type 4: Spanning Trees
+
+- Given a graph what is the maximum number of edges that can be deleted so the graph remains connected
+- Done for undirected graphs
+
+## Type 5: Bipartite Matching
+
+- Aim is to have a 1:1 correspondence between set 1 and set 2
+- 'n' jobs and 'n' people. A person can do only 1 job. Can we perform a matching between the 2? Problem: Not every person can do every job. Can we perform a matching given those conditions?
+  - If jobs have weights can you maximize weights?
 
   
   
