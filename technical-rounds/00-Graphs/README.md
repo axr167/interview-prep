@@ -92,3 +92,15 @@ And when adding to dist do:
 
     dist.put(s, new Pair(dist.get(node)+1, node));
 
+
+### Scenarios:
+
+1. What if there are multiple destinations?
+
+- Let dest = set of destinations
+- BFS from source If we reach any destination in dest, return
+
+2. What if there are multiple sources?
+
+- Add all sources to queue, add all sources to distance map with a distance of 0
+- Do regular BFS
