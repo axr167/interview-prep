@@ -78,4 +78,7 @@ The BFS algorithm is below:
         }
         return dist;
     }
+    
+    // Getting shortest path from map of distances. -1 if no path exists.
+    int shortestPath = dist.containsKey(destination)? dist.get(destination): -1;
 
