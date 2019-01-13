@@ -82,3 +82,13 @@ This is shown in the following image:
     // Getting shortest path from map of distances. -1 if no path exists.
     int shortestPath = dist.containsKey(destination)? dist.get(destination): -1;
 
+**To save the path itself do the following:**
+
+In the distance map add an extra attribute for parent. It should be: 
+  
+    Map dist <String, Pair(distance,p atent)>
+
+And when adding to dist do:
+
+    dist.put(s, new Pair(dist.get(node)+1, node));
+
