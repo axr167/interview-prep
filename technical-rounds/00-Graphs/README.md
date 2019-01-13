@@ -47,5 +47,35 @@ This is shown in the following image:
   - If edges have weights can you maximize weights?
 
   
-  
+# Algorithms
+
+## BFS
+
+- Create queue and add source node to it
+- Have a map for distances and add {source, 0} to it
+- While queue is not empty pop node
+  - For all neighbors of node not in map
+  - Add neighbour to map with distance node+1
+
+The BFS algorithm is below:
+
+    private Map<String, Integer> shortestPath(Map<String, Set<String>> graph, String src, String destination) {
+        Queue<String> q = new LinkedList<>();
+        q.add(src);
+        Map<String, Integer> dist = new HashMap<>();
+        dist.put(src, 0);
+        while(!q.isEmpty()) {
+            String node = q.remove();
+            for(String s: graph.get(node)) {
+                if(!dist.containsKey(s)) {
+                    dist.put(s, dist.get(node)+1);
+                    q.add(s);
+                    // OPTIONAL
+                    if(s.equals(destination))
+                        return dist;
+                }
+            }
+        }
+        return dist;
+    }
 
