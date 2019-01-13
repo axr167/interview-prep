@@ -86,7 +86,7 @@ This is shown in the following image:
 
 In the distance map add an extra attribute for parent. It should be: 
   
-    Map dist <String, Pair(distance,p atent)>
+    Map dist <String, Pair(distance, parent)>
 
 And when adding to dist do:
 
