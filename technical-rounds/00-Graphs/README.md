@@ -57,7 +57,7 @@ This is shown in the following image:
   - For all neighbors of node not in map
   - Add neighbour to map with distance node+1
 
-The BFS algorithm is below:
+**To get path length do:**
 
     private Map<String, Integer> shortestPath(Map<String, Set<String>> graph, String src, String destination) {
         Queue<String> q = new LinkedList<>();
@@ -70,7 +70,7 @@ The BFS algorithm is below:
                 if(!dist.containsKey(s)) {
                     dist.put(s, dist.get(node)+1);
                     q.add(s);
-                    // OPTIONAL
+                    // OPTIONAL: When given a destination, this returns as soon as destination is found
                     if(s.equals(destination))
                         return dist;
                 }
