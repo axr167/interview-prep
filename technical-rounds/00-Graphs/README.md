@@ -113,7 +113,7 @@ And when adding to dist do:
 - Add all sources to queue, add all sources to distance map with a distance of 0
 - Do regular BFS
 
-### 2. Connected components problem
+### 2. Connected components problem 1
 
 **Suppose we have greyscale colorings on a canvas and 2 pixels are similar if they lie within a threshold of 5. Try to simulate the magic wand tool in photoshop where if we click 1 pixel all surrounding pixels that are similar are selected.**
 
@@ -136,3 +136,8 @@ So the list would look like this:
     [0,1]: {(0,0), (0,2)}
     [0,2]: {(0,1), (1,2)}
     ...
+
+### 3. Connected components problem 3
+
+**Given a matrix of booleans where T represents forward slash and F represents backward slash find total number of regions**
+
