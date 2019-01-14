@@ -6,23 +6,10 @@ Various notes I have compiled while preparing for interviews
    - Regex Cheatsheet: Overview of regular expressions
    - Coming soon: Design patterns cheatsheet; Spring overview; SQL cheatsheet
 
-# Problem Solving Paradigms
+## References
 
-**1. Simplify and Delegate: Basic recursion/induction** (not started)
-  - If given instance of the problem can be solved directly, solve it (BASE CASE)
-  - Otherwise do the following: (INDUCTION STEP)
-    - Assume any smaller instance of the problem can be solved by your function
-    - Perform a single step to reduce problem size
-    - Call same function for smaller problem. We know this can be solved due to our assumption (see strong mathematical induction)
-    
-**2. Exhaustive Search: Need to traverse through entire search space - can use either iteration of backtracking. Iteration is straightforward. Backtracking described below.** (In progress)
-  - If base case store/print/return
-  - Else do the following:
-    - Perform single step to reduce problem size
-    - Call recursive function
-    - Undo changes made and continue
+I have written these notes based on th following resources. The notes have been written by me for personal use only and for the purpose of revision and future reference. A lot of the content has been taken from them so please check them out.
 
-**3. Greedy: If locally optimal choice is solution for problem.** (not started)
-  - Needs optimal substructure and greedy property (we do not look back to previous picks)
-
-**4. Dynamic Programming: Use cache/memory to quickly access data as opposed to doing recursion again** (not started)
+- Recursion: [Algorithms by Jeff Erickson](http://jeffe.cs.illinois.edu/teaching/algorithms/)
+- Dynamic Programming: [Video Lectures](https://www.youtube.com/channel/UCDHkPnEcrEf3B9-isB4jXIw/featured) from Tech the Interviews and Competitive Programming Meetup group by Eugene Yarovoi
+- Graphs: [Video Lectures](https://www.youtube.com/channel/UCDHkPnEcrEf3B9-isB4jXIw/featured) from Tech the Interviews and Competitive Programming Meetup group by Eugene Yarovoi
