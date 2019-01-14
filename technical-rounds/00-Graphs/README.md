@@ -1,7 +1,7 @@
 
 # Overview of Graph Problems
 
-The point of graph algorithms:
+In graphs vertices model entities and edges model relationships between entities. The point of graph algorithms is:
 
 - Take things that are domain specific
 - Model it into a graph
