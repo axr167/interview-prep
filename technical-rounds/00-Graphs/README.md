@@ -93,7 +93,9 @@ And when adding to dist do:
     dist.put(s, new Pair(dist.get(node)+1, node));
 
 
-### Scenarios:
+# Questions:
+
+### 1. Find shortest path in a graph with multiple sources and multiple destonations
 
 1. What if there are multiple destinations?
 
@@ -104,3 +106,11 @@ And when adding to dist do:
 
 - Add all sources to queue, add all sources to distance map with a distance of 0
 - Do regular BFS
+
+### 2. Connected components problem
+
+Look at number of islands problem on leetcode. Question basically says: 
+
+  Given a graph, translate it into a labelling where you can associate each vertex with another such that 2 vertices in the same connected piece have the same label number. Do some operations given that labelling.
+
+
