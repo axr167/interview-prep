@@ -126,3 +126,13 @@ We would iterate on every element and if element was not visited before we would
 ![grid_cc_r](https://i.imgur.com/osarV0R.png)
 
 
+The adjacency list is defined as follows:
+- 2 nodes must be adjacent
+- The nodes must be below the threshold
+
+So the list would look like this:
+
+[0,0]: {(0,1)}
+[0,1]: {(0,0), (0,2)}
+[0,2]: {(0,1), (1,2)}
+...
