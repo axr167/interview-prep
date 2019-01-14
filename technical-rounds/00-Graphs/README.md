@@ -132,7 +132,7 @@ The adjacency list is defined as follows:
 
 So the list would look like this:
 
-[0,0]: {(0,1)}
-[0,1]: {(0,0), (0,2)}
-[0,2]: {(0,1), (1,2)}
-...
+    [0,0]: {(0,1)}
+    [0,1]: {(0,0), (0,2)}
+    [0,2]: {(0,1), (1,2)}
+    ...
