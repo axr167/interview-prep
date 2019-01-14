@@ -101,7 +101,9 @@ And when adding to dist do:
 
 # Questions:
 
-### 1. Find shortest path in a graph with multiple sources and multiple destonations
+### 1. Shortest path problem 1
+
+**Given multiple sources and multiple destinations find shortest path between any source and destination**
 
 1. What if there are multiple destinations?
 
@@ -113,7 +115,13 @@ And when adding to dist do:
 - Add all sources to queue, add all sources to distance map with a distance of 0
 - Do regular BFS
 
-### 2. Connected components problem 1
+### 2. Shortest path problem 2
+
+**Given 2 sources and 2 destinations delete maximum number of nodes such that there is a path between S1, D1 and S2, D2**
+
+Work in progress
+
+### 3. Connected components problem 1
 
 **Suppose we have greyscale colorings on a canvas and 2 pixels are similar if they lie within a threshold of 5. Try to simulate the magic wand tool in photoshop where if we click 1 pixel all surrounding pixels that are similar are selected.**
 
@@ -137,7 +145,7 @@ So the list would look like this:
     [0,2]: {(0,1), (1,2)}
     ...
 
-### 3. Connected components problem 2
+### 4. Connected components problem 2
 
 **Given a matrix of booleans where T represents forward slash and F represents backward slash find total number of regions**
 
