@@ -109,6 +109,14 @@ And when adding to dist do:
 
 ### 2. Connected components problem
 
-Suppose we have greyscale colorings on a canvas
+**Suppose we have greyscale colorings on a canvas and 2 pixels are similar if they lie within a threshold of 5. Try to simulate the magic wand tool in photoshop where if we click 1 pixel all surrounding pixels that are similar are selected.**
+
+This is a connnected components problem where we have to label each pixel with its correcponding connected component. If we have the following grid:
+
+![grid_cc_q](https://i.imgur.com/3dEGPnj.png)
+
+We would iterate on every element and if element was not visited before we would do bfs and label it so it looked like this:
+
+![grid_cc_r](https://i.imgur.com/osarV0R.png)
 
 
