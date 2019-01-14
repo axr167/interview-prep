@@ -137,7 +137,8 @@ So the list would look like this:
     [0,2]: {(0,1), (1,2)}
     ...
 
-### 3. Connected components problem 3
+### 3. Connected components problem 2
 
 **Given a matrix of booleans where T represents forward slash and F represents backward slash find total number of regions**
 
+Each cell in the matrix can be split into 2 nodes L/R.
