@@ -81,6 +81,11 @@ This is shown in the following image:
     
     // Getting shortest path from map of distances. -1 if no path exists.
     int shortestPath = dist.containsKey(destination)? dist.get(destination): -1;
+    
+Time complexity: 
+
+- Time to traverse all edges of each vertex: 2 * E because each edge processed twice (A->B and B->A is same) + Processing all vertices V through the queue.
+- Time complexity: 2E + V = O(V+E)
 
 **To save the path itself do the following:**
 
