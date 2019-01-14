@@ -306,6 +306,34 @@ Note: This will be edited later
         }
     }
 
+# Combination sum
 
+    class Solution {
+
+        private void solve(int[] a, int target, List<Integer> chosen, List<List<Integer>> res, int start) {
+            if(target == 0) {
+                res.add(new ArrayList<Integer>(chosen));
+            } else if(target > 0) {
+                for(int i = start; i<a.length; i++) {
+                    chosen.add(a[i]);
+
+                    solve(a, (target-a[i]), chosen, res, i);
+
+                    chosen.remove(chosen.size()-1);
+                }
+            }
+        }
+
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+
+            List<List<Integer>> res = new ArrayList<>();
+            List<Integer> chosen = new ArrayList<>();
+            Arrays.sort(candidates);
+
+            solve(candidates, target, chosen, res, 0);
+            return res;
+
+        }
+    }
 
 
