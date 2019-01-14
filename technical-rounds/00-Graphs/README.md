@@ -109,8 +109,6 @@ And when adding to dist do:
 
 ### 2. Connected components problem
 
-Look at number of islands problem on leetcode. Question basically says: 
-
-  Given a graph, translate it into a labelling where you can associate each vertex with another such that 2 vertices in the same connected piece have the same label number. Do some operations given that labelling.
+Suppose we have greyscale colorings on a canvas
 
 
