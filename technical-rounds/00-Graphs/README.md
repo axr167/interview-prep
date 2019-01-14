@@ -98,6 +98,9 @@ And when adding to dist do:
 
     dist.put(s, new Pair(dist.get(node)+1, node));
 
+## Dijkstra
+
+Same as BFS however instead of storing candidates in a queue store it in a priority queue. Priority queue must contain information for: Node, Distance, Parent.
 
 # Questions:
 
