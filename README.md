@@ -8,7 +8,7 @@ Various notes I have compiled while preparing for interviews
 
 ## References
 
-I have written these notes based on th following resources. The notes have been written by me for personal use only and for the purpose of revision and future reference. A lot of the content has been taken from them so please check them out.
+I have written these notes based on th following resources. The notes have been written by me for personal use only and for the purpose of revision and future reference.
 
 - Recursion: [Algorithms by Jeff Erickson](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 - Dynamic Programming: [Video Lectures](https://www.youtube.com/channel/UCDHkPnEcrEf3B9-isB4jXIw/featured) from Tech the Interviews and Competitive Programming Meetup group by Eugene Yarovoi
