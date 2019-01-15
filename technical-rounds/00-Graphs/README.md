@@ -102,6 +102,14 @@ And when adding to dist do:
 
 Same as BFS however instead of storing candidates in a queue store it in a priority queue. Priority queue must contain information for: Node, Distance, Parent.
 
+- Create distance map and add <source, {dist:0, parent: null}>
+- Create priority queue candidates and add {node: source, dist: 0, parent: null}
+- While heap is not empty do:
+  - node current = min element
+  - If current not in map, add current to the map. For all neighbours n of current add current.dist+edge cost to heap
+  - Else remove current from the heap
+- Return distance map.
+
 # Questions:
 
 ### 1. Shortest path problem 1
@@ -153,3 +161,17 @@ So the list would look like this:
 **Given a matrix of booleans where T represents forward slash and F represents backward slash find total number of regions**
 
 Each cell in the matrix can be split into 2 nodes L/R.
+
+### 5. Dijkstra Problem 1
+
+**Cross a river that has a bunch of stepping stones. Each of the stepping stones has a probability of sinking. You can jump from one stepping stone to another only if the distance between them is R. Minimize probablity of sinking**
+
+The problem can be modelled in the form of a graph as follows:
+
+![skipping_stones_dijkstra](https://i.imgur.com/h3XJO8o.png)
+
+After this just do a variation of dijkstra.
+
+- Instead of minimizing the distance, maximize it since it is about probabilities
+- Since it is probability instead of addition, do multiplication when updating candidate heap where distance of new neighbour is:
+  - distance of current node * edge cost
