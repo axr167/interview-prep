@@ -1,6 +1,29 @@
 # Interview Prep (Work in progress)
 Various notes I have compiled while preparing for interviews
 
+## To prepare:
+
+Algos:
+- String/Array based
+   - Sliding window
+   - 2 pointer
+- Paradigms
+   - Recursion
+   - Exhaustive Search/Backtracking
+   - DP
+- Graphs
+   - Shortest paths (bfs/dijkstra)
+   - Connected components (bfs/dfs)
+   - Topological Sort
+   
+Theory stuff
+- Java Basic 
+- Design Patterns
+- Basic Scripting
+- Basic SQL
+- Network Security
+- Distributed Computing
+
 ## Resources:
    - Java collections cheatsheet: Overview of methods for java.util.Collections. Some content taken from [here](https://courses.cs.washington.edu/courses/cse143/17su/exams/final/cheat_sheet.pdf). (WORK IN PROGRESS)
    - Regex Cheatsheet: Overview of regular expressions
