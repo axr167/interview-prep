@@ -57,7 +57,7 @@ This is shown in the following image:
   - For all neighbors of node not in map
   - Add neighbour to map with distance node+1
 
-**To get path length do:**
+**The BFS Algorithm is:**
 
     private Map<String, Integer> shortestPath(Map<String, Set<String>> graph, String src, String destination) {
         Queue<String> q = new LinkedList<>();
@@ -112,18 +112,26 @@ Same as BFS however instead of storing candidates in a queue store it in a prior
 
 ## DFS
 
-- Here we are not concerned with weighted graphs or shortest paths
 - DFS is weaker than BFS in that it doesnt find the shortest path. It just finds a path.
 - Either BFS or DFS can be used for the following problems:
   - Find all the nodes connected to S
   - Is there a connection between S, D
-- Important because:
-  - An implementation of topological sort uses DFS
-  - Easy to implement
 - This is what you need:
   - Visited map similar to BFS
   - Stack of places you have been to instead of queue.
   - Because this uses stack operations we can use recursion which does basically the same thing.
+  
+  **Recursive DFS is:**
+  
+        private void dfs(Map <Integer, Set<Integer>> graph, Set<Integer> visited, int current) {
+            if(visited.contains(current))
+                return;
+            visited.add(current);
+            Set<Integer> neighbours = graph.get(current);
+            for(int i: neighbours) {
+                dfs(graph, visited, i);
+            }
+        }
 
 # Questions:
 
