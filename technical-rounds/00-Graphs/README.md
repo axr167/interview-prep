@@ -112,26 +112,20 @@ Same as BFS however instead of storing candidates in a queue store it in a prior
 
 ## DFS
 
-- DFS is weaker than BFS in that it doesnt find the shortest path. It just finds a path.
-- Either BFS or DFS can be used for the following problems:
-  - Find all the nodes connected to S
-  - Is there a connection between S, D
-- This is what you need:
-  - Visited map similar to BFS
-  - Stack of places you have been to instead of queue.
-  - Because this uses stack operations we can use recursion which does basically the same thing.
+We cannot find shortest path using DFS. We just find a path/all connected components.
+It is the same as BFS except we use a stack instead of a queue. Because we use a stack we can use recursion (which implicitly uses a stack)
   
-  **Recursive DFS is:**
+**Recursive DFS is:**
   
-        private void dfs(Map <Integer, Set<Integer>> graph, Set<Integer> visited, int current) {
-            if(visited.contains(current))
-                return;
-            visited.add(current);
-            Set<Integer> neighbours = graph.get(current);
-            for(int i: neighbours) {
-                dfs(graph, visited, i);
-            }
+    private void dfs(Map <Integer, Set<Integer>> graph, Set<Integer> visited, int current) {
+        if(visited.contains(current))
+            return;
+        visited.add(current);
+        Set<Integer> neighbours = graph.get(current);
+        for(int i: neighbours) {
+            dfs(graph, visited, i);
         }
+    }
 
 # Questions:
 
