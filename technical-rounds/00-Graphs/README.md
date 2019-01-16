@@ -110,6 +110,21 @@ Same as BFS however instead of storing candidates in a queue store it in a prior
   - Else remove current from the heap
 - Return distance map.
 
+## DFS
+
+- Here we are not concerned with weighted graphs or shortest paths
+- DFS is weaker than BFS in that it doesnt find the shortest path. It just finds a path.
+- Either BFS or DFS can be used for the following problems:
+  - Find all the nodes connected to S
+  - Is there a connection between S, D
+- Important because:
+  - An implementation of topological sort uses DFS
+  - Easy to implement
+- This is what you need:
+  - Visited map similar to BFS
+  - Stack of places you have been to instead of queue.
+  - Because this uses stack operations we can use recursion which does basically the same thing.
+
 # Questions:
 
 ### 1. Shortest path problem 1
