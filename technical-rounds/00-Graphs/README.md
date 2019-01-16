@@ -115,7 +115,7 @@ Same as BFS however instead of storing candidates in a queue store it in a prior
 We cannot find shortest path using DFS. We just find a path/all connected components.
 It is the same as BFS except we use a stack instead of a queue. Because we use a stack we can use recursion (which implicitly uses a stack)
   
-**Recursive DFS is:**
+**Recursive DFS (exhaustive) is:**
   
     private void dfs(Map <Integer, Set<Integer>> graph, Set<Integer> visited, int current) {
         if(visited.contains(current))
@@ -125,6 +125,22 @@ It is the same as BFS except we use a stack instead of a queue. Because we use a
         for(int i: neighbours) {
             dfs(graph, visited, i);
         }
+    }
+    
+**Recursive DFS: Stop on finding destination**
+
+    private boolean dfs(Map <Integer, Set<Integer>> graph, Set<Integer> visited, int current, int dest) {
+        if(visited.contains(current))
+            return false;
+        visited.add(current);
+        Set<Integer> neighbours = graph.get(current);
+        for(int i: neighbours) {
+            if(i==d)
+                return true;
+            if(dfs(graph, visited, i, d))
+                return true;
+        }
+        return false;
     }
 
 # Questions:
