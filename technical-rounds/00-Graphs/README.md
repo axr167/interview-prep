@@ -143,6 +143,27 @@ It is the same as BFS except we use a stack instead of a queue. Because we use a
         return false;
     }
 
+# Cycle Detection in Graphs
+
+### Undirected Graphs
+
+The definition of a cycle in an undirected graph is:
+- The cycle should have 3 or more nodes
+- Every node must be unique until we reach the start of the cycle.
+
+This can be solved using BFS or DFS
+
+**BFS:** 
+
+Just use BFS and if you reach the same node from 2 different places then the graph has a cycle. Consider the following graph:
+
+![BFS-cycle](https://i.imgur.com/n13qXcu.png)
+
+
+
+**DFS:**
+
+
 # Questions:
 
 ### 1. Shortest path problem 1
