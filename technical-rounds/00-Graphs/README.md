@@ -182,6 +182,7 @@ The idea is to use DFS and keep track of all the nodes in the stack. If we visit
 
 **NOTE: Just because a node is visited it does not mean there is a cycle. It HAS to be on the stack**
 Consider this graph:
+
 ![Dir-cycle](https://i.imgur.com/6I2RwCP.png)
 
 - Here we go to A -> B -> D and marking them as visited. When B, D are popped we go to C
