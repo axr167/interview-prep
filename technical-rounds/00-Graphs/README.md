@@ -178,6 +178,19 @@ So there exists a cycle in a graph if we visit a node N that has already been vi
 
 ### Directed Graphs: Use DFS
 
+The idea is to use DFS and keep track of all the nodes in the stack. If we visit a node that exist in the stack, there is a cycle.
+
+**NOTE: Just because a node is visited it does not mean there is a cycle. It HAS to be on the stack**
+Consider this graph:
+![Dir-cycle](https://i.imgur.com/6I2RwCP.png)
+
+- Here we go to A -> B -> D and marking them as visited. When B, D are popped we go to C
+- C goes to D. D is already visited however because D is not on the stack, we know there is no cycle.
+
+Hence there exists a cycle in a directed graph if:
+- A node is visited
+- AND the node is currently on the stack.
+
 # Questions:
 
 ### 1. Shortest path problem 1
