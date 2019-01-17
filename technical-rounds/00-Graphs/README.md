@@ -193,6 +193,8 @@ Hence there exists a cycle in a directed graph if:
 - A node is visited
 - AND the node is currently on the stack.
 
+In order to know what is currently on the stack, keep all the contents of the stack on a set. If the set contains the current element the there is a cycle.
+
 # Questions:
 
 ### 1. Shortest path problem 1
