@@ -145,24 +145,38 @@ It is the same as BFS except we use a stack instead of a queue. Because we use a
 
 # Cycle Detection in Graphs
 
-### Undirected Graphs
+### Undirected Graphs: Use BFS
 
 The definition of a cycle in an undirected graph is:
 - The cycle should have 3 or more nodes
 - Every node must be unique until we reach the start of the cycle.
 
-This can be solved using BFS or DFS
+The reason we care about this is because:
+- If an undirected graph does not have a cycle then it is basically 1 or more trees. The trees can be found using connected components.
+- This means we can do tree operations on the graph
 
-**BFS:** 
+Cycle detection for undirected graphs can be solved using BFS or DFS
+
+**The process is as follows:**
 
 Just use BFS and if you reach the same node from 2 different places then the graph has a cycle. Consider the following graph:
 
 ![BFS-cycle](https://i.imgur.com/n13qXcu.png)
 
+- We start at A. Label A.distance = 0; A.parent = null
+- Explore neighbours of A 
+  - B.distance = 1; B.parent = A
+  - C.distance = 1; C.parent = A
+  - Add B, C to queue
+- Go to B and remove it from queue
+  - We get A. However A is parent of B so ignore it
+  - Next we get C. C is NOT parent of B however C has already been visited and is in distance map
+  - Hence it has a cycle.
+
+So there exists a cycle in a graph if we visit a node N that has already been visited AND if the node visiting N is not a direct child of N.
 
 
-**DFS:**
-
+### Directed Graphs: Use DFS
 
 # Questions:
 
