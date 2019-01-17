@@ -195,6 +195,8 @@ Hence there exists a cycle in a directed graph if:
 
 In order to know what is currently on the stack, keep all the contents of the stack on a set. If the set contains the current element the there is a cycle.
 
+Hence in this scenario a node has 3 states: Visited; Visited and in Stack; Unvisited. We can also do cycle detection by storing these states within the node.
+
 # Questions:
 
 ### 1. Shortest path problem 1
