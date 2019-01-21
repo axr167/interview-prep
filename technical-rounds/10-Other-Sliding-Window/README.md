@@ -7,8 +7,8 @@ The idea is to have a left and a right pointer to represent the 2 ends of the wi
 
 The sliding window technique must be used when:
 
-- We are tasked with finding a continuous block of data like a substring or a subarray
-- That substring/subarray must satisfy certain conditions.
+- We are tasked with finding a continuous block of data like a substring of a string or a continuous subarray
+- That substring/subarray must satisfy certain conditions
 
 The way we do this is:
 
