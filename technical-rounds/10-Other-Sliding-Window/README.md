@@ -12,9 +12,9 @@ The sliding window technique must be used when:
 
 The way we do this is:
 
-1. Initialize the start and end pointer to the 0th element. Elements in the window are all elements between (end-1)-start. When start = end no element exists in window.
-2. Initialize a helper data structure such as a hashmap to keep track of the conditions that need to be satisfied. Also initialize a variable to keep track of the current best result.
-3. Iterate through the elements using the window
-4. If all conditions are satisfied or if the condition cannot be satisfied: 
+- Initialize the start and end pointer to the 0th element. Elements in the window are all elements between (end-1)-start. When start = end no element exists in window.
+- Initialize a helper data structure such as a hashmap to keep track of the conditions that need to be satisfied. Also initialize a variable to keep track of the current best result.
+- Iterate through the elements using the window
+- If all conditions are satisfied or if the condition cannot be satisfied: 
   - Move start pointer towards end pointer gradually removing corresponding element from data structure until either condition is satisfied again or until start = end
-5. When we reach the end of the collection, we should have an answer.
+- When we reach the end of the collection, we should have an answer.
