@@ -223,10 +223,10 @@ public class Solution{
 
 Recurrence relation:
 
-    // f(i,j) = a[i][j] if i == m j == n
+    // f(i,j) = a[i][j] if i == m; j == n
     // f(i,j) = a[i][j] + f(i, j+1) if i == m
     // f(i,j) = a[i][j] + f(i+1, j) if j == n
-    // f(i,j) = a[i][j] + min(f(i, j+1), f(i+1, j)) otherwise
+    // f(i,j) = a[i][j] + min(f(i, j+1), f(i+1, j)) 
 
 Recursion:
 
