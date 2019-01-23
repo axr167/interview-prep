@@ -657,7 +657,28 @@ Bottom-up:
 
 Bottom up optimized
 
-
+    private int f(int[] a, int v) {
+        int[] row1 = new int[v+1];
+        int[] row2 = new int[v+2];
+        
+        Arrays.fill(row2, Integer.MAX_VALUE-a.length);
+        
+        for(int i = a.length-1; i >= 0; i--) {
+            for(int j=0; j<=v; j++) {
+                if(j == 0)
+                    row1[j] = 0;
+                else {
+                    if(j-a[i] >= 0)
+                        row1[j] = Math.min(1+row1[j-a[i]], row2[j]);
+                    else
+                        row1[j] = row2[j];
+                }
+            }
+            for(int j=0; j<row1.length; j++)
+                row2[j] = row1[j];
+        }
+        return row1[v];
+    }
 
 
 
