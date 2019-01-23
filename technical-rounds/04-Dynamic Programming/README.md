@@ -87,7 +87,12 @@ So the expressions:
 
 Let us take example 2 - here the values of row i depends only on the values of row i+1. It does not depend on values of rows i+2, i+3 etc so instead of maintaining space for all the rows, we can just discard all the useless ones and save space only for what we need.
 
-**Note: Order of the loops when performing space optimization matters. The loop that iterates on the dimension to be reduced MUST be the outermost loop.**
+## Stuff to remember:
+
+- Order of the loops when performing space optimization matters. The loop that iterates on the dimension to be reduced MUST be the outermost loop.
+- If we have a recurrence like this: f(v,i) = min(1+f(v-a[i],i), f(v,i+1))
+	- Assuming j iterates over v
+	- In the bottom up DP solution replace every instance of v with j
 
 ## Top-Down vs Bottom-Up
 
@@ -579,6 +584,85 @@ Bottom-Up:
 
 
 # Longest Common Subarray/Substring
+
+# Minimum number of coins that sum up to a given number
+
+Recurrence:
+
+    /*
+	f(v,i) = -1 //if i >=a.length && v > 0
+	f(v,i) = 0 // if v = 0
+	f(v,i) = min(1+f(v-a[i],i), f(v,i+1)) // if(v-a[i] > 0)
+	f(v,i) = f(v,i+1) // otherwise
+    */
+
+
+Recursive:
+
+    private int getSol(int[] a, int v, int i) {
+        if(v == 0)
+            return 0;
+        else if (i == a.length)
+            return Integer.MAX_VALUE-a.length;
+        else {
+            if(v-a[i] >= 0)
+                return Math.min( 1+getSol(a, v-a[i], i), getSol(a, v, i+1) );
+            else
+                return getSol(a, v, i+1);
+        }     
+    }
+
+Top-Down:
+
+    private int f_m(int[] a, int v, int i, int[][] dp) {
+        if(dp[i][v] != 0)
+            return dp[i][v];
+        if(v == 0) 
+            dp[i][v] = 0;
+        else if(i==a.length)
+            dp[i][v] = Integer.MAX_VALUE-a.length;
+        else {
+            if (v-a[i] >= 0)
+                dp[i][v] = Math.min( 1+f_m(a, v-a[i], i, dp), f_m(a, v, i+1, dp) );
+            else 
+                dp[i][v] = f_m(a, v, i+1, dp);
+        }
+        return dp[i][v];
+    }
+
+Bottom-up:
+
+    private int f_d(int[] a, int v) {
+        int[][] dp = new int[a.length+1][v+1];
+        
+        for(int i = a.length; i<a.length+1; i++)
+            for(int j=0; j<v+1; j++)
+                dp[i][j] = Integer.MAX_VALUE-a.length;
+        
+        for(int i = a.length-1; i >= 0; i--) {
+            for(int j=0; j<=v; j++) {
+                if(j == 0)
+                    dp[i][j] = 0;
+                else {
+                    if(j-a[i] >=0)
+                        dp[i][j] = Math.min(1+dp[i][j-a[i]], dp[i+1][j]);
+                    else
+                        dp[i][j] = dp[i+1][j];
+                }
+            } 
+        }
+        return dp[0][v];
+    }
+
+
+Bottom up optimized
+
+
+
+
+
+
+
 
 
 
