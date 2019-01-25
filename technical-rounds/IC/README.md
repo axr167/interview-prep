@@ -97,3 +97,18 @@ In practice collisions are rare and lookups are considered to be O(1) time.
 
 # Logarithms
 
+They ask the following question:
+
+**What power must we raise this base to to get the following answer?**
+
+  - log_10(100) asks: What power must we raise 10 to, to get 100?
+    - Answer is 2.
+
+Some rules of logarithms are:
+
+![log_rules](https://i.imgur.com/LF3PKsp.png)
+
+### Here is where log is important:
+
+- If we need to ask the question: "How many times must we double 1 before we get to n" or "How many times must we divide nn in half in order to get back down to 1?" it is a question involving log.
+- The answer to both of these questions is \log_{2}{n}log
