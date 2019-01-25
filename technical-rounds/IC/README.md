@@ -43,7 +43,7 @@ Most integers are fixed length (unless it is a big-int) hence regardless of valu
 
 Also because they have a constant number of bits, most simple operations like addition, subtraction, multiplication and division take O(1) or constant time.
 
-## Data
+## Data Storage 
 
 ### Arrays
 
@@ -96,3 +96,4 @@ For example:
 In practice collisions are rare and lookups are considered to be O(1) time.
 
 # Logarithms
+
