@@ -111,4 +111,16 @@ Some rules of logarithms are:
 ### Here is where log is important:
 
 - If we need to ask the question: "How many times must we double 1 before we get to n" or "How many times must we divide nn in half in order to get back down to 1?" it is a question involving log.
-- The answer to both of these questions is \log_{2}{n}log
+- The answer to both of these questions is log_2(n)
+
+Consider binary search. Here we divide the array of size n until we get the target (size = 1). So the number of times x is:
+
+    (n/2^x) = 1
+    n = 2^x
+    log_2(n) = log_2(2^x) => x*log_2(2) => x
+
+In sorting the complexity of mergesort = n * log_2(n)
+  - log_2(n) is from the splitting step
+  - n is from the merge step
+
+
