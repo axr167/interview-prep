@@ -51,7 +51,15 @@ trivial
         
     }
 
+### Merge 2 sorted arrays:
 
-    
+trivial - do merge from mergesort
+
+**Merge k sorted arrays:**
+- Method 1: If we use k pointers and select the min of the k pointers same as mergesort, we have a complexity of N * K
+- Method 2: To make it better we need a better function to find min. So use a 'K' sized heap. Complexity now becomes N * log(k)
+
+
+
 
   
