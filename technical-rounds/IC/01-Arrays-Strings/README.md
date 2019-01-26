@@ -59,7 +59,20 @@ trivial - do merge from mergesort
 - Method 1: If we use k pointers and select the min of the k pointers same as mergesort, we have a complexity of N * K
 - Method 2: To make it better we need a better function to find min. So use a 'K' sized heap. Complexity now becomes N * log(k)
 
+### Single Riffle Shuffle
 
+- Top of first deck must always have top of either left half or top of right half
+- Each iteration remove top of deck and top of either left/right half (by incrementing pointers)
+- If neither matches then return false
+- If all 3 pointers = array.length return true.
 
+**Bonus**
 
+1. This assumes shuffledDeck contains all 52 cards. What if we can't trust this (e.g. some cards are being secretly removed by the shuffle)?
+
+2. This assumes each number in shuffledDeck is unique. How can we adapt this to rifling arrays of random integers with potential repeats?
+
+3. Our solution returns true if you just cut the deck—take one half and put it on top of the other. While that technically meets the definition of a riffle, what if you wanted to ensure that some mixing of the two halves occurred?
+
+4. Our solution iterates through the decks from front to back. Would our algorithm work if we iterated from the back towards the front? Which approach is cleaner?
   
