@@ -26,3 +26,14 @@ Greedy is basically mathematical induction
 
 - The first case is the base case
 - Then we proceed to the solution following the same pattern as previous steps (induction step)
+
+The local improvement/exchange trick can be used when you need a subset from a given set that matches certain conditions.
+
+- Independent set from forest of trees: find max subset (subset from set) such that no 2 elements are connected (condition)
+- Maximum intervals: Get max intervals from set of intervals (subset from set) such that no 2 intervals overlap (condition)
+- Minimize the sum of set of jobs
+
+The other thing to try is to sort the input in some way and try to wing it. Here the question is how to order the items.
+
+- Minimum number of partitions for a set of intervals such that no 2 intervals overlap
+- Fractional knapsack
