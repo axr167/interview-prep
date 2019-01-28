@@ -4,6 +4,15 @@ Various notes I have compiled while preparing for interviews
 ## To prepare:
 
 Algos:
+
+There are 3 techniques that run through all algorithm design questions. They are:
+
+- Ordering the input
+- Induction: If you can solve for a small problem how to extend to a big problem
+- Stroring old values
+
+The questions can be categorized as:
+
 - String/Array based
    - Sliding window
    - 2 pointer
