@@ -1,5 +1,5 @@
 
-## Concurrency vs Parallelism
+# Concurrency vs Parallelism
 
 ### Parallelism
 
@@ -87,7 +87,7 @@ In java we have several tools to deal with concurrency.
   - Concurrent data structures
   - CountdownLatch/Phaser/Semaphore/CyclicBarrier etc
 
-## Java Memory Model
+# Java Memory Model
 
 To understand the memory model we must first understand a couple of concepts.
 
@@ -138,3 +138,41 @@ This is the field visibility problem. To solve it declare x as **volatile**. Thi
 JMM is a specification that guarantees visibility of fields amidst reordering of instructions. Suppose we have some non volatile variables a, b, c which get updated before x gets updated 
   - in this case JMM ensures that even a, b, c show updated values to t2. This is called **happens before relationship**
 The concept of happens-before and field visibility also applies to locks, synchronized, concurrent collections etc.
+
+# Volatile vs Atomic
+
+Let us consider the visibility and synchronization problems over t threads t1, t2.
+
+### Visibility problem
+
+- Set x = true in main and call the 2 threads.
+- t1 runs: while(x){ // do something };
+- t2 runs: x = false;
+
+This loop might keep running as x = true is in shared cache and thread 1 only updates local cache instead of shared cache. Hence the updated value of x is not visible to t2.
+
+To solve this, we make x volatile. Just by doing this all updates are visible to thread 2 and the condition is broken. Here any changes made to a volatile cache are:
+- Flushed down to shared cache
+- Refreshed back up to the local caches of other cores.
+
+### synchronization problem
+
+- set x = 1 in main and call 2 threads.
+- Both t1 and t2 do x++ and return. We want the final answer to be 3.
+- But this does not work even if we change type of x to volatile.
+    - Because x++ is 2 operations which is: read 1, write 2.
+- So t1 runs read 1 (not x), we switch to t2
+- t2 runs read 1, switch to t1
+- t1 runs store 2 in x, switch to t2
+- t2 runs store 2 in t1
+
+The problem here is that thread 2 has already read the value 1 so although changes to x are flushed to shared cache, thread 2 has already stored 1 and x is not needed anymore until it is time to write 2 to x.
+
+To solve this problem we use synchronized. It ensures that only 1 thread can do the compound operation. So use:
+        
+    synchronized(obj){x++;}
+
+Another way to do this is by using an AtomixInteger. We can do:
+
+    AtomicInteger x = new AtomicInteger(1);
+    // in each thread do x.increment();
