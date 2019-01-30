@@ -176,3 +176,104 @@ Another way to do this is by using an AtomixInteger. We can do:
 
     AtomicInteger x = new AtomicInteger(1);
     // in each thread do x.increment();
+
+# ExecutorService and Thread Pools
+
+In java it is easy to run a method in a new thread. Simply create a class that implements runnable, overwrite its run method, create a new thread with the instance of the class and start the thread. This is shown below:
+    
+    static class Task implements Runnable {
+        public void run() {// some code}
+    }
+    public static void main(string[] args) {
+        Thread t1 = new Thread (new Task())
+        t1.start();
+    }
+
+Similarly if you want to run 10 tasks, you can create the threads in a for loop
+
+    for(int i=0; i<10; i++) {
+        Thread t = new Thread(new Task());
+        t.start();
+    }
+
+If you want to run 1000 tasks asynchronously, the problem is that 1 thread = 1 OS thread and creating a thread is expensive. Hence the ideal thing to do would be to create a fixed number of threads (say 10 threads) created upfront (this is a pool of threads) and submit the 1000 tasks to them.
+
+This is done like so:
+
+    ExecutorService es = Executors.newFixedThreadPool(nThreads:10);
+    for(int i=0; i<10; i++) {
+        es.execute(new Task());
+    }
+
+In es, a blocking queue is implemented. The queue stores all tasks and all th threads will perform the 2 steps:
+- Fetch next task
+- Execute it concurrently
+
+**Ideal pool size:** For CPU intensive tasks the pool size is the core count (but we might not get access to all cores due to backgopund apps). For IO intensive tasks it is good to have higher number of threads because it lets you submit tasks faster reducing avg. wait time (but it consumes more memory).
+
+### Types of thread pools:
+
+Fixed thread pool:
+- Fixed pool size
+- n tasks stored in a blocking queue and threads retreive from it
+
+Cached thread pool:
+- Here we have a synchronous queue - same as blocking queue but it can hold only 1 task
+- It then scans all available threads. If thread is free assign task or if no thread is free create new thread.
+- Since many threads can be created it has the ability to kill threads if they are inactive for more than 60 seconds.
+
+Scheduled thread pool:
+- For tasks that must be performed after some delay.
+- Tasks stored in delay queue where tasks are arranged based on when they must be executed.
+- We declare pool size and it has the following methods:
+    - schedule(task, delay): Sechdules task after x seconds
+    - scheduleAtFixedRate(task, initialDelay, period): runs task every x seconds
+    - scheduleWithFixedDelay(task, intialDelay, delay): runs task every x seconds on completion of previous iteration
+
+Single thread executor:
+- Same as fixed size exeutor however only 1 thread
+- Recreates the thread if killed.
+
+### Fork Join Pool
+
+Same as executor service in that you submit task, execute task and optionally get the return value.
+
+It differs from executor service in that it deals with tasks that produces its own sub-tasks aka fork joins. So here we do the following: break t1 into s1, s2, s3; solve s1..3 individually, then combine them to form result (think recursion). Subtasks are recursive in that it should not share common variables and are isolated.
+
+Another way it differs is that it has per thread queueing and work stealing.
+
+Per thread queueing:
+- Think of fixed thread pool from executor service however every queue has its own dqueue (double ended queue)
+- When the task is split into subtasks, they are not stored in the common blocking queue. Instead they are stored in the thread's own dqueue.
+
+Work stealing:
+- If t1 has more subtasks than t2 and t2 becomes empty
+- t2 can take (steal) some tasks from t1.
+
+### Thread Local
+
+The concept of assigning variables/objects to threads itself so as to avoid synchronization for a global object is called thread local.
+
+# Phaser
+
+### Countdown latch
+
+Say we want a thread to wait for 3 threads to initialize. For that we create a countdown latch of size 3. In the dependent services, after the service is done we say latch.countdown() that reduces the count of the latch. When the other 2 services count down, the main thread can continue.
+
+### Cyclic barrier
+
+Say we have a game with 3 players and we want to send a message to all of them at once. In this case we can use a cyclic barrier. All the 3 tasks will get the barrier and will say barrier.await(). Once all threads have come to the point that says barrier.await() only then will they all continue in execution.
+
+### Phaser
+
+This can act as both a countdown latch and a cyclic barrier.
+
+# Asynchronous Programming
+
+Computers these days have multiple cores so to take advantage of that, we create multiple threads. However if we have too many threads problems can occur.
+- There is overhead due to context switching (when we have to store stuff from thread operations in shared cache)
+- There is overhead due to scheduling different threads
+    - This is heightened in IO operations because thread must wait for IO to complete wasting CPU cycles
+    - So ideally you want non-blocking IO: Thread triggers operation and when you are done, call a callback method and this is done in a separatre thread. This lets the main thread do other stuff meanwhile.
+
+Hence to increase scalability you need asynchronous API and non blocking IO.
