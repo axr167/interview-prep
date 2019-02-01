@@ -87,12 +87,14 @@ So the expressions:
 
 Let us take example 2 - here the values of row i depends only on the values of row i+1. It does not depend on values of rows i+2, i+3 etc so instead of maintaining space for all the rows, we can just discard all the useless ones and save space only for what we need.
 
-## Stuff to remember:
+## WATCH OUT FOR THIS:
 
 - Order of the loops when performing space optimization matters. The loop that iterates on the dimension to be reduced MUST be the outermost loop.
 - If we have a recurrence like this: f(v,i) = min(1+f(v-a[i],i), f(v,i+1))
 	- Assuming j iterates over v
 	- In the bottom up DP solution replace every instance of v with j
+- Make sure that your problem size is constantly reducing. For example in the 'min number of squares that add upto n' problem if you call f(n,0) in the main function then we get a stackoverflow error.
+	- You must call f(n,1) in main function instead.
 
 ## Top-Down vs Bottom-Up
 
