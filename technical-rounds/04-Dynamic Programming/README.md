@@ -729,6 +729,28 @@ Bottom up optimized
             return (f(i,j+1, s, set));
     }
     
+    private boolean f_o(String s, Set<String> set) {
+        boolean[] col1 = new boolean[s.length()+1];
+        boolean[] col2 = new boolean[s.length()+1];
+        
+        for(int i=0; i<col2.length-1;i++)
+            col2[i] = false;
+        col2[col2.length-1] = true;
+        
+        for(int j=s.length()-1; j>=0; j--) {
+            for(int i=j; i>=0; i--) {
+                String word = s.substring(i,j+1);
+                if(set.contains(word))
+                    col1[i] = (col2[j+1]||col2[i]);
+                else
+                    col1[i] = col2[i];
+            }
+            for(int i=0; i<col1.length; i++)
+                col2[i] = col1[i];
+        }
+        return col1[0];
+    }
+    
     private boolean f_d(String s, Set<String> set) {
         boolean[] col1 = new boolean[s.length()+1];
         boolean[] col2 = new boolean[s.length()+1];
