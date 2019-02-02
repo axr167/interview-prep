@@ -708,6 +708,31 @@ Bottom up optimized
     }
 
 
+# Word Break
 
+    /*
+        f(i,j) = true //if i,j == s.length   
+        f(i,j) = flase // if j == s.length
+        f(i,j) = f(i+1, i+1) OR f(i, j+1) if word in dict
+        f(i,g) = f(i,j+1) if word not in dict
+    */
+    
+    private boolean f(int i, int j, String s, Set<String> set) {
+        if(i==s.length())
+            return true;
+        if(j==s.length())
+            return false;
+        String word = s.substring(i,j+1);
+        if(set.contains(word))
+            return (f(j+1, j+1, s, set) || f(i, j+1, s, set));
+        else
+            return (f(i,j+1, s, set));
+    }
+    
+    private boolean f_d(String s, Set<String> set) {
+        boolean[] col1 = new boolean[s.length()+1];
+        boolean[] col2 = new boolean[s.length()+1];
+        
+    }
 
 
