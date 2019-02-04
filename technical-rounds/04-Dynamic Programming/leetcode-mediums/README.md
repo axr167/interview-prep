@@ -140,5 +140,11 @@ Let f(i) be number of ways to decode string starting from i. If i=string.length 
         return i0;
     } 
 
+## 152. Maximum Product Subarray
 
+### Question:
+Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+### Answer:
+Let f(p,i) be max product subarray until index i. If i=a.length return p; Otherwise 
 
