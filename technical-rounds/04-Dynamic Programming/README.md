@@ -685,26 +685,35 @@ Bottom up optimized
 # Minimum number of squares whose sum equals to given number n
 
     /*
-        f(n, i) = 0 // if n = 0;
-        f(n,i) = max // if i>n;
-        f(n) = min(1+f(n-i^2, i), f(n, i+1)) // if n>=i^2
-        f(n) = f(n, i+1) // otherwise
+        f(n,i) = 0 if n=0
+        f(n,i) = max if i>n
+        f(n,i) = min(1+f(n-i^2, i), f(n, i+1)) // if i^2 <= n
+        f(n,i) = max // otherwise
     */
     
-    private static int f(int n, int i) {
+    
+    private int f(int n, int i, int max) {
         if(n==0)
             return 0;
         if(i>n )
-            return 1000000;
+            return max;
         if((i*i)<=n)
-            return Math.min(1+f(n-i*i, i), f(n, i+1));
+            return Math.min(1+f(n-i*i, i, max), f(n, i+1, max));
         else
-            return f(n,i+1);
+            return max;
     }
-
-    public static void main(String []args){
-        int n = 18;    
-        System.out.println(f(n,1));
+    private int f_m(int n, int i, int max, int[][] dp) {
+        if(dp[n][i] !=-1)
+            return dp[n][i];
+        if(n==0)
+            dp[n][i] = 0;
+        else if(i>n)
+            dp[n][i] = max;
+        else if((i*i)<=n)
+            dp[n][i] = Math.min(1+f_m(n-i*i, i, max, dp), f_m(n, i+1, max,dp));
+        else
+            dp[n][i] = max;
+        return dp[n][i];
     }
 
 
