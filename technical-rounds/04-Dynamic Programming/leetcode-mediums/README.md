@@ -142,9 +142,16 @@ Let f(i) be number of ways to decode string starting from i. If i=string.length 
 
 ## 152. Maximum Product Subarray
 
+## 647. Palindromic Substrings
+
+## 221. Maximal Square
+
+## 279. Perfect Squares
+
 ### Question:
-Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.
+Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
 
 ### Answer:
-Let f(p,i) be max product subarray until index i. If i=a.length return p; Otherwise 
+let f(n,i) be min number of squares to sum upto n from i. f(n,i)=0 if n=0; f(n,i)=max if i>n; f(n,i)=min(f(n-i^2, i), f(n,i+1)) if i^2>n; f(n,i) = f(n,i+1) otherwise.
+
 
