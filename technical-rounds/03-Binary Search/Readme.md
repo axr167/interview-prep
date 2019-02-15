@@ -1,6 +1,8 @@
 
 # Binary Search
 
+## The code:
+
 The code for binary search is below
 
 **Iterative:**
@@ -73,3 +75,11 @@ Quicksort
 
 - We do it if lo<hi because single value arrays are already sorted
 - We do merge cases f(lo, p-1) and f(p+1,hi) because p element sorted in place after calling partition.
+
+### When to consider using binary search?
+
+- When array is in sorted format.
+- When solution is n^2 or more and sorting may result in better solution.
+
+# Problems
+
