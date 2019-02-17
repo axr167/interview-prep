@@ -88,4 +88,22 @@ Logic:
   - else increment p1, p2
   - return false after while loop ends
 
-### 8. Loop detection
+### 8. Loop detection in linked list
+
+1. Check if there exists a loop
+
+- fast, slow = head
+- while fast.next is not null and fast.next.next is not null
+  - slow = slow.next, fast = fast.next.next
+  - If slow = fast there is a loop
+- If while loop terminates there is no loop
+
+2. When do slow and fast collide?
+
+- K steps before start of loop
+
+3. how to find start of loop
+
+- node head and collision spot are both equidistant from the loop
+- Have pointer p1 at head, p2 at collision point
+- increment both pointers until p1 = p2 and you have collision point.
