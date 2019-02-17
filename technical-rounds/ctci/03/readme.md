@@ -36,7 +36,7 @@ In leetcode we have same thing but for max element. The logic and code is:
   - Then push buffer contents (according to push operation mentioned above)
   
 
-Code:
+Code (716 leetcode):
 
     class MaxStack {
 
@@ -87,5 +87,68 @@ Code:
         }
     }
 
+### 3. Stack of plates
 
+See CTCI
 
+### 4. Queue using stacks
+
+Logic:
+
+- Have 2 stacks old, new.
+- Each time you push, add to new.
+- Each time you pop, pop from old. If old is empty pop new and push it into old (this reverses the value making it fifo)
+
+Code (232 leetcode):
+
+    class MyQueue {
+
+        /** Initialize your data structure here. */
+        Stack<Integer> oldStack;
+        Stack<Integer> newStack;
+
+        public MyQueue() {
+            oldStack = new Stack<>();
+            newStack = new Stack<>();
+        }
+
+        /** Push element x to the back of queue. */
+        public void push(int x) {
+            newStack.push(x);
+        }
+
+        private void exchange() {
+            while(!newStack.isEmpty()) {
+                oldStack.push(newStack.pop());
+            }
+        }
+
+        /** Removes the element from in front of queue and returns that element. */
+        public int pop() {
+            if(!oldStack.isEmpty())
+                return oldStack.pop();
+            else
+                exchange();
+            return oldStack.pop();
+        }
+
+        /** Get the front element. */
+        public int peek() {
+            if(!oldStack.isEmpty())
+                return oldStack.peek();
+            else
+                exchange();
+            return oldStack.peek();
+        }
+
+        /** Returns whether the queue is empty. */
+        public boolean empty() {
+            if(oldStack.isEmpty() && newStack.isEmpty())
+                return true;
+            return false;
+        }
+    }
+
+### 5. Sort Stack
+
+### 6. Animal Shelter
