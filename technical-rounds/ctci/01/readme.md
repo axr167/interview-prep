@@ -131,3 +131,16 @@ If we cannot use additional data structures we can either
 ### 7. Rotate matrix
 
 Logic: First do transpose -> invert either left-right or up-down
+
+### 8. Zero Matrix
+
+Logic: Have 2 arrays representing rows and cols. Traverse through the matrix. For each 0 encountered mark appropriate array index for row/col of matrix.
+
+### 9. Check if s1 is a rotation of s2. Example: cdab is a rotation of abcd
+
+	private static boolean check(String s1, String s2) {
+		String s = s1+s1;
+		if(s1.length() == s2.length() && s.contains(s2))
+			return true;
+		return false;
+	}
