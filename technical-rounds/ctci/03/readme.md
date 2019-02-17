@@ -151,4 +151,8 @@ Code (232 leetcode):
 
 ### 5. Sort Stack
 
+Same as question 2
+
 ### 6. Animal Shelter
+
+See CTCI
