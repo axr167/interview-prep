@@ -120,3 +120,38 @@ Logic: Give min and max value. Recurse left and right.
     public boolean isValidBST(TreeNode root) {
         return valid(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
+
+### 6. Next node
+
+See CTCI (Doubt)
+
+### 7. Build Order
+
+See CTCI (Revise topological sort - DO THIS LATER)
+
+### 8. Lowest common ancestor
+
+Method 1: Create map mapping node to parent. Get height and traverse up. Complexity is O(h)
+
+Follow up: What if you cannot use a data structure?
+
+Logic:
+
+- f(root, p, q) returns lowest common ancestor
+- if root = p or root = q or root = null
+    - return root
+- Check if p is in the left subtree, check if q is in the left subtree
+- If p,q are in different subtrees return root
+- Otherwise recurse f(root.left, p, q) or f(root.right, p, q) depending on what subtree p,q are present in.
+
+Complexity: O(n^2) because each time we go to a node, we check entire tree and if tree is unbalanced it is n+n-1+n-2...
+
+### 9. BST sequences: DOUBT
+
+### 10. Check Subtree: Check if T2 is a subtree of T1.
+
+- Traverse through T1. if current == t2.root, check
+
+### 11. Random node from BST: Get a node at random from a bst: DOUBT
+
+### 12. Paths with Sum: Doubt
