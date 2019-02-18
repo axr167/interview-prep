@@ -82,21 +82,20 @@ Method 1: Get height of left, right. If it is more than 1, return false else ret
     
 Method 2: If root = null height = -1. Get height of left and right. If either left or right is unbalanced, return -2. Otherwise check if current node is unbalanced. If it is, return -2 otherwise return height. This is O(n) because every time we visit the node we get the height in constant time.
 
-    private int getHeight(TreeNode root) {
+    private int height(TreeNode root) {
         if(root == null)
             return -1;
-        int l = getHeight(root.left);
-        int r = getHeight(root.right);
+        int l = height(root.left);
+        int r = height(root.right);
         if(l==-2||r==-2)
             return -2;
         if(Math.abs(l-r) > 1)
             return -2;
-        else
-            return (1+ Math.max(l,r));
+        return Math.max(l,r)+1;
     }
-    
     public boolean isBalanced(TreeNode root) {
-        if(getHeight(root) == -2)
+        if(height(root) == -2)
             return false;
-        return true;
+        else 
+            return true;
     }
