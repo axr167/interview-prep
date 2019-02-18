@@ -60,4 +60,22 @@ Code:
         return res;
     }
 
-### 4. 
+### 4. Check if binary tree is balanced
+
+Logic: Get height of left, right. If it is more than 1, return false else return true.
+
+    private int getHeight(TreeNode root) {
+        if(root == null)
+            return -1;
+        else
+            return Math.max(1+getHeight(root.left), 1+getHeight(root.right));
+    }
+    private boolean check(TreeNode root) {
+        if(root == null)
+            return true;
+        if( Math.abs(getHeight(root.left) - getHeight(root.right)) > 1 )
+            return false;
+        else
+            return check(root.left) && check(root.right);
+        
+    }
