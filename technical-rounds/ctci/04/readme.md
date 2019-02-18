@@ -62,7 +62,7 @@ Code:
 
 ### 4. Check if binary tree is balanced
 
-Logic: Get height of left, right. If it is more than 1, return false else return true.
+Method 1: Get height of left, right. If it is more than 1, return false else return true. This is O(n logn)
 
     private int getHeight(TreeNode root) {
         if(root == null)
@@ -78,4 +78,25 @@ Logic: Get height of left, right. If it is more than 1, return false else return
         else
             return check(root.left) && check(root.right);
         
+    }
+    
+Method 2: If root = null height = -1. Get height of left and right. If either left or right is unbalanced, return -2. Otherwise check if current node is unbalanced. If it is, return -2 otherwise return height. This is O(n) because each node's height is checked only once.
+
+    private int getHeight(TreeNode root) {
+        if(root == null)
+            return -1;
+        int l = getHeight(root.left);
+        int r = getHeight(root.right);
+        if(l==-2||r==-2)
+            return -2;
+        if(Math.abs(l-r) > 1)
+            return -2;
+        else
+            return (1+ Math.max(l,r));
+    }
+    
+    public boolean isBalanced(TreeNode root) {
+        if(getHeight(root) == -2)
+            return false;
+        return true;
     }
