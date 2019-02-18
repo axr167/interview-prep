@@ -62,6 +62,8 @@ Code:
 
 ### 4. Check if binary tree is balanced
 
+Leetcode 110.
+
 Method 1: Get height of left, right. If it is more than 1, return false else return true. This is O(n logn) because every time we visit a node, we check the height in logn time.
 
     private int getHeight(TreeNode root) {
@@ -98,4 +100,23 @@ Method 2: If root = null height = -1. Get height of left and right. If either le
             return false;
         else 
             return true;
+    }
+
+### 5. Validate BST
+
+Leetcode 98
+
+Logic: Give min and max value. Recurse left and right.
+
+    private boolean valid(TreeNode root, long min, long max) {
+        if(root == null)
+            return true;
+        if(root.val > min && root.val < max)
+            return( valid(root.left, min, root.val) && valid(root.right, root.val, max) );
+        else
+            return false;
+    }
+    
+    public boolean isValidBST(TreeNode root) {
+        return valid(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
