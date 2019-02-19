@@ -137,4 +137,56 @@ Slow/fast pointers with cache. Maintain a hashmap with char counts. If map.size(
         }
         return best;
     } 
- 
+
+### 5. Minimum Window Substring
+
+    public String minWindow(String s, String t) {
+        if(t.length() > s.length())
+            return "";
+        
+        Set<Character> set = new HashSet<>();
+		for(int i=0; i<t.length(); i++)
+			set.add(t.charAt(i));
+		Map<Character, Integer> map = new HashMap<>();
+		int p1 = 0;
+		int p2 = 0;
+		int best = Integer.MAX_VALUE;
+		String res = "";
+		
+		while(p2 < s.length()) {
+			char c = s.charAt(p2);
+			if(!set.contains(c))
+				p2++;
+			else {
+				if(map.containsKey(c)) {
+					map.put(c, map.get(c)+1);
+					p2++;
+				} else {
+					map.put(c, 1);
+					p2++;
+					if(map.size() == set.size()) {
+						if(p2-p1 < best) {
+							best = p2-p1;
+							res = s.substring(p1, p2);
+						}
+						while(map.size() == set.size()) {
+							if(p2-p1 < best) {
+								best = p2-p1;
+								res = s.substring(p1, p2);
+							}
+							char x = s.charAt(p1);
+							if(!set.contains(x))
+								p1++;
+							else {
+								map.put(x, map.get(x)-1);
+								if(map.get(x) == 0)
+									map.remove(x);
+								p1++;
+							}
+						}
+					}
+				}
+			}
+		}
+		return res;
+    }
