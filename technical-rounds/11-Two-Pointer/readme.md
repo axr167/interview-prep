@@ -1,19 +1,24 @@
 
 ## Types of problems encountered:
 
-1. Slow pointer/Fast pointer approach
+**Slow pointer/Fast pointer approach**
 - Here initialize slow and fast pointers
 - Ends when either slow = fast (loop in list etc) or when fast = end (remove duplicates)
 - i can move slower or as fast as j
 
-2. Start/End approach
+**Start/End approach**
 
 - Initialize p1 to start of array
 - Initialize p2 to end of the array
 - Either increment p1 or decrement p2 to maximize/minimize something and keep doing so until p1>=p2
 - Examples include trapping rainwater and 2/3/4-sum.
 
-3. Slow/Fast pointer with memory
+**Slow/Fast pointer with memory**
+- This is used in problems where you must find a subarray/substring/any continuous block such that the block satisfies certain conditions.
+- Have slow/fast pointer and a hashmap/hashset as supporting cache
+- Increment fast pointer adding element to cache until the condition is violated.
+- When condition is violated, increment slow pointer until condition is satisfied again removing things from cache as i is incremented
+- Do until fast pointer reaches end.
 
 ### 1. Put array duplicates at end of sorted array
 
