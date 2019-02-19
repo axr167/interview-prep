@@ -62,3 +62,79 @@ Start/end approach. Have 2 pointers at each end and check height of both pointer
         }
         return max_vol;
     }
+
+### 3. Longest substring without repeating characters
+
+Slow/fast pointer approach with cache. Condition is substring should not have repeating characters. Store all characters p2 encounters in a hashset and if condition is violated, increment p1.
+
+    public int lengthOfLongestSubstring(String s) {
+        
+        if(s.length() <= 1)
+            return s.length();
+        
+        Set<Character> set = new HashSet<>();
+        int p1 = 0;
+        set.add(s.charAt(p1));
+        int p2 = 1;
+        int best = 1;
+        while(p2 < s.length()) {
+            if(!set.contains(s.charAt(p2))) {
+                set.add(s.charAt(p2));
+                p2++;
+                if(set.size() > best)
+                    best = set.size();
+            } else {
+                while(set.contains(s.charAt(p2))) {
+                    set.remove(s.charAt(p1));
+                    p1++;
+                }
+                set.add(s.charAt(p2));
+                p2++;
+                if(set.size() > best)
+                    best = set.size();
+            }
+        }
+        return best;  
+    }
+    
+### 4. Longest substring with at most 2 distinct chars 
+ 
+Slow/fast pointers with cache. Maintain a hashmap with char counts. If map.size() > 2 then increment p1 and decrement map.get(p1) value by 1. if map.get(p1) == 0 then remove char p1 from map.
+ 
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        if(s.length() <=2)
+            return s.length();
+        Map<Character, Integer> map = new HashMap<>();
+        int p1 = 0;
+        int p2 = 1;
+        int best = 1;
+        int current = 1;
+        map.put(s.charAt(p1), 1);
+        while(p2 < s.length()) {
+            char c = s.charAt(p2);
+            if(map.containsKey(c)) {
+                current++;
+                map.put(c, map.get(c)+1);
+                p2++;
+                if(current > best)
+                    best = current;
+            } else if (!map.containsKey(c) && map.size() < 2) {
+                map.put(c, 1);
+                current++;
+                p2++;
+                if(current > best)
+                    best = current;
+            } else {
+                while(map.size() > 1) {
+                    char x = s.charAt(p1);
+                    map.put(x, map.get(x)-1);
+                    p1++;
+                    current--;
+                    if(map.get(x) == 0)
+                        map.remove(x);
+                }
+            }
+        }
+        return best;
+    } 
+ 
