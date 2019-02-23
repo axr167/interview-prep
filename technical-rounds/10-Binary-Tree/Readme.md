@@ -88,5 +88,33 @@ Breadth first traversals are:
 
 **Iterative**
 
+	static void preorder(Node root, List<Integer> arr) {
+		Stack<Node> stack = new Stack<>();
+		stack.push(root);
+		while(!stack.isEmpty()) {
+			Node current = stack.pop();
+			if(current != null) {
+				arr.add(current.val);
+				stack.push(current.right);
+				stack.push(current.left);
+			}
+		}
+	}
+
+### Inorder
+
+**Recursive**
+
+	// -10, -5, 0, 5, 10, 15, 20, 30, 35
+	static void inorder(Node root, List<Integer> arr) {
+		if(root == null)
+			return;
+		inorder(root.left, arr);
+		arr.add(root.val);
+		inorder(root.right, arr);
+	}
+
+**Iterative**
+
 
 
