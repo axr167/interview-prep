@@ -31,3 +31,61 @@ Code to construct it:
 		root.right.right.right = new Node(35);
 		return root;
 	}
+
+## 1. Search in BST
+
+**Recursive:**
+
+	private static boolean search(Node root, int val) {
+		if(root == null)
+			return false;
+		if(root.val == val)
+			return true;
+		else if(root.val > val)
+			return search(root.left, val);
+		else
+			return search(root.right, val);
+	}
+
+**Iterative:**
+
+	private static boolean search(Node root, int val) {
+		while(root != null) {
+			if(root.val == val)
+				return true;
+			else if(root.val > val)
+				root = root.left;
+			else
+				root = root.right;
+		}
+		return false;
+	}
+
+## 2. Tree Traversal
+
+Tree traversals are classified into 2 types: Depth first traversals and Breadth first traversals.
+
+Depth first traversals are:
+- Preorder: Visit, Left, Right
+- Inorder: Left, Visit, Right
+- Postorder: Left, Right, Visit
+
+Breadth first traversals are:
+- Level order: Print level by level
+
+### Preorder:
+
+**Recursive**
+
+	static void preorder(Node root, List<Integer> arr) {
+		if(root == null)
+			return;
+		arr.add(root.val);
+		preorder(root.left, arr);
+		preorder(root.right, arr);
+	}
+
+**Iterative**
+
+
+
