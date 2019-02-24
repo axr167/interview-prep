@@ -73,11 +73,10 @@ Depth first traversals are:
 Breadth first traversals are:
 - Level order: Print level by level
 
-### Preorder:
+### Preorder: 10, -5, -10, 0, 5, 20, 15, 30, 35
 
 **Recursive**
 
-	// 10, -5, -10, 0, 5, 20, 15, 30, 35
 	static void preorder(Node root, List<Integer> arr) {
 		if(root == null)
 			return;
@@ -101,11 +100,10 @@ Breadth first traversals are:
 		}
 	}
 
-### Inorder
+### Inorder: -10, -5, 0, 5, 10, 15, 20, 30, 35
 
 **Recursive**
 
-	// -10, -5, 0, 5, 10, 15, 20, 30, 35
 	static void inorder(Node root, List<Integer> arr) {
 		if(root == null)
 			return;
@@ -132,4 +130,16 @@ Breadth first traversals are:
 		}
 	}
 
+### Postorder: -10 5 0 -5 15 35 30 20 10
 
+**Recursive**
+
+	static void postorder(Node root) {
+		if(root == null)
+			return;
+		postorder(root.left);
+		postorder(root.right);
+		System.out.print(root.val+" ");
+	}
+
+**Iterative**
