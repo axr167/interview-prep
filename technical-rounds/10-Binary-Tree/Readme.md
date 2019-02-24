@@ -116,5 +116,20 @@ Breadth first traversals are:
 
 **Iterative**
 
+	static void inorder(Node root) {
+		if(root == null)
+			return;
+		Stack<Node> stack = new Stack<>();
+		while(root != null || !stack.isEmpty()) {
+			if(root!=null) {
+				stack.push(root);
+				root = root.left;
+			} else {
+				root = stack.pop();
+				System.out.print(root.val + " ");
+				root = root.right;
+			}
+		}
+	}
 
 
