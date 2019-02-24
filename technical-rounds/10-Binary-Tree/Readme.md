@@ -163,3 +163,20 @@ Breadth first traversals are:
 			System.out.print(root.val+" ");
 		}
 	}
+
+### Levelorder: 10 -5 20 -10 0 15 30 5 35 
+
+	static void levelorder(Node root) {
+		if(root == null)
+			return;
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			root = queue.remove();
+			if(root!=null) {
+				System.out.print(root.val+" ");
+				queue.add(root.left);
+				queue.add(root.right);
+			}
+		}
+	}
