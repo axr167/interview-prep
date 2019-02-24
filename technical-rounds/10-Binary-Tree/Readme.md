@@ -143,3 +143,23 @@ Breadth first traversals are:
 	}
 
 **Iterative**
+
+	static void postorder(Node root) {
+		if(root == null)
+			return;
+		Stack<Node> stack1 = new Stack<>();
+		Stack<Node> stack2 = new Stack<>();
+		stack1.push(root);
+		while(root != null || !stack1.isEmpty()) {
+			root = stack1.pop();
+			if(root != null) {
+				stack1.push(root.left);
+				stack1.push(root.right);
+				stack2.push(root);
+			}
+		}
+		while(!stack2.isEmpty()) {
+			root = stack2.pop();
+			System.out.print(root.val+" ");
+		}
+	}
