@@ -6,12 +6,13 @@
 3. [DP](#DP)
 4. [Design](#Design)
 5. [2Pointer](#2Pointer)
+6. [Recursion](#Recursion)
 
 ## Analog Problems
 
-1. 2 Sum
+### 1. 2 Sum
 
-2. k-closest points to origin
+### 2. k-closest points to origin
 
 Logic: Create max heap for points. If heap size is less than K, add point to heap. Otherwise get point with longest distance from heap using heap.peek(). If current point has a lesser distance than max point, remove the max point from heap and put current point instead.
 
@@ -53,7 +54,7 @@ Time: n * log(k). We process n elements and there are k elements in the heap.
         return res;
     }
 
-3. Most common words in paragraph
+### 3. Most common words in paragraph
 
 Logic: Preprocess string by converting to lowercase, replacing punctuation with whitespace and splitting by \\s+
 
@@ -88,7 +89,7 @@ Space: O(n) to store in map
         }
     }
 
-4. Merge 2 sorted linked lists without extra space
+### 4. Merge 2 sorted linked lists without extra space
 
 Logic: Set start pointers to each list and head pointer and have a start pointer. Set head pointer to smaller of l1 and l2, incrementing smaller node to node.next. Set current = head and in a while loop assign current = smaller of l1,l2.
 
@@ -134,7 +135,7 @@ Space: O(1)
         }
     }
 
-5. Copy list with random pointer
+### 5. Copy list with random pointer
 
 Logic: Map each node to a new node. Then for each new node created, link based on values stored in map
 Time: O(n)
@@ -158,10 +159,13 @@ Space: O(n)
             }
         }
 
+### 6. Largest area under histogram (Stack based)
+
+
 
 ## Graphs
 
-1. Number of Islands
+### 1. Number of Islands
 
 Logic: Iterate over matrix. When we find a 1 which is not visited, do bfs
 
@@ -251,7 +255,7 @@ Space: m * n space taken by BFS
     
 ## DP
 
-1. Longest Palindromic Substring
+### 1. Longest Palindromic Substring
 
 Logic: if s is a palindrome return s. Otherwise the longest palindrome is either in substring created by removing 1 character from front or from substring created by removing 1 char from back.
 
@@ -301,7 +305,7 @@ Space: O(n)
 
 ## Design
 
-1. LRU Cache
+### 1. LRU Cache
 
 Logic: Maintain Map<Key, Node> for constant time get operations and Double linked list for constant time modify operations. If list size is more than capacity, remove last node. Each time you add or get, add node to start of list.
 
@@ -376,7 +380,7 @@ Space: O(n) for map and list
             }
         }
 
-2. Find Median from Data Stream
+### 2. Find Median from Data Stream
 
 Logic: Median can be found by sorting the list then if it is odd, pick middle element and if it is even pick largest element of 1st half of list and smallest element of 2nd half of the list. Maintain 2 heaps - max heap for first half, min heap for second half.
 If first element, put it in max heap. If element is larger than max heap's top, add to min heap. If one heap is larger that the other by more than 1 element pop the larger heap into the smaller heap.
@@ -439,3 +443,5 @@ Space: O(n)
     }
 
 ## 2Pointer
+
+## Recursion
