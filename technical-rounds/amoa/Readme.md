@@ -1,9 +1,9 @@
 
 ## Table of Contents
 
-1. [My first title](#my-first-title)
-2. [My second title](#my-second-title)
+1. [Analog Problems](#Analog-Problems)
+2. [Recursion](#Recursion)
 
-## My first title
+## Analog Problems
 Some text.
-## My second title
+## Recursion
