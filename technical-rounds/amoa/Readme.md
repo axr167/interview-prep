@@ -301,7 +301,82 @@ Space: O(n)
 
 ## Design
 
-1. Find Median from Data Stream
+1. LRU Cache
+
+Logic: Maintain Map<Key, Node> for constant time get operations and Double linked list for constant time modify operations. If list size is more than capacity, remove last node. Each time you add or get, add node to start of list.
+
+Time: O(1) for all operations
+Space: O(n) for map and list
+
+        class LRUCache {
+            class Node{
+                int val;
+                int key;
+                Node next;
+                Node prev;
+                public Node() {
+                    this.next = null; this.prev = null;
+                }
+                public Node(int key, int val) {
+                    this();
+                    this.val = val; this.key = key;
+                }
+            }
+            Node head;
+            Node tail;
+            int capacity;
+            int size;
+            Map<Integer, Node> map;
+            public LRUCache(int capacity) {
+                this.head = new Node();
+                this.tail = new Node();
+                head.next = tail;
+                tail.prev = head;
+                this.capacity = capacity;
+                this.size = 0;
+                map = new HashMap<Integer, Node>();
+            }
+            public int get(int key) {
+                if(!map.containsKey(key))
+                    return -1;
+                Node current = map.get(key);
+                Node prev = current.prev;
+                Node next = current.next;
+                prev.next = next;
+                next.prev = prev;
+
+                Node h_next = head.next;
+                head.next = current;
+                current.prev = head;
+                current.next = h_next;
+                h_next.prev = current;
+
+                return current.val;
+
+            }
+            public void put(int key, int value) {
+                Node c = new Node(key, value);
+                Node next = head.next;
+                head.next = c;
+                c.prev = head;
+                c.next = next;
+                next.prev = c;
+                map.put(key, c);
+                size++;
+                if(size > capacity) {
+                    Node del = tail.prev;
+                    int del_key = del.key;
+                    map.remove(del_key);
+                    Node prev = del.prev;
+                    del.prev = null; del.next = null;
+                    tail.prev = prev;
+                    prev.next = tail;
+                    size--;
+                }
+            }
+        }
+
+2. Find Median from Data Stream
 
 Logic: Median can be found by sorting the list then if it is odd, pick middle element and if it is even pick largest element of 1st half of list and smallest element of 2nd half of the list. Maintain 2 heaps - max heap for first half, min heap for second half.
 If first element, put it in max heap. If element is larger than max heap's top, add to min heap. If one heap is larger that the other by more than 1 element pop the larger heap into the smaller heap.
