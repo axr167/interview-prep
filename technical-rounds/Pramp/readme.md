@@ -5,6 +5,8 @@
 
 Given an array of integers arr, write a function absSort(arr), that sorts the array according to the absolute values of the numbers in arr. If two numbers have the same absolute value, sort them according to sign, where the negative numbers come before the positive numbers.
 
+Logic: Quicksort based on absolute value then run one pass through the array checking if abs(a[i]) == abs(a[j]) and if a[i] is positivae and a[j] is negative then swap them.
+
 	static int partition(int[] a, int l, int r) {
 		int p = r;
 		int i = l-1;
