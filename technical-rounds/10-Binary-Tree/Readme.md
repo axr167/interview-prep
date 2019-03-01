@@ -217,6 +217,18 @@ Otherwise we can build as follows:
 
 Logic:
 
+	private TreeNode build(int post_e, int in_s, int in_e, int[] inorder, int[] postorder) {
+		if(post_e < 0 || in_s > in_e)
+		    return null;
+
+		int root_val = postorder[post_e];
+		int in_index = getIndex(inorder, postorder[post_e]);
+
+		TreeNode root = new TreeNode(root_val);
+		root.left = build(post_e-(in_e - in_index)-1, in_s, in_index-1, inorder, postorder);
+		root.right = build(post_e-1, in_index+1, in_e, inorder, postorder);
+		return root;
+    }
 
 ## Recursion Based:
 
