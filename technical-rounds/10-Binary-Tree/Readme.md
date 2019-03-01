@@ -180,4 +180,7 @@ Breadth first traversals are:
 			}
 		}
 	}
-	
+
+# Sample Problems
+
+### 1. Given preorder and inorder construct binary tree
