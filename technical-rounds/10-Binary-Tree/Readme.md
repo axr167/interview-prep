@@ -201,17 +201,17 @@ Otherwise we can build as follows:
 - Left element = preorder+1, inorder_start, inorder_index-1
 - Right element = preorder+1+(inorder_index-inorder_start), inorder_index+1, inorder_end
 
-	    private TreeNode build(int pre_start, int in_start, int in_end, int[] preorder, int[] inorder) {
-		if(pre_start > preorder.length || in_start > in_end)
-		    return null;
-		int root_val = preorder[pre_start];
-		int in_index = getIndex(inorder, root_val);
+		private TreeNode build(int pre_start, int in_start, int in_end, int[] preorder, int[] inorder) {
+			if(pre_start > preorder.length || in_start > in_end)
+				return null;
+			int root_val = preorder[pre_start];
+			int in_index = getIndex(inorder, root_val);
 
-		TreeNode root = new TreeNode(root_val);
-		root.left = build(pre_start+1, in_start, in_index-1, preorder, inorder);
-		root.right = build(pre_start+(in_index-in_start)+1, in_index+1, in_end, preorder, inorder);
-		return root;
-	    }
+			TreeNode root = new TreeNode(root_val);
+			root.left = build(pre_start+1, in_start, in_index-1, preorder, inorder);
+			root.right = build(pre_start+(in_index-in_start)+1, in_index+1, in_end, preorder, inorder);
+			return root;
+		}
 	    
 ### 2. Given postorder and inorder construct binary tree
 
