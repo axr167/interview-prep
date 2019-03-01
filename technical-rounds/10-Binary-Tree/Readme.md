@@ -188,6 +188,27 @@ Breadth first traversals are:
 Logic:
 - First element of preorder array is root
 - We can search the inorder array for root element. All elements to the left of it are the left side of tree, all elements to the right of it are the right side of the tree.
+- So we need start of preorder, and both ends of inorder array.
 
 We know the element will be null if:
-- 
+- element we start at in preorder array > length of preorder array
+- inorder array is empty (start > end)
+
+Otherwise we can build as follows:
+- Root = inorder_index (inorder_index is find(preorder))
+- Left element = preorder+1, inorder_start, inorder_index-1
+- Right element = preorder+1+(inorder_index-inorder_start), inorder_index+1, inorder_end
+
+	    private TreeNode build(int pre_start, int in_start, int in_end, int[] preorder, int[] inorder) {
+		if(pre_start > preorder.length || in_start > in_end)
+		    return null;
+		int root_val = preorder[pre_start];
+		int in_index = getIndex(inorder, root_val);
+
+		TreeNode root = new TreeNode(root_val);
+		root.left = build(pre_start+1, in_start, in_index-1, preorder, inorder);
+		root.right = build(pre_start+(in_index-in_start)+1, in_index+1, in_end, preorder, inorder);
+		return root;
+	    }
+	    
+    
