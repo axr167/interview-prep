@@ -183,6 +183,8 @@ Breadth first traversals are:
 
 # Sample Problems
 
+## Traversal based:
+
 ### 1. Given preorder and inorder construct binary tree
 
 Logic:
@@ -211,4 +213,11 @@ Otherwise we can build as follows:
 		return root;
 	    }
 	    
-    
+### 2. Given postorder and inorder construct binary tree
+
+Logic:
+
+
+## Recursion Based:
+
+
