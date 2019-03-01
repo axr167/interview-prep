@@ -184,3 +184,10 @@ Breadth first traversals are:
 # Sample Problems
 
 ### 1. Given preorder and inorder construct binary tree
+
+Logic:
+- First element of preorder array is root
+- We can search the inorder array for root element. All elements to the left of it are the left side of tree, all elements to the right of it are the right side of the tree.
+
+We know the element will be null if:
+- 
