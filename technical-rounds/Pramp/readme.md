@@ -51,3 +51,7 @@ Logic: Quicksort based on absolute value then run one pass through the array che
 	}
 
 
+Alternatives:
+
+- Define a comparator
+- mergesort (todo)
