@@ -11,13 +11,13 @@ Given an array of integers arr, write a function absSort(arr), that sorts the ar
 	    int j = l;
 	    while(j<r) {
 	      if(Math.abs(a[j]) >= Math.abs(a[p])) {
-		j++;
+					j++;
 	      } else {
-		i++;
-		int temp = a[i];
-		a[i] = a[j];
-		a[j] = temp;
-		j++;
+					i++;
+					int temp = a[i];
+					a[i] = a[j];
+					a[j] = temp;
+					j++;
 	      }
 	    }
 	    i++;
@@ -25,7 +25,7 @@ Given an array of integers arr, write a function absSort(arr), that sorts the ar
 	    a[i] = a[p];
 	    a[p] = temp;
 	    return i;
-	  }
+		}
 
 	  static void quicksort(int[] a, int s, int e) {
 	    if(s < e){
@@ -37,15 +37,15 @@ Given an array of integers arr, write a function absSort(arr), that sorts the ar
 
 	static int[] absSort(int[] arr) {
 		quicksort(arr, 0, arr.length-1);
-	    	int j = 0; int i = 1;
-	    	while(i<arr.length) {
-	      		if(Math.abs(arr[j]) == Math.abs(arr[i]) && arr[j] > arr[i]) {
+	  int j = 0; int i = 1;
+	  while(i<arr.length) {
+	  	if(Math.abs(arr[j]) == Math.abs(arr[i]) && arr[j] > arr[i]) {
 				int temp = arr[i];
 				arr[i] = arr[j];
 				arr[j] = temp;
-	      	}
-	      	i++;
-	      	j++;
 	    }
-	    return arr;
+	    i++;
+	    j++;
+	 	}
+	  return arr;
 	}
