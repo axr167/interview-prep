@@ -230,6 +230,12 @@ Logic:
 		return root;
     }
 
+### 3. Find next element (inorder successor) in Binary Tree
+
+### 4. Second minimum node in Binary Tree
+
+
+
 ## Recursion Based:
 
 
