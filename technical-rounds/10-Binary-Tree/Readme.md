@@ -313,7 +313,10 @@ Logic: Have a level variable initialized to 0. Do level order traversal as above
 	    }
 	}
 
+### Right side view
 
+
+### Diameter of binary tree
 
 ### Second minimum node in Binary Search Tree
 
