@@ -249,42 +249,67 @@ Logic:
 		return root;
     }
 
-### Find next element (inorder successor) in Binary Tree
+### Level order traversal
+
+Logic: Add element to queue. While q is not empty, get the size - this is the number of elements in current level. For i=0 to size, remove item from queue, add its value to list and add its children to the queue.
+
+	class Solution {
+	    public List<List<Integer>> levelOrder(TreeNode root) {
+		List<List<Integer>> res = new ArrayList<>();
+		if(root == null) return res;
+
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+
+		while(!q.isEmpty()) {
+		    int size = q.size();
+		    List<Integer> list = new ArrayList<>();
+		    for(int i = 0; i<size; i++) {
+			TreeNode current = q.remove();
+			list.add(current.val);
+			if(current.left != null)
+			    q.add(current.left);
+			if(current.right != null)
+			    q.add(current.right);
+		    }
+		    res.add(list);
+		}
+		return res;
+	    }
+	}
 
 ### Zig-zag level order traversal
 
-Logic: Do level order traversal then for every alternate list call Collections.reverse(ArrayList);
+Logic: Have a level variable initialized to 0. Do level order traversal as above. While queue is not empty, get the size and for i=0 to size, pop the queue and add its children. Have a LinkedList and if level%2 is 0, add element to last else if it is 1, add element to front of list. Add the linked List to the result list.
 
 	class Solution {
 	    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+
 		List<List<Integer>> res = new ArrayList<>();
-		if(root==null) return res;
+		if(root == null) return res;
 
-		Queue<Item> q = new LinkedList<>();
-		q.add(new Item(root, 0));
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		int level = 0;
+
 		while(!q.isEmpty()) {
-		    Item current = q.remove();
-		    if(res.size() <= current.level)
-			res.add(new ArrayList<Integer>());
-		    List<Integer> li = res.get(current.level);
-		    li.add(current.node.val);
-		    if(current.node.left!=null)
-			q.add(new Item(current.node.left, current.level+1));
-		    if(current.node.right!=null)
-			q.add(new Item(current.node.right, current.level+1));
+		    int size = q.size();
+		    LinkedList<Integer> list = new LinkedList<>();
+		    for(int i=0; i<size; i++) {
+			TreeNode current = q.remove();
+			if(current.left != null)
+			    q.add(current.left);
+			if(current.right != null)
+			    q.add(current.right);
+			if(level%2 == 0)
+			    list.add(current.val);
+			else
+			    list.addFirst(current.val);
+		    }
+		    res.add(list);
+		    level++;
 		}
-		if(res.size() == 1)
-		    return res;
-		for(int i=1; i<res.size(); i+=2)
-		    Collections.reverse(res.get(i));
 		return res;
-
-	    }
-	    class Item {
-		TreeNode node; int level;
-		public Item(TreeNode node, int level) {
-		    this.node = node; this.level = level;
-		}
 	    }
 	}
 
@@ -292,7 +317,7 @@ Logic: Do level order traversal then for every alternate list call Collections.r
 
 ### Second minimum node in Binary Search Tree
 
-
+### Find next element (inorder successor) in Binary Tree
 
 ### Find diameter of binary tree
 
