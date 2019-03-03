@@ -12,7 +12,7 @@ Every time you need to get the height use postorder traversal. This reduces the 
         return 1+Math.max(left, right);
     }
 
-If you have a solution that requires the height of children at each step, then initialize a global variable and update that on each step via postorder. (See diameter of binary tree)
+If you have a solution that requires the height of children at each step, then initialize a global variable for the value we are actually interested in and update that on each step via postorder (See diameter of binary tree)
 
 ### 2. Use inorder traversal to arrange the nodes of a BST in order
 
@@ -331,5 +331,29 @@ Optimization: Use postorder traversal method to incrementally compute height.
 	    public int diameterOfBinaryTree(TreeNode root) {
 		postorder(root);
 		return global_diameter;
+	    }
+	}
+
+### Check if Binary Tree is balanced
+
+Logic: It is balanced if height difference between subtrees is more than 1. Since height is involved, use the postorder method. Have global boolean and each postorder step, check condition for boolean to be false.
+
+	class Solution {
+	    boolean balanced = true;
+	    private int postorder(TreeNode root) {
+		if(root == null || balanced == false)
+		    return 0;
+		int left = postorder(root.left);
+		int right = postorder(root.right);
+		if(Math.abs(left-right) >=2) {
+		    balanced = false;
+		    return 0;
+		}
+		return 1+Math.max(left,right);
+	    }
+
+	    public boolean isBalanced(TreeNode root) {
+		postorder(root);
+		return balanced;
 	    }
 	}
