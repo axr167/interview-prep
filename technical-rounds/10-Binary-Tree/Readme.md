@@ -190,8 +190,6 @@ Breadth first traversals are:
 
 # Sample Problems
 
-## Traversal based:
-
 ### Given preorder and inorder construct binary tree
 
 Logic:
@@ -278,13 +276,9 @@ Logic: Do level order traversal then for every alternate list call Collections.r
 
 
 
-## BST Structure Based:
-
 ### Second minimum node in Binary Search Tree
 
 
-
-## Recursion Based:
 
 ### Find diameter of binary tree
 
