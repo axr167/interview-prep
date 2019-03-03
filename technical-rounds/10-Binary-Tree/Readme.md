@@ -5,6 +5,14 @@
 
 Every time you need to get the height use postorder traversal. This reduces the complexity og the getHeight() function to just n. Doing naive recursion will force us to repeatedly compute heights upping complexity to nlogn upto n^2 depending on tree structure.
 
+    private int postorder(TreeNode root) {
+        if(root == null) return 0;
+        int left = postorder(root.left);
+        int right = postorder(root.right);
+        return 1+Math.max(left, right);
+    }
+
+If you have a solution that requires the height of children at each step, then initialize a global variable and update that on each step via postorder. (See diameter of binary tree)
 
 ## Binary Tree
 
@@ -300,4 +308,22 @@ Logic: Diameter of the tree is max(f(root), f(root.left), f(root.right)). f(root
 
 Complexity: O(n logn) because height takes O(logn) and we get height for each node in tree.
 
-Optimization: Use postorder traversal method.
+Optimization: Use postorder traversal method to incrementally compute height.
+
+	class Solution {
+	    int global_diameter = 0;
+	    private int postorder(TreeNode root) {
+		if(root == null)
+		    return 0;
+		int left = postorder(root.left);
+		int right = postorder(root.right);
+		int local_diameter = left+right;
+		global_diameter = Math.max(global_diameter, local_diameter);
+		return 1+Math.max(left,right);
+	    }
+
+	    public int diameterOfBinaryTree(TreeNode root) {
+		postorder(root);
+		return global_diameter;
+	    }
+	}
