@@ -14,6 +14,12 @@ Every time you need to get the height use postorder traversal. This reduces the 
 
 If you have a solution that requires the height of children at each step, then initialize a global variable and update that on each step via postorder. (See diameter of binary tree)
 
+### 2. Use inorder traversal to arrange the nodes of a BST in order
+
+When you do inorder traversal in a binary search tree (left<current<right) then an inorder traversal returns the nodes in sorted order.
+
+This is useful if you want to get the kth smallest or kth largest element in a BST.
+
 ## Binary Tree
 
 Consider the following tree - it will be used in all examples:
