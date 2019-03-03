@@ -1,4 +1,11 @@
 
+## Tips:
+
+### 1. Postorder traversal to get tree height
+
+Every time you need to get the height use postorder traversal. This reduces the complexity og the getHeight() function to just n. Doing naive recursion will force us to repeatedly compute heights upping complexity to nlogn upto n^2 depending on tree structure.
+
+
 ## Binary Tree
 
 Consider the following tree - it will be used in all examples:
@@ -185,7 +192,7 @@ Breadth first traversals are:
 
 ## Traversal based:
 
-### 1. Given preorder and inorder construct binary tree
+### Given preorder and inorder construct binary tree
 
 Logic:
 - First element of preorder array is root
@@ -213,7 +220,7 @@ Otherwise we can build as follows:
 			return root;
 		}
 	    
-### 2. Given postorder and inorder construct binary tree
+### Given postorder and inorder construct binary tree
 
 Logic:
 
@@ -230,12 +237,73 @@ Logic:
 		return root;
     }
 
-### 3. Find next element (inorder successor) in Binary Tree
+### Find next element (inorder successor) in Binary Tree
 
-### 4. Second minimum node in Binary Tree
+### Zig-zag level order traversal
+
+Logic: Do level order traversal then for every alternate list call Collections.reverse(ArrayList);
+
+	class Solution {
+	    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+		List<List<Integer>> res = new ArrayList<>();
+		if(root==null) return res;
+
+		Queue<Item> q = new LinkedList<>();
+		q.add(new Item(root, 0));
+		while(!q.isEmpty()) {
+		    Item current = q.remove();
+		    if(res.size() <= current.level)
+			res.add(new ArrayList<Integer>());
+		    List<Integer> li = res.get(current.level);
+		    li.add(current.node.val);
+		    if(current.node.left!=null)
+			q.add(new Item(current.node.left, current.level+1));
+		    if(current.node.right!=null)
+			q.add(new Item(current.node.right, current.level+1));
+		}
+		if(res.size() == 1)
+		    return res;
+		for(int i=1; i<res.size(); i+=2)
+		    Collections.reverse(res.get(i));
+		return res;
+
+	    }
+	    class Item {
+		TreeNode node; int level;
+		public Item(TreeNode node, int level) {
+		    this.node = node; this.level = level;
+		}
+	    }
+	}
+
+
+
+## BST Structure Based:
+
+### Second minimum node in Binary Search Tree
 
 
 
 ## Recursion Based:
 
+### Find diameter of binary tree
 
+Logic: Diameter of the tree is max(f(root), f(root.left), f(root.right)). f(root) = height of left subtree+ height of right subtree.
+
+	class Solution {
+	    private int getHeight(TreeNode root) {
+		if(root == null) return 0;
+		else return 1+Math.max(getHeight(root.left), getHeight(root.right));
+	    }
+
+	    public int diameterOfBinaryTree(TreeNode root) {
+		if(root == null)
+		    return 0;
+		int h = getHeight(root.right) + getHeight(root.left);
+		return Math.max(h, Math.max(diameterOfBinaryTree(root.left), diameterOfBinaryTree(root.right)));
+	    }
+	}
+
+Complexity: O(n logn) because height takes O(logn) and we get height for each node in tree.
+
+Optimization: Use postorder traversal method.
