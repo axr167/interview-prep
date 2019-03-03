@@ -161,6 +161,7 @@ Space: O(n)
 
 ### 6. Largest area under histogram (Stack based)
 
+### 7. Next permutation
 
 
 ## Graphs
