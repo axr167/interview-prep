@@ -439,21 +439,21 @@ Logic: The height of leaf nodes = 0. The height of next set of leaf nodes = 1 an
 	class Solution {
 
 	    private int postorder(TreeNode root, List<List<Integer>> res) {
-		if(root == null)
-		    return 0;
-		int left = postorder(root.left, res);
-		int right = postorder(root.right, res);
-		int height = Math.max(left, right);
-		if(height >= res.size())
-		    res.add(new ArrayList<Integer>());
-		res.get(height).add(root.val);
-		return 1+height;
+			if(root == null)
+				return 0;
+			int left = postorder(root.left, res);
+			int right = postorder(root.right, res);
+			int height = Math.max(left, right);
+			if(height >= res.size())
+				res.add(new ArrayList<Integer>());
+			res.get(height).add(root.val);
+			return 1+height;
 	    }
 
 	    public List<List<Integer>> findLeaves(TreeNode root) {
-		List<List<Integer>> res = new ArrayList<>();
-		postorder(root, res);
-		return res;
+			List<List<Integer>> res = new ArrayList<>();
+			postorder(root, res);
+			return res;
 	    }
 	}
 
@@ -486,6 +486,30 @@ Logic: Set previous value = some impossible value and k=2. Do inorder traversal 
 	}
 
 ### Find next element (inorder successor) in Binary Tree
+
+Two ways to do this: 1. Inorder traversal and 2. Take advantage of the structure of BST by returning next greater element.
+
+1. Inorder traversal: Just do regular inorder travresal and return next. Time: n, space: h
+
+		class Solution {
+			public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+				Stack<TreeNode> stack = new Stack<>();
+				boolean found = false;
+				while(root!=null || !stack.isEmpty()) {
+					while(root != null) {
+						stack.push(root);
+						root = root.left;
+					}
+					root = stack.pop();
+					if(found)
+						return root;
+					if(root == p)
+						found = true;
+					root = root.right;
+				}
+				return null;
+			}
+		}
 
 ### Find diameter of binary tree
 
