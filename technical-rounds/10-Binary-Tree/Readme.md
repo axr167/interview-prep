@@ -457,7 +457,33 @@ Logic: The height of leaf nodes = 0. The height of next set of leaf nodes = 1 an
 	    }
 	}
 
-### Second minimum node in Binary Search Tree
+### Second minimum node in Binary Search Tree with duplicates
+
+Logic: Set previous value = some impossible value and k=2. Do inorder traversal if value is different from prev, decrement k and update previous value. If k=0 return value otherwise continue. At end of loop return -1.
+
+	class Solution {
+
+	    public int findSecondMinimumValue(TreeNode root) {
+		int k = 2;
+		long prev = Long.MAX_VALUE;
+		Stack<TreeNode> stack = new Stack<>();
+		while(root!=null || !stack.isEmpty()) {
+		    while(root!=null) {
+			stack.push(root);
+			root = root.left;
+		    }
+		    root = stack.pop();
+		    if(root.val != prev) {
+			prev = root.val;
+			k--;
+			if(k==0)
+			    return (int) prev;
+		    }
+		    root = root.right;
+		}
+		return -1;
+	    }
+	}
 
 ### Find next element (inorder successor) in Binary Tree
 
