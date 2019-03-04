@@ -39,7 +39,7 @@ We split array into 2 parts then for both parts we merge, processing elements on
 
 Here 1 = log_2(2) hence T(n) = n^d log(n) = nlog(n)
 
-## Problems
+# Problems
 
 ### Get max element of an array
 
