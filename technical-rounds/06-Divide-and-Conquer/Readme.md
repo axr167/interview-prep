@@ -49,6 +49,8 @@ Here 1 = log_2(2) hence T(n) = n^d log(n) = nlog(n)
 
 ### Get maximum subarray
 
+### Merge k sorted lists
+
 ### Eugene's question (see youtube vid)
 
 ### Largest area under histogram
