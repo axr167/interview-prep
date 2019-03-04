@@ -313,10 +313,116 @@ Logic: Have a level variable initialized to 0. Do level order traversal as above
 	    }
 	}
 
-### Right side view
+### Right side view of binary tree
+
+Logic: Do level order traversal. If node is last node of a given level, it is part of right side view.
+
+	class Solution {
+	    public List<Integer> rightSideView(TreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		if(root == null) return res;
+
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+
+		while(!q.isEmpty()) {
+		    int size = q.size();
+		    for(int i=0; i<size; i++) {
+			TreeNode current = q.remove();
+			if(current.left != null)
+			    q.add(current.left);
+			if(current.right != null)
+			    q.add(current.right);
+			if(i==size-1)
+			    res.add(current.val);
+		    }
+		}
+		return res;
+	    }
+	}
 
 
-### Diameter of binary tree
+### Boundary of binary tree in anticlockwise order
+
+Logic: Boundary consists of left view, right view and leaves. To get the correct order do: left view of left subtree ignoring all leaves, get leaves using preorder, right view of right subtree ignoring all leaves
+
+**Needs correction**
+
+	class Solution {
+
+	    private void leftview(TreeNode root, List<Integer> res) {
+		if(root == null) return;
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+
+		while(!q.isEmpty()) {
+		    int size = q.size();
+		    for(int i=0; i< size; i++) {
+			TreeNode current = q.remove();
+			if(current.left != null)
+			    q.add(current.left);
+			if(current.right != null)
+			    q.add(current.right);
+			if(i==0 && (current.left != null || current.right != null))
+			    res.add(current.val);
+		    }
+		}
+	    }
+
+	    private void rightview(TreeNode root, List<Integer> res) {
+		if(root == null) return;
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+
+		List<Integer> li = new ArrayList<>();
+		while(!q.isEmpty()) {
+		    int size = q.size();
+		    for(int i=0; i< size; i++) {
+			TreeNode current = q.remove();
+			if(current.left != null)
+			    q.add(current.left);
+			if(current.right != null)
+			    q.add(current.right);
+			if(i==size-1 && (current.left != null || current.right != null))
+			    li.add(current.val);
+		    }
+		}
+		for(int i=li.size()-1; i>=0; i--)
+		    res.add(li.get(i));
+	    }
+
+	    private void leafview(TreeNode root, List<Integer> res) {
+		if(root.left == null && root.right == null) return;
+		Stack<TreeNode> stack = new Stack<>();
+		stack.push(root);
+		List<Integer> li = new ArrayList<>();
+		while(!stack.isEmpty()) {
+		    TreeNode current = stack.pop();
+		    if(current.left == null && current.right == null)
+			li.add(current.val);
+
+		    if(current.right != null)
+			stack.push(current.right);
+		    if(current.left != null)
+			stack.push(current.left);
+
+		}
+		for(int i=0; i<li.size(); i++)
+		    res.add(li.get(i));
+	    }
+
+	    public List<Integer> boundaryOfBinaryTree(TreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		if(root == null) return res;
+		res.add(root.val);
+		leftview(root.left, res);
+		leafview(root, res);
+		rightview(root.right, res);
+		return res;
+	    }
+	}
+
+
 
 ### Second minimum node in Binary Search Tree
 
