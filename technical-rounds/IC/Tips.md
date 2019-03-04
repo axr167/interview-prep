@@ -52,3 +52,29 @@ Example:
   - If object_1 = object_2, return (0)
  
 Then if we call Collections.sort it sorts by ascending order.
+
+
+## Abstract class vs interface
+
+    abstract class Customer {
+      public void print() {
+        System.out.println("Hi")
+      }
+    }
+
+    interface iCustomer {
+      void print();
+    }
+
+- Abstract classes can have implementation details (concrete methods) as well as abstract methods. Interfaces cannot
+- Interface methods cannot have access modifiers. They are public by default.
+- Abstract class can inherit from abstract classes or interface. Interface can only inherit from interface
+- Class can implement multiple interfaces. But a class can extend only 1 class
+
+### When to use abstract class:
+
+If subclasses have a set of default functionalities that all do the same thing you can define concrete methods in abstract class. For common methods that may be different for child classes, use abstract methods.
+
+### When to use interface:
+
+When we dont know anything about implementation details, use interface. We can use multiple inheritance with interface so thats another application.
