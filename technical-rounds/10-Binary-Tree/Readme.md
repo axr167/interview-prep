@@ -511,6 +511,35 @@ Two ways to do this: 1. Inorder traversal and 2. Take advantage of the structure
 			}
 		}
 
+2. Taking advantage of the structure:
+
+Keep track of smallest ancestor. Find p. If p.right is not null find leftmost of right subtree otherwise return the parent.
+Time: h, space: 1
+
+	class Solution {
+
+	    private TreeNode getLeftmost(TreeNode root) {
+		if(root == null) return root;
+		while(root.left != null)
+		    root = root.left;
+		return root;
+	    }
+
+	    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+		TreeNode parent = null;
+		while(root!=p) {
+		    if(root.val > p.val) {
+			parent = root;
+			root = root.left;
+		    } else
+			root = root.right;
+		}
+		if(root.right == null)
+		    return parent;
+		return getLeftmost(root.right);
+	    }
+	}
+
 ### Find diameter of binary tree
 
 Logic: Diameter of the tree is max(f(root), f(root.left), f(root.right)). f(root) = height of left subtree+ height of right subtree.
