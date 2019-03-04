@@ -1,7 +1,7 @@
 
 ## Tips:
 
-### 1. Use preorder traversal to compute leaf values last. Example: check if a BST is valid or check if 2 trees are symmetric etc.
+### 1. Use preorder traversal to compute leaf values last. Example: check if a BST is valid, check if two trees are symmetric etc.
 
 For the above problems, we first check if the root matches a given condition (for valid bst min<root<max, for symmetric, roots should be same).
 
@@ -9,9 +9,11 @@ In cases like these use preorder traversal.
 
 ### 2. Inorder traversal arranges the tree's nodes in sorted order if it is a BST. This can be useful for situations where you need to get nth smallest/largest element 
 
-When you do inorder traversal in a binary search tree (left<current<right) then an inorder traversal returns the nodes in sorted order.
+When you do inorder traversal in a binary search tree (left<current<right) then an inorder traversal returns the nodes in sorted order. Similarly you can do reverse inorder traversal to get nodes in descending order. 
 
-This is useful if you want to get the kth smallest or kth largest element in a BST.
+If you are asked to find the 2nd largest element in a BST then it is the second reverse-inorder element and the second-last inorder element. Similarlt if you are asked to find the second element in a BST, it is the second inorder element and the second-last reverse-inorder element.
+
+Inorder is useful if you want to get the kth smallest or kth largest element in a BST.
 
 ### 3. Postorder traversal to get anything that requires you to compute root's valu last. Example: tree height - you need to compute child heights first to compute parent height. So use postorder traversal
 
