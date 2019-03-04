@@ -422,7 +422,32 @@ Logic: Boundary consists of left view, right view and leaves. To get the correct
 	    }
 	}
 
+### Find leaves of binary tree
 
+Given a binary tree, collect a tree's leaves level by level. So take first layer of leaves and put them in a list. Then take next layer and put them in another list and so on. Store it in a list of lists.
+
+Logic: The height of leaf nodes = 0. The height of next set of leaf nodes = 1 and so on. Do postorder traversal to get height. If a list exists in list of lists for height of node, add value to list. Else crate list for that height and add value to it.
+
+	class Solution {
+
+	    private int postorder(TreeNode root, List<List<Integer>> res) {
+		if(root == null)
+		    return 0;
+		int left = postorder(root.left, res);
+		int right = postorder(root.right, res);
+		int height = Math.max(left, right);
+		if(height >= res.size())
+		    res.add(new ArrayList<Integer>());
+		res.get(height).add(root.val);
+		return 1+height;
+	    }
+
+	    public List<List<Integer>> findLeaves(TreeNode root) {
+		List<List<Integer>> res = new ArrayList<>();
+		postorder(root, res);
+		return res;
+	    }
+	}
 
 ### Second minimum node in Binary Search Tree
 
