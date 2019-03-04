@@ -459,6 +459,20 @@ Logic: The height of leaf nodes = 0. The height of next set of leaf nodes = 1 an
 
 ### Second minimum node in Binary Search Tree with duplicates
 
+If we did not have duplicates we could take advantage of BST structure and do:
+
+	if(root.left == null)
+		return getleftmost(root.right)
+	TreeNode parent = null;
+	while(root.left != null) {
+		parent = root;
+		root = root.left;
+	}
+	if(root.right != null)
+		return getleftmost(root.right);
+	else
+		return parent;
+
 Logic: Set previous value = some impossible value and k=2. Do inorder traversal if value is different from prev, decrement k and update previous value. If k=0 return value otherwise continue. At end of loop return -1.
 
 	class Solution {
