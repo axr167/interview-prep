@@ -14,7 +14,7 @@ Divide and conquer is basically this:
 
 The complexity of divide and conquer algorithms can be figured out using the Master theorem.
 
-!(Master-Theorem)[https://i.imgur.com/6KqqNhC.png]
+![Master-Theorem](https://i.imgur.com/6KqqNhC.png)
 
 ## Problems
 
