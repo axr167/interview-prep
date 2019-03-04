@@ -1,7 +1,19 @@
 
 ## Tips:
 
-### 1. Postorder traversal to get tree height
+### 1. Use preorder traversal to compute leaf values last. Example: check if a BST is valid or check if 2 trees are symmetric etc.
+
+For the above problems, we first check if the root matches a given condition (for valid bst min<root<max, for symmetric, roots should be same).
+
+In cases like these use preorder traversal.
+
+### 2. Inorder traversal arranges the tree's nodes in sorted order if it is a BST. This can be useful for situations where you need to get nth smallest/largest element 
+
+When you do inorder traversal in a binary search tree (left<current<right) then an inorder traversal returns the nodes in sorted order.
+
+This is useful if you want to get the kth smallest or kth largest element in a BST.
+
+### 3. Postorder traversal to get anything that requires you to compute root's valu last. Example: tree height - you need to compute child heights first to compute parent height. So use postorder traversal
 
 Every time you need to get the height use postorder traversal. This reduces the complexity og the getHeight() function to just n. Doing naive recursion will force us to repeatedly compute heights upping complexity to nlogn upto n^2 depending on tree structure.
 
@@ -13,12 +25,6 @@ Every time you need to get the height use postorder traversal. This reduces the 
     }
 
 If you have a solution that requires the height of children at each step, then initialize a global variable for the value we are actually interested in and update that on each step via postorder (See diameter of binary tree)
-
-### 2. Use inorder traversal to arrange the nodes of a BST in order
-
-When you do inorder traversal in a binary search tree (left<current<right) then an inorder traversal returns the nodes in sorted order.
-
-This is useful if you want to get the kth smallest or kth largest element in a BST.
 
 ## Binary Tree
 
