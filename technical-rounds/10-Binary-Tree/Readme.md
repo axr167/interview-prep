@@ -522,3 +522,5 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 		return balanced;
 	    }
 	}
+
+### Sum root to leaf numbers
