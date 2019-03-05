@@ -43,11 +43,54 @@ Here 1 = log_2(2) hence T(n) = n^d log(n) = nlog(n)
 
 ### Get max element of an array
 
+Logic: Split array by 2. Max element is max of left side or max of right side. Choose the greater one.
+
+	private static int max(int[] a, int s, int e) {
+		if(s==e)
+			return a[s];
+		else {
+			int mid = (s+e)/2;
+			int left = max(a,s,mid);
+			int right = max(a,mid+1,e);
+			return Math.max(left, right);
+		}
+	}
+
 ### MergeSort
 
-### Buy/Sell stocks
+    TO-DO
+
+### Best time to buy/sell stocks
+
+Logic: max profit can be either in the left subarray or in the right subarray or it can be made by combining both subarrays.
+
+Assume that f(left) gets max profit at left subarray and f(right) gets max profit from right subarray. Net max profit = either max(left, right) or it can be found by combining both. If we combine both, profit is right.max_element - left.min_element.
+
+    private int find(int[] a, int s, int e) {
+        if(s==e)
+            return 0;
+        else {
+            // find best profit from left and right
+            int mid = (s+e)/2;
+            int left = find(a, s, mid);
+            int right = find(a, mid+1, e);
+            int local_max = Math.max(left, right);
+            
+            // merge by combining max_right and min_left
+            int leftmin = a[s];
+            int rightmax = a[mid+1];
+            for(int i = s+1; i<=mid; i++)
+                if(a[i] < leftmin)
+                    leftmin = a[i];
+            for(int i = mid+2; i<=e; i++)
+                if(a[i] > rightmax)
+                    rightmax = a[i];
+            return Math.max(local_max, rightmax-leftmin);
+        }    
+    }
 
 ### Get maximum subarray
+
 
 ### Merge k sorted lists
 
