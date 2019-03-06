@@ -7,6 +7,7 @@
 4. [Design](#Design)
 5. [2Pointer](#2Pointer)
 6. [Recursion](#Recursion)
+7. [Tree](#Tree)
 
 ## Analog Problems
 
@@ -446,3 +447,63 @@ Space: O(n)
 ## 2Pointer
 
 ## Recursion
+
+## Tree
+
+### Path sum 1
+
+    private boolean preorder(TreeNode root, int sum) {
+        if(sum == 0 && root.left == null && root.right == null)
+            return true;
+        if(sum != 0 && root.left == null && root.right == null)
+            return false;
+        boolean left = false; boolean right = false;
+        if(root.left != null)
+            left = preorder(root.left, sum-root.left.val);
+        if(root.right != null)
+            right = preorder(root.right, sum-root.right.val);
+        return left || right;
+    }
+    
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if(root == null) return false;
+        return preorder(root, sum-root.val);
+    }
+    
+### Path sum 2
+
+    void backtrack(List<List<Integer>> res, List<Integer> path, TreeNode root, int sum, int current) {
+        if(current+root.val == sum && root.left==null && root.right == null) {
+            List l = new ArrayList<>(path);
+            l.add(root.val);
+            res.add(l);
+            return;
+        }
+        else if(current+root.val != sum && root.left==null && root.right == null)
+            return;
+        
+        current+= root.val;
+        
+        // make change
+        path.add(root.val);
+        
+        //recurse
+        if(root.left != null)
+            backtrack(res, path, root.left, sum, current);
+        if(root.right != null)
+            backtrack(res, path, root.right, sum, current);
+        
+        //undo change
+        path.remove(path.size()-1);
+        
+        
+    }
+    
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(root == null) return res;
+        List<Integer> path = new ArrayList<>();
+        backtrack(res, path, root, sum, 0);
+        return res;
+    }
+
