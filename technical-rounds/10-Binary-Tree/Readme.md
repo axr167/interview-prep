@@ -621,7 +621,7 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 	    }
 	}
 
-### Path Sum
+### Path Sum: Return true if path from root to any leaf sums up to target
 
     private boolean preorder(TreeNode root, int sum) {
         if(sum == 0 && root.left == null && root.right == null)
@@ -665,3 +665,6 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 			return sum;
 		}
 	}
+
+### Path sum 3: Return all paths in tree that sum up to target. Path can start at any node and end at any node
+
