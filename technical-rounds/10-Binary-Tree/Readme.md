@@ -620,4 +620,22 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 
 ### Path Sum
 
+    private boolean preorder(TreeNode root, int sum) {
+        if(sum == 0 && root.left == null && root.right == null)
+            return true;
+        if(sum != 0 && root.left == null && root.right == null)
+            return false;
+        boolean left = false; boolean right = false;
+        if(root.left != null)
+            left = preorder(root.left, sum-root.left.val);
+        if(root.right != null)
+            right = preorder(root.right, sum-root.right.val);
+        return left || right;
+    }
+    
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if(root == null) return false;
+        return preorder(root, sum-root.val);
+    }
+
 ### Sum root to leaf numbers
