@@ -164,6 +164,7 @@ Space: O(n)
 
 ### 7. Next permutation
 
+### 8. Brick wall
 
 ## Graphs
 
