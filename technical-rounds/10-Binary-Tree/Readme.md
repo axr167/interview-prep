@@ -26,7 +26,10 @@ Every time you need to get the height use postorder traversal. This reduces the 
         return 1+Math.max(left, right);
     }
 
-If you have a solution that requires the height of children at each step, then initialize a global variable for the value we are actually interested in and update that on each step via postorder (See diameter of binary tree)
+
+### 4. Use global variables
+
+Consider using global variables if we are trying to aggregate different results. For example in the question find diameter of tree, it may be either in root or in children - it is not guaranteed to be in root so have a global variable to keep track of things. Similarly in sum root to leaf nodes, we must sum up the various paths at leaves. So keep global variable to keep track of sum.
 
 ## Binary Tree
 
