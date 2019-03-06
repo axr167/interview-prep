@@ -640,4 +640,25 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 
 ### Sum root to leaf numbers
 
+	class Solution {
+		int sum = 0;
+		private void preorder(TreeNode root, int val) {
+			if(root.left == null && root.right == null) {
+				sum+= val;
+				return;
+			}
 
+			if(root.left!=null) {
+				preorder(root.left, val*10+ root.left.val);
+			}
+			if(root.right!=null) {
+				preorder(root.right, val*10+ root.right.val);
+			}
+		}
+
+		public int sumNumbers(TreeNode root) {
+			if(root == null) return 0;
+			preorder(root, root.val);
+			return sum;
+		}
+	}
