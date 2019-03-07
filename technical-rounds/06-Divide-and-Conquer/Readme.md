@@ -143,3 +143,4 @@ Assume that f(left) gets max profit at left subarray and f(right) gets max profi
         }
         return Math.max(area, lr_area);
     }
+
