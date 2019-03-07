@@ -89,11 +89,57 @@ Assume that f(left) gets max profit at left subarray and f(right) gets max profi
         }    
     }
 
-### Get maximum subarray
-
-
-### Merge k sorted lists
 
 ### Eugene's question (see youtube vid)
 
+	int find(int[] a, int start, int end) {
+		if(s == end) {
+			return start+a[start];
+		} else {
+			int mid = (start+end)/2;
+			int left = find(a, start, mid);
+			int right = find(a, mid+1, end);
+			if(left < mid+1)
+				return left;
+			else {
+				return Math.max(left, right);
+			}
+		}
+	}
+
 ### Largest area under histogram
+
+    private int getArea(int[] a, int s, int e) {
+        if(s==e)
+            return a[s];
+		
+		// DIVIDE
+        int mid = (s+e)/2;
+        int left = getArea(a,s,mid);
+        int right = getArea(a, mid+1, e);
+        int lr_area = Math.max(left, right);
+        
+		// CONQUER
+        int i = mid;
+        int j = mid+1;
+        int min = a[i];
+        int area = 0;
+        while(i>=s && j<=e) {
+            min = Math.min(min, Math.min(a[i], a[j]));
+            int localArea = min * (j-i+1);
+            if(localArea > area)
+                area = localArea;
+            
+            if(i<=s)
+                j++;
+            else if(j>=e)
+                i--;
+            else {
+                if(a[j+1] > a[i-1])
+                    j++;
+                else
+                    i--;
+            }
+        }
+        return Math.max(area, lr_area);
+    }
