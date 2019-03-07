@@ -766,4 +766,22 @@ Bottom up optimized
         
     }
 
+# Wildcard matching
 
+    /*
+        Logic: have i,j iterate through the strings. if they reach string lengths return true.
+        
+        - f(i,j) = true // if(i==s.length() && j == p.length())
+        
+        //case 1: s[i] and p[j] are characters
+        - f(i,j) = f(i+1, j+1) if(s[i] = p[j])
+                 = false if(s[i] != p[j] || i = s.length())
+                 
+        //case 2: p[i] = ?
+        - f(i,j) = f(i+1, j+1) if (i < s.length())
+                 = false if(i = s.length())
+        
+        //case 3: p[i] = *
+        - f(i,j) = f(i+1, j) || f(i,j+1) if (i < s.length())
+                 = f(i,j+1) if(i==s.length())
+    */
