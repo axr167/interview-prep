@@ -64,7 +64,18 @@ Code to construct it:
 		return root;
 	}
 
-## 1. Search in BST
+## Table of Contents
+
+1. [Basics](#Basics)
+2. [Level-Order](#Level-Order)
+3. [Post-Order](#Post-Order)
+4. [In-Order](#In-Order)
+5. [Pre-Order](#Pre-Order)
+6. [Combination](#Combination)
+
+## Basics
+
+### Search in BST
 
 **Recursive:**
 
@@ -93,7 +104,7 @@ Code to construct it:
 		return false;
 	}
 
-## 2. Tree Traversal
+### Tree Traversal
 
 Tree traversals are classified into 2 types: Depth first traversals and Breadth first traversals.
 
@@ -213,7 +224,6 @@ Breadth first traversals are:
 		}
 	}
 
-# Sample Problems
 
 ### Given preorder and inorder construct binary tree
 
@@ -259,6 +269,8 @@ Logic:
 		root.right = build(post_e-1, in_index+1, in_e, inorder, postorder);
 		return root;
     }
+
+## Level-Order
 
 ### Level order traversal
 
@@ -433,6 +445,8 @@ Logic: Boundary consists of left view, right view and leaves. To get the correct
 	    }
 	}
 
+## Post-Order
+
 ### Find leaves of binary tree
 
 Given a binary tree, collect a tree's leaves level by level. So take first layer of leaves and put them in a list. Then take next layer and put them in another list and so on. Store it in a list of lists.
@@ -459,6 +473,73 @@ Logic: The height of leaf nodes = 0. The height of next set of leaf nodes = 1 an
 			return res;
 	    }
 	}
+
+
+### Find diameter of binary tree
+
+Logic: Diameter of the tree is max(f(root), f(root.left), f(root.right)). f(root) = height of left subtree+ height of right subtree.
+
+	class Solution {
+	    private int getHeight(TreeNode root) {
+		if(root == null) return 0;
+		else return 1+Math.max(getHeight(root.left), getHeight(root.right));
+	    }
+
+	    public int diameterOfBinaryTree(TreeNode root) {
+		if(root == null)
+		    return 0;
+		int h = getHeight(root.right) + getHeight(root.left);
+		return Math.max(h, Math.max(diameterOfBinaryTree(root.left), diameterOfBinaryTree(root.right)));
+	    }
+	}
+
+Complexity: O(n logn) because height takes O(logn) and we get height for each node in tree.
+
+Optimization: Use postorder traversal method to incrementally compute height.
+
+	class Solution {
+	    int global_diameter = 0;
+	    private int postorder(TreeNode root) {
+		if(root == null)
+		    return 0;
+		int left = postorder(root.left);
+		int right = postorder(root.right);
+		int local_diameter = left+right;
+		global_diameter = Math.max(global_diameter, local_diameter);
+		return 1+Math.max(left,right);
+	    }
+
+	    public int diameterOfBinaryTree(TreeNode root) {
+		postorder(root);
+		return global_diameter;
+	    }
+	}
+
+### Check if Binary Tree is balanced
+
+Logic: It is balanced if height difference between subtrees is more than 1. Since height is involved, use the postorder method. Have global boolean and each postorder step, check condition for boolean to be false.
+
+	class Solution {
+	    boolean balanced = true;
+	    private int postorder(TreeNode root) {
+		if(root == null || balanced == false)
+		    return 0;
+		int left = postorder(root.left);
+		int right = postorder(root.right);
+		if(Math.abs(left-right) >=2) {
+		    balanced = false;
+		    return 0;
+		}
+		return 1+Math.max(left,right);
+	    }
+
+	    public boolean isBalanced(TreeNode root) {
+		postorder(root);
+		return balanced;
+	    }
+	}
+
+## In-Order
 
 ### Second minimum node in Binary Search Tree with duplicates
 
@@ -557,69 +638,8 @@ Time: h, space: 1
 	    }
 	}
 
-### Find diameter of binary tree
 
-Logic: Diameter of the tree is max(f(root), f(root.left), f(root.right)). f(root) = height of left subtree+ height of right subtree.
-
-	class Solution {
-	    private int getHeight(TreeNode root) {
-		if(root == null) return 0;
-		else return 1+Math.max(getHeight(root.left), getHeight(root.right));
-	    }
-
-	    public int diameterOfBinaryTree(TreeNode root) {
-		if(root == null)
-		    return 0;
-		int h = getHeight(root.right) + getHeight(root.left);
-		return Math.max(h, Math.max(diameterOfBinaryTree(root.left), diameterOfBinaryTree(root.right)));
-	    }
-	}
-
-Complexity: O(n logn) because height takes O(logn) and we get height for each node in tree.
-
-Optimization: Use postorder traversal method to incrementally compute height.
-
-	class Solution {
-	    int global_diameter = 0;
-	    private int postorder(TreeNode root) {
-		if(root == null)
-		    return 0;
-		int left = postorder(root.left);
-		int right = postorder(root.right);
-		int local_diameter = left+right;
-		global_diameter = Math.max(global_diameter, local_diameter);
-		return 1+Math.max(left,right);
-	    }
-
-	    public int diameterOfBinaryTree(TreeNode root) {
-		postorder(root);
-		return global_diameter;
-	    }
-	}
-
-### Check if Binary Tree is balanced
-
-Logic: It is balanced if height difference between subtrees is more than 1. Since height is involved, use the postorder method. Have global boolean and each postorder step, check condition for boolean to be false.
-
-	class Solution {
-	    boolean balanced = true;
-	    private int postorder(TreeNode root) {
-		if(root == null || balanced == false)
-		    return 0;
-		int left = postorder(root.left);
-		int right = postorder(root.right);
-		if(Math.abs(left-right) >=2) {
-		    balanced = false;
-		    return 0;
-		}
-		return 1+Math.max(left,right);
-	    }
-
-	    public boolean isBalanced(TreeNode root) {
-		postorder(root);
-		return balanced;
-	    }
-	}
+## Pre-Order
 
 ### Path Sum: Return true if path from root to any leaf sums up to target
 
@@ -666,6 +686,8 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 		}
 	}
 
+## Combination
+
 ### Path sum 3: Return all paths in tree that sum up to target. Path can start at any node and end at any node
 
 
@@ -683,5 +705,23 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 	    public int pathSum(TreeNode root, int sum) {
 		if(root == null) return 0;
 		return getpaths(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+	    }
+	}
+
+### Longest Univalue path
+
+	class Solution {
+	    private int postorder(TreeNode root, int val) {
+		if(root == null || root.val != val)
+		    return 0;
+		int left = postorder(root.left, val);
+		int right = postorder(root.right, val);
+		return 1+Math.max(left, right);
+	    }
+
+	    public int longestUnivaluePath(TreeNode root) {
+		if(root == null) return 0;
+		int path = postorder(root.left, root.val) + postorder(root.right, root.val);
+		return Math.max(path, Math.max(longestUnivaluePath(root.left), longestUnivaluePath(root.right)));
 	    }
 	}
