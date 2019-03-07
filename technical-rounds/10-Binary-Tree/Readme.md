@@ -668,3 +668,20 @@ Logic: It is balanced if height difference between subtrees is more than 1. Sinc
 
 ### Path sum 3: Return all paths in tree that sum up to target. Path can start at any node and end at any node
 
+
+	class Solution {
+
+	    private int getpaths(TreeNode root, int sum) {
+		if(root == null)
+		    return 0;
+		if(root.val==sum)
+		    return 1 + getpaths(root.left, sum-root.val) + getpaths(root.right, sum-root.val);
+		else
+		    return 0 + getpaths(root.left, sum-root.val) + getpaths(root.right, sum-root.val);
+	    }
+
+	    public int pathSum(TreeNode root, int sum) {
+		if(root == null) return 0;
+		return getpaths(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+	    }
+	}
