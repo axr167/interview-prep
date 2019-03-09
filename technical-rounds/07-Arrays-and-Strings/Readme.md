@@ -96,4 +96,32 @@ Example problems are given below.
             }
         }
 
-### Sort array containing values 0,1,2 - Partition array into 3 parts
+### Sort array containing values 0,1,2 (Dutch national flag problem)
+
+- Partition array into 3 groups: 0, 1, 2.
+- We have 3 pointers: Pointer at end of partition 1 (i), iterating pointer for mid partition (j), pointer at end of last partition (j)
+
+        private void partition(int[] a) {
+            int i = -1;
+            int j = 0;
+            int k = a.length-1;
+
+            while(j<=k) {
+                if(a[j] == 1)
+                    j++;
+                else if(a[j] == 0) {
+                    i++;
+                    int temp = a[i];
+                    a[i] = a[j];
+                    a[j] = temp;
+                    j++;
+                } else if(a[j] == 2) {
+                    int temp = a[j];
+                    a[j] = a[k];
+                    a[k] = temp;
+                    k--;
+                }
+            }
+        }
+
+## Converging/Diverging problems
