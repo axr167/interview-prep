@@ -10,7 +10,7 @@
 
 # Problems
 
-## 2-Pointer: Slow/Fast
+## 2-Pointer:Slow/Fast
 
 ## 2-Pointer: Converging to center
 
