@@ -1,8 +1,12 @@
 
 
-## Partitioning Problems
+## Partition Problems
 
-In these problems we try to partition an array into different segments. The technique used here is the 2 pointer technique (slow/fast method) where it terminates when fast pointer reaches n. Example problems are given below.
+In these problems we try to partition an array into different segments. The technique used here is the 2 pointer technique (slow/fast method) where it terminates when fast pointer reaches n. 
+
+The slow pointer points to the last index of a partition and the fast pointer iterates through the list. If it encounters something that should belong to the slow pointer, we increment first partition put new element at end of partition and continue.
+
+Example problems are given below.
 
 ### Move odd numbers to end of list
 
@@ -25,3 +29,5 @@ In these problems we try to partition an array into different segments. The tech
                 }
             }
         }
+
+### 
