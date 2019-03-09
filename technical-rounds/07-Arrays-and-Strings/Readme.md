@@ -1,7 +1,7 @@
 
 ## Table of Contents
 
-1. [2-Pointer: Slow/Fast](#2-Pointer:Slow/Fast)
+1. [2-Pointer:Slow/Fast](#2-Pointer:Slow/Fast)
 2. [2-Pointer: Converging to center](#2-Pointer: Converging to center)
 3. [2-Pointer: Extra Space](#2-Pointer: Extra Space)
 4. [Prefix Sums](#Prefix Sums)
