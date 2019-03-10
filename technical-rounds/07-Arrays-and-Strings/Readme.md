@@ -4,6 +4,7 @@
 
 1. [Partition Problems](#Partition-Problems)
 2. [Converging Problems](#Converging-Problems)
+3. [Conditional Subarray Problems](#Conditional-Subarray-Problems)
 
 ## Partition Problems
 
@@ -227,7 +228,7 @@ Logic: Find max left, max right areas. Then find areas formed by combining the t
         return Math.max(area, Math.max(left, right));
     }
 
-## Getting subarray/substring that satisfies given condition
+## Conditional Subarray Problems
 
 ## Prefix sum
 
