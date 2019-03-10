@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Partition Problems](#Partition-Problems)
-2. [Converging & Diverging Problems](#Converging-&-Diverging-Problems)
+2. [Converging Problems](#Converging-Problems)
 
 ## Partition Problems
 
@@ -129,7 +129,7 @@ Example problems are given below.
             }
         }
 
-## Converging & Diverging Problems
+## Converging Problems
 
 A type of 2 pointer problem where we have a left pointer and a right pointer. We then either start from the ends and converge to the middle or we start at the middle and go towards the end. It is useful for things like finding areas etc.
 
