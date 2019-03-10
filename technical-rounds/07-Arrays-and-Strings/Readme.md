@@ -125,3 +125,100 @@ Example problems are given below.
         }
 
 ## Converging/Diverging problems
+
+A type of 2 pointer problem where we have a left pointer and a right pointer. We then either start from the ends and converge to the middle or we start at the middle and go towards the end. It is useful for things like finding areas etc.
+
+Example problems are below:
+
+### Container with most water
+
+Logic: Start at both ends. If a[left] < a[right] increment left else decrement right
+
+    public int maxArea(int[] a) {
+        int i = 0;
+        int j = a.length-1;
+        int area = 0;
+        while(i<j) {
+            area = Math.max(area, Math.min(a[i], a[j])*(j-i));
+            if(a[i] < a[j])
+                i++;
+            else
+                j--;
+        }
+        return area;
+    }
+
+### Trapping rainwater
+
+Logic: Find max height - let this act as the middle element. Converge towards the middle calculating water on each step. The water is left/right height-current height if current height is less than left/right height.
+
+    public int trap(int[] a) {
+        
+        if(a.length <=2) return 0;
+        
+        int water = 0;
+        int max = a[0];
+        int mid = 0;
+        
+        // get mid
+        for(int i=0; i<a.length; i++) {
+            if(a[i] > max) {
+                max = a[i]; mid = i;
+            }
+        }
+        
+        int left = 0;
+        int i = 0;
+        while(i<mid) {
+            if(a[i] > a[left])
+                a[left] = a[i];
+            else
+                water += (a[left] - a[i]);
+            i++;
+        }
+        
+        int right = a.length-1;
+        int j = a.length-1;
+        while(j>mid) {
+            if(a[j] > a[right])
+                a[right] = a[j];
+            else
+                water += (a[right] - a[j]);
+            j--;
+        }
+        return water;
+    }
+
+### Area under histogram (divide and conquer method)
+
+Logic: Find max left, max right areas. Then find areas formed by combining the two. To do this, start at the mid and expand to ends.
+
+    private int getArea(int[] a, int s, int e) {
+        if(s==e)
+            return a[s];
+        
+        int mid = (s+e)/2;
+        int left = getArea(a,s,mid);
+        int right = getArea(a,mid+1, e);
+        
+        int i = mid; 
+        int j = mid+1; 
+        int min = Math.min(a[i], a[j]);
+        int area = 0;
+        
+        while(i>=s && j<=e) {
+            min = Math.min(min, Math.min(a[i], a[j]));
+            int current_area = min*(j-i+1);
+            area = Math.max(area, current_area);
+            if(i <= s) 
+                j++;
+            else if(j >= e) 
+                i--;
+            else if(a[i-1] > a[j+1]) 
+                i--;
+            else 
+                j++;
+        }
+        return Math.max(area, Math.max(left, right));
+    }
+
