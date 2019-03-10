@@ -261,6 +261,9 @@ These are generally 2 pointer problems that use a map/set. The idea is that the 
             return Math.max(res, set.size());
         }
 
+### Smallest subarray containing a duplicate
+
+
 
 ## Prefix sum
 
