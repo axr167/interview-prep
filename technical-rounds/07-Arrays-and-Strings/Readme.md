@@ -1,5 +1,10 @@
 
 
+## Table of Contents
+
+1. [Partition Problems](#Partition-Problems)
+2. [Converging/Diverging Problems](#Converging/Diverging-Problems)
+
 ## Partition Problems
 
 In these problems we try to partition an array into different segments. The technique used here is the 2 pointer technique (slow/fast method) where it terminates when fast pointer reaches n. 
@@ -124,7 +129,7 @@ Example problems are given below.
             }
         }
 
-## Converging/Diverging problems
+## Converging/Diverging Problems
 
 A type of 2 pointer problem where we have a left pointer and a right pointer. We then either start from the ends and converge to the middle or we start at the middle and go towards the end. It is useful for things like finding areas etc.
 
