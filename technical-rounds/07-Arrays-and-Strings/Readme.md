@@ -230,6 +230,38 @@ Logic: Find max left, max right areas. Then find areas formed by combining the t
 
 ## Conditional Subarray Problems
 
+These are generally 2 pointer problems that use a map/set. The idea is that the fast pointer iterates through the array storing values into the map/set until the condition is violated. Result is stored and then the slow pointer iterates through the array until the condition is satisfied again.
+
+### Length of longest substring without repeating characters
+
+- i points to first character of a valid substring, j points to character after last character of a valid substring.
+- if the set does not contain j, then record the result and increment i until the condition becomes valid again 
+- Condition is: Character at j should be removed from set
+
+        public int lengthOfLongestSubstring(String s) {
+            if(s.length()<=1) return s.length();
+
+            Set<Character> set = new HashSet<>();
+            set.add(s.charAt(0));
+            int res = 1;
+            int i=0; int j=1;
+
+            while(j<s.length()) {
+                if(!set.contains(s.charAt(j))) {
+                    set.add(s.charAt(j));
+                    j++;
+                } else {
+                    res = Math.max(res, set.size());
+                    while(set.contains(s.charAt(j))) {
+                        set.remove(s.charAt(i));
+                        i++;
+                    } 
+                }
+            }
+            return Math.max(res, set.size());
+        }
+
+
 ## Prefix sum
 
 ## Reversing the array/string (next permutation, rotation etc)
