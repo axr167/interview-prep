@@ -351,13 +351,13 @@ Logic: Do level order traversal. If node is last node of a given level, it is pa
 		while(!q.isEmpty()) {
 		    int size = q.size();
 		    for(int i=0; i<size; i++) {
-			TreeNode current = q.remove();
-			if(current.left != null)
-			    q.add(current.left);
-			if(current.right != null)
-			    q.add(current.right);
-			if(i==size-1)
-			    res.add(current.val);
+                TreeNode current = q.remove();
+                if(current.left != null)
+                    q.add(current.left);
+                if(current.right != null)
+                    q.add(current.right);
+                if(i==size-1)
+                    res.add(current.val);
 		    }
 		}
 		return res;
@@ -444,6 +444,32 @@ Logic: Boundary consists of left view, right view and leaves. To get the correct
 		return res;
 	    }
 	}
+
+### Average of levels in Binary Tree
+
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> res = new ArrayList<>();
+        if(root == null) return res;
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            double sum = 0;
+            for(int i=0; i<size; i++) {
+                TreeNode current = queue.remove();
+                sum+=current.val;
+                if(current.left!=null)
+                    queue.add(current.left);
+                if(current.right!=null)
+                    queue.add(current.right);
+            }
+            res.add( sum/size );
+        }
+        return res;
+    }
+
 
 ## Post-Order
 
