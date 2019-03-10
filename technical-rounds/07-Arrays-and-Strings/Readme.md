@@ -222,3 +222,12 @@ Logic: Find max left, max right areas. Then find areas formed by combining the t
         return Math.max(area, Math.max(left, right));
     }
 
+## Getting subarray/substring that satisfies given condition
+
+## Prefix sum
+
+## Reversing the array/string (next permutation, rotation etc)
+
+## Greedy and dp methods
+
+## Printing gymnastics
