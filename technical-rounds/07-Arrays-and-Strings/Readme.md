@@ -261,8 +261,69 @@ These are generally 2 pointer problems that use a map/set. The idea is that the 
             return Math.max(res, set.size());
         }
 
-### Smallest subarray containing a duplicate
+### Smallest subarray containing a single duplicate
 
+- Keep iterating until j reaches a duplicate. Then iterate i until i reaches the first duplicate. Record results and continue.
+- Do until j reaches string.length
+
+        private int smallest(int[] a) {
+            Set<Integer> set = new HashSet<>();
+            int cost = a.length;
+            int i =0; int j = 1;
+            set.add(a[0]);
+            while(j<a.length) {
+                if(!set.contains(a[j])) {
+                    set.add(a[j]);
+                    j++;
+                } else {
+                    while(set.contains(a[j])) {
+                        if(a[i] == a[j]) {
+                            cost = Math.min(cost, (j-i+1));
+                        }
+                        set.remove(a[i]);
+                        i++;
+                    }
+                }
+            }
+            return cost;
+        }
+
+### Longest substring with at most k distinct characters
+
+- Use hashmap to record character count. If character encountered before, increment j and increment character count in map.
+- If map size = k, then record longest. Reduce char count at i and increment i. 
+- If char count for any char is less than k, then remove it for map. Do this until map size is less than k
+- At the end compare current with the substring and return the max of the 2.
+
+        public int lengthOfLongestSubstringKDistinct(String s, int k) {
+            if(s.length() ==0 || k==0)
+                return 0;
+            int i=0; int j = 1;
+            int longest = 0;
+            Map<Character, Integer> map = new HashMap<>();
+            map.put(s.charAt(i), 1);
+
+            while(j<s.length()) {
+                if(map.containsKey(s.charAt(j))) {
+                    map.put(s.charAt(j), map.get(s.charAt(j))+1);
+                    j++;
+                } else {
+                    if(map.size() == k) {
+                        longest = Math.max(longest, (j-i));
+                        while(map.size() == k) {
+                            map.put(s.charAt(i), map.get(s.charAt(i))-1);
+                            if(map.get(s.charAt(i)) == 0)
+                                map.remove(s.charAt(i));
+                            i++;
+                        }
+                    } else {
+                        map.put(s.charAt(j), 1);
+                        j++;
+                    }
+                }
+            }
+            return Math.max(longest, j-i);
+        }
 
 
 ## Prefix sum
