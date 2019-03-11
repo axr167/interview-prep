@@ -331,19 +331,21 @@ These are generally 2 pointer problems that use a map/set. The idea is that the 
 
 Prefix sums are used for problems related to finding the range sums in a subarray. It works by making a prefix or suffix sum array as follows:
 
+                0                   1               2           3               4               5
     a:          a0                  a1              a2          a3              a4
-    prefix:     a0                  a0+a1           a0+a1+a2    a0+a1+a2+a3     a0+a1+a2+a3+a4
-    suffix:     a0+a1+a2+a3+a4      a1+a2+a3+a4     a2+a3+a4    a3+a4           a4
+    prefix:     0                   a0              a0+a1       a0+a1+a2        a0+a1+a2+a3     a0+a1+a2+a3+a4
 
 Suppose we want to calculate sum in the range (2,3):
 
-    - For prefix array: Sum = prefix(3) - prefix(a1)
-    - For suffix array: Sum = suffix(2) - suffix(4)
+    - For prefix array: Sum = prefix(4) - prefix(2)
 
 The general formula is:
 
-    Sum(i,j) = prefix(j)-prefix(i-1)
-    Sum(i,j) = suffix(i)-suffix(j+1)
+    Sum(i,j) = prefix(j+1)-prefix(i)
+
+### Subarray sum equals k
+
+
 
 ## Reversing the array/string (next permutation, rotation etc)
 
