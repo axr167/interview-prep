@@ -751,3 +751,25 @@ Time: h, space: 1
 		return Math.max(path, Math.max(longestUnivaluePath(root.left), longestUnivaluePath(root.right)));
 	    }
 	}
+
+### Subtree of Another Tree
+
+	class Solution {
+		private boolean isValid(TreeNode s, TreeNode t) {
+			if(s==null && t==null)
+				return true;
+			if((s!=null && t==null) || (s==null && t!=null))
+				return false;
+			if(s.val != t.val)
+				return false;
+			return isValid(s.left, t.left) && isValid(s.right,t.right);
+		}
+
+		public boolean isSubtree(TreeNode s, TreeNode t) {
+			if(s==null) 
+				return false;
+			if(isValid(s,t)) 
+				return true;
+			return isSubtree(s.left, t)||isSubtree(s.right, t);
+		}
+	}
