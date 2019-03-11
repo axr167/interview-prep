@@ -5,6 +5,7 @@
 1. [Partition Problems](#Partition-Problems)
 2. [Converging Problems](#Converging-Problems)
 3. [Conditional Subarray Problems](#Conditional-Subarray-Problems)
+4. [Prefix Sum](#Prefix-Sum)
 
 ## Partition Problems
 
@@ -326,7 +327,7 @@ These are generally 2 pointer problems that use a map/set. The idea is that the 
         }
 
 
-## Prefix sum
+## Prefix Sum
 
 ## Reversing the array/string (next permutation, rotation etc)
 
