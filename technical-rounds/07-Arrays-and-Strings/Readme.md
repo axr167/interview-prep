@@ -345,10 +345,24 @@ The general formula is:
 
 ### Subarray sum equals k
 
-
+### Continuous Subarray Sum
 
 ## Reversing the array/string (next permutation, rotation etc)
 
+### Next Permutation
+
+### Rotate array
+
 ## Greedy and dp methods
 
+### Maximum subarray
+
+### Max Product Subarray
+
 ## Printing gymnastics
+
+### Spiral Matrix
+
+### Rotate Matrix
+
+### Paypal is hiring problem
