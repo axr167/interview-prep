@@ -6,6 +6,9 @@
 2. [Converging Problems](#Converging-Problems)
 3. [Conditional Subarray Problems](#Conditional-Subarray-Problems)
 4. [Prefix Sum](#Prefix-Sum)
+5. [Reversals](#Reversals)
+6. [Greedy and DP Methods](#Greedy-and-DP-Methods)
+7. [Printing gymnastics](#Printing-gymnastics)
 
 ## Partition Problems
 
@@ -347,13 +350,13 @@ The general formula is:
 
 ### Continuous Subarray Sum
 
-## Reversing the array/string (next permutation, rotation etc)
+## Reversals
 
 ### Next Permutation
 
 ### Rotate array
 
-## Greedy and dp methods
+## Greedy and DP Methods
 
 ### Maximum subarray
 
