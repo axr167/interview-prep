@@ -357,7 +357,52 @@ The general formula is:
 
 ### Maximum subarray
 
+This uses Kadane's algorithm. The algorithm states that:
+
+    local_max = max(a[i], local_max+a[i]);
+    global_max = max(global_max, local_max);
+
+The code is:
+
+    public int maxSubArray(int[] a) {
+        int global_max = a[0];
+        int local_max = a[0];
+        
+        for(int i=1; i<a.length; i++) {
+            local_max = Math.max(a[i], a[i]+local_max);
+            global_max = Math.max(local_max, global_max);
+        }
+        return global_max;
+    }
+
 ### Max Product Subarray
+
+This also uses Kadane's algorithm
+
+    local_min = min(a[i], a[i]*local_min, a[i]*local_max)
+    local_max = max(a[i], a[i]*local_min, a[i]*local_max)
+    
+    global_max = max(global_max, local_max)
+
+The code is:
+
+    public int maxProduct(int[] a) {
+        if(a.length == 0) return 0;
+        
+        int global_max = a[0];
+        int local_max = a[0];
+        int local_min = a[0];
+        
+        for(int i=1; i<a.length; i++) {
+            int temp_max = local_max;
+            int temp_min = local_min;
+            
+            local_max = Math.max(  a[i], Math.max(  temp_max*a[i], temp_min*a[i]  )  );
+            local_min = Math.min(  a[i], Math.min(  temp_max*a[i], temp_min*a[i]  )  );
+            global_max = Math.max( global_max, local_max );
+        }
+        return global_max;
+    }
 
 ## Printing gymnastics
 
