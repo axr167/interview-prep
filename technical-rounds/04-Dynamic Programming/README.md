@@ -584,6 +584,23 @@ Top-Down:
 
 Bottom-Up:
 
+    public int LCS(String word1, String word2) {
+        
+        int[] row1 = new int[word2.length()+1];
+        int[] row2 = new int[word2.length()+1];
+        
+        for(int i=word1.length()-1; i>=0; i--) {
+            for(int j = word2.length()-1; j>=0; j--) {
+                if(word1.charAt(i) == word2.charAt(j))
+                    row1[j] = 1+row2[j+1];
+                else
+                    row1[j] = Math.max(row2[j], row1[j+1]);
+            }
+            for(int j=0; j<row1.length; j++)
+                row2[j] = row1[j];
+        }
+        return row1[0];
+    }
 
 # Longest Common Subarray/Substring
 
