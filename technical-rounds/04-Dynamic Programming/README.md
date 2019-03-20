@@ -1,11 +1,4 @@
 
-# Prerequisites
-
-The following are prerequisites to understand this text:
-
-1. You should be able to come up with brute force solutions to problems
-2. You must have a good understanding of recursion and recurrence relations
-3. If you think you do not have a firm understanding of the above, please read my notes on recursion which is also in this repository.
 
 # Overview of Dynamic Programming (DP)
 
