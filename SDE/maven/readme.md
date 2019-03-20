@@ -16,10 +16,10 @@ One of the main reasons people use Maven is **dependency management**. For examp
 
 There are a lot of reasons including:
 
-- Repratable builds: It gives us the ability to build the app for any environment. By using maven, we need not change settings for other environments. So you can develop on windows, test on linux and deploy to unix in production.
-- Transitive dependencies: Downloading/using an item automatically downloads other items it needs.
+- **Repratable builds:** It gives us the ability to build the app for any environment. By using maven, we need not change settings for other environments. So you can develop on windows, test on linux and deploy to unix in production.
+- **Transitive dependencies:** Downloading/using an item automatically downloads other items it needs.
 - Contains everything you need for environment: Does not matter if I am building using ide or command line. Maven builds it.
-- Works with local repo: Before we downloaded all jars and kept it with project. So If I had 20 projects, we could have same jar downloaded 20 times for each project - each project had its copy of the jar.
+- **Works with local repo:** Before we downloaded all jars and kept it with project. So If I had 20 projects, we could have same jar downloaded 20 times for each project - each project had its copy of the jar.
   - Maven works with local repo. So we just download jar once and all 20 projects reference jar from local repo.
 - Works with any ide: Doesnt matter what ide it is (eclipse, intellij, netbeans) - maven works for it.
 - It works well with continuous integration build tools like Jenkins or Bamboo
