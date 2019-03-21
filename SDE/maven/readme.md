@@ -72,3 +72,10 @@ After running compile, now we should have a target directory as follows:
     PojectName -> target -> classes -> HelloWorld.class
 
 Now we can cd into classes and run: java HelloWorld
+
+- mvn package: Downloads whatever plugins are necessary, runs any unit tests we have and bundles everything into a jar (as described in pom). 
+  - Jar is in \target folder.
+
+## Maven Structure
+
+
