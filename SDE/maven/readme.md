@@ -23,3 +23,52 @@ There are a lot of reasons including:
   - Maven works with local repo. So we just download jar once and all 20 projects reference jar from local repo.
 - Works with any ide: Doesnt matter what ide it is (eclipse, intellij, netbeans) - maven works for it.
 - It works well with continuous integration build tools like Jenkins or Bamboo
+
+### Hello World app
+
+Create new project and add pom.xml file. Maven looks for this file in the project pom stands for Project Object Model. The basic pom.xml file looks like this:
+
+    <project>
+
+        <groupId>com.companyname</groupId>
+        <artifactId>HelloWorld</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <modelVersion>4.0.0</modelVersion>
+        <packaging>jar</packaging>
+
+    </project>
+
+This is what the tags mean:
+
+- groupId: It is the same thing your package should be in your java code. Convention is com.company_name.
+- artifactId: It is what we want to name our application. In the example, our application is hello world.
+- version: Maven is good for versioning. This tag represents the version tag
+- modelVersion: This is the xml version that we are using.
+- packaging: The packaging type for the project. In this case it is jar.
+
+And we are done. Now we can write the java app. Maven is expecting a standard folder structure this structure is:
+
+    ProjectName -> src -> main -> java -> something.java
+
+Maven knows to start compiling any class in that directory.
+
+    public class HelloWorld {
+      
+        public static void main(String[] args) {
+            System.out.println("Hello World");
+        }
+        
+    }
+
+**Building the app**
+
+Now we must build the app. CD to workspace\project name then run the following commands:
+
+- mvn clean: Downloads whatever plugins are necessary and performs any restructuring that is needed.
+- mvn compile: Downloads whatever plugins are necessary and compiles the code
+
+After running compile, now we should have a target directory as follows:
+
+    PojectName -> target -> classes -> HelloWorld.class
+
+Now we can cd into classes and run: java HelloWorld
