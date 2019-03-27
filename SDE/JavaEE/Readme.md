@@ -168,3 +168,82 @@ Conventions and configurations through metadata is the programming model that Ja
 ## Java EE Basics
 
 Java EE was developed by asking the question - how can I quickly and easily develop an enterprise application while being able to read and maintain the code easily.
+
+### Java EE Architecture
+
+The java EE architecture is set around a runtime environment called a container. This container provides services to the components it hosts such as lifecycle management, dependency injection, concurrency etc. The components use well defined contracts of APIs to communicate with the java EE infrastructure and with other components. The components need to be packaged in a standard way before being deployed to the container. After deployment there are several protocols that can be used to access these components.
+
+The various pieces that make up Java EE are described below:
+
+**Container**
+
+- It is a runtime environment whose role is to hide technical complexity, enhance portability and host applications.
+- Devs can concentrate on the business logic and leave the container to handle resource management, multithreading etc
+
+**Components**
+
+- The container manages components
+- Components are static or dynamic web pages that process requests and construct responses
+- Components can also be server side java classes that handle business logic and process data (bookService).
+
+**Services**
+
+- The intent of the container is to provide services to the components such as security, transaction management etc
+- Services are configurable (in book example we changed table and col names) and different components can have different services. This is where metadata can be used.
+
+**Metadata**
+
+- Server code is defined by user code and metadata that follow a contract for interacting with the container. Metadata can take the form of Annotations or XML.
+- The extra info is given by the component to the container. The container will then configure the service and give it to the component at deployment time and runtime.
+- The developer does not need to write the service in the component. The component can just use already existing services provided by the container. This is called **inversion of control**.
+  - Inversion of control means the container takes control of business code and provides whatever services we need.
+
+**Application**
+
+- An application is an aggregation of components. 
+- If you think of web apps we have web pages, web resources (images, javascript, stylesheets), business components, database access components.
+
+**Packaging**
+
+- For the app to be executed we must assemble all the components together in an archive and deploy it to the container.
+- Once deployed the app is ready to run. The packaging has a standard format so it can be executed in any container increasing portability.
+- Once we deploy one app to a container we can also deploy other applications. A container can handle several applications and isolate them from each other.
+  - Each app has its own resources, components and class loader.
+  - Each app is administered separately by the container. This means we can stop/start one application without affecting the others.
+
+**Clients/Protocols**
+
+- To interact with applications, Java EE lets us use protocols like HTTP, HTTPS and RMI
+- The clients can be web clients, web apps, SOAP/REST services, browsers and anything that understands the above protocols. 
+- Java EE application can also be a client of another java EE application.
+  - When we add other java EE containers and let them exchange information, it forms a distributed application.
+  - We can distribute components of the same application into separate containers. This allows load balancing etc
+  - Distribution is a strength of Java EE as it brings scalability and availability in a transparent way.
+
+### Java EE Services
+
+The services can be grouped by tier. These are:
+
+- Business tier: handles business logic and processes/stores data. Has services for persistence and transaction management.
+  - Transactions: Deals with RDBMS, messaging systems etc
+  - Persistence: Does the mapping between objects and RDBMS. Lets us query stuff without worrying about the underlying DB
+  - Validation: Services to volidate and constraint the model (filed not null, unique key etc)
+  - Batch processing services: Allows devs to define long running jobs
+- Web tier: Handles interaction between clients and business tier
+  - Servelets: Handles HTTP and HTTPs services.
+  - Web pages: Allows generation of dynamic web pages.
+  - Expression languages: Binding of models to web pages
+  - Web Sockets: Bidirectional conversation between client and server
+- Interoperability tier: Manages interaction with external services.
+  - SOAP/REST services
+  - Json processing
+  - Messaging services (async communication, publish/subscribe model)
+  - Emails etc
+- Services common to all tiers:
+  - Dependency Injection
+  - Interception (changing default behaviour)
+  - Security
+  - Concurrency
+
+
+
