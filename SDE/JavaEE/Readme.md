@@ -167,3 +167,4 @@ Conventions and configurations through metadata is the programming model that Ja
 
 ## Java EE Basics
 
+Java EE was developed by asking the question - how can I quickly and easily develop an enterprise application while being able to read and maintain the code easily.
