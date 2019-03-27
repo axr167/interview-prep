@@ -39,6 +39,66 @@ The idea: the container will take default decisions to bring us services. If we 
   - We can now connect to DB. To insert book we must create SQL query to insert to DB and execute it we also need to do a mapping for each attribute in Book to fields of the table.
   - Similarly findbook method takes book ID as param and have it return a resultset.
 
+The code is:
+
+    public class Book {
+        private long id;
+        private string title;
+        private string description;
+
+        // Constructor, getters and setters
+    }
+
+    public class Main {
+    
+        // Connection
+        static {
+            try{
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();        
+            }
+        }
+        private static Connection getConnection() throws SQLException {
+            return DriverManager.getConnection("something");
+        }
+
+        // persist book
+        private static void persistBook(Book book) {
+            String query = "INSERT INTO BOOK (ID, TITLE, DESC) VALUES (?, ?, ?)";
+            try(PreparedStatement stmt = getConnection().prepareStatement(query)) {
+                stmt.setInteger(1, book.getId());
+                stmt.setString(2, book.getName());
+                stmt.setString(3, book.getDescription());
+
+                stmt.executeUpdate();
+            }
+        }
+
+        // find book
+        private static book findBook(int id) {
+            Book book = new Book(id);
+            String query =  "SELECT ID, TITLE, DESC FROM BOOK WHERE ID=?";
+            try(PreparedStatement stmt = getConnection().prepareStatement(query)) {
+                stmt.setInteger(1, id);
+                ResultSet rs = stmt.executeQuery();
+
+                while(rs.next()) {
+                    book.setTitle(rs.getString("TITLE"));
+                    book.setDescription(rs.getString("DESC"));
+                }
+            }
+            return book;
+        }
+
+        public static void main(String[] args) {
+            // Save book
+            persistBook(new Book(1, "Harry Potter", "Fantasy"));
+            // Find book
+            Book book = findBook(1);
+        }
+    }
+
 This has several problems:
 
 - SQL is a different language
@@ -47,4 +107,54 @@ This has several problems:
 
 **Case 2:** Java EE
 
-Java EE solves the problems of Java SE by bringing some abstraction.
+Java EE solves the problems of Java SE by bringing some abstraction. It has a std solution that bridges gap between objects and relational database.
+
+- Here we have the book class
+  - It is the same except we add metadata - add @Entity on top of book and @Id on top of primary key
+  - To save/retreive book define appropriate functions in bookservice class. Thanks to metadata, we can inject entity manager to service.
+  - EntityManager is the standard api that maps objects to DB. To save, we just invoke the entity manager persist method. To find, we just use the entity manager find method.
+
+The code is:
+
+    @Entity
+    public class Book {
+        @Id
+        private int id;
+        private String title;
+        private String description;
+
+        // Constructors, getters and setters
+    }
+    
+    @Transactional
+    public class BookService {
+        @Inject
+        private EntityManager em;
+
+        public void persistBook (Book book) {
+            em.persist(book);
+        }
+
+        public book findBook(int id) {
+            return em.find(Book.class, id);
+        }
+    }
+
+This is much better. There is no manual mapping, there are no SQL statements, it is non intrusive and ORM mapping is done through metadata (@Entity, @Id etc)
+
+The metadata shows convention over configuration. This lets all attributes be mapped automatically. If table name or column name is different, we can change default configuration as follows:
+
+    @Entity
+    @Table(name ="t_book")
+    public class Book {
+        @Id
+        private int id;
+        @Column(name="book_title", nullable=false)
+        private String title;
+        @Column(name="desc")
+        private String description;
+
+        // Constructors, getters and setters
+    }
+
+Conventions and configurations through metadata is the programming model that Java EE uses for all services.
