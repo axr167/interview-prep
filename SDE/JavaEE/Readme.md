@@ -1,5 +1,10 @@
 
-## The big picture
+## Table of Contents
+
+1. [Overview](#Overview)
+2. [Java EE Basics](#Java-EE-Basics)
+
+## Overview
 
 Java EE extends Java SE. Used to develop large scale apps. If application demands large scale and having a distributed system, use Java EE. Enterprise applications are applications that are scalable, multi tiered, reliable and secure.
 
@@ -158,3 +163,7 @@ The metadata shows convention over configuration. This lets all attributes be ma
     }
 
 Conventions and configurations through metadata is the programming model that Java EE uses for all services.
+
+
+## Java EE Basics
+
