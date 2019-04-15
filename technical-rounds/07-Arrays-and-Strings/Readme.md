@@ -23,7 +23,13 @@ Here we have one pointer that moves fast and another pointer that moves slow. Te
     - initialized at -1 in the beginning meaning no 'C' on left of current
 - p2 points to index of 'C' which is right of current
     - In the end it is S.length() meaning there is no 'C' on right of current
-    
+
+Algorithm:
+
+- Initialize p1 to -1, find p2
+- Once p2 has been found, fill in appropriate values of current until current reaches p2
+- Set p1 = p2, increment p2 to continue loop and repeat
+
 Code:
 
     class Solution {
