@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+0. [Slow Pointer Fast Pointer Problems](Slow-Pointer-Fast-Pointer-Problems)
 1. [Partition Problems](#Partition-Problems)
 2. [Converging Problems](#Converging-Problems)
 3. [Conditional Subarray Problems](#Conditional-Subarray-Problems)
@@ -10,9 +11,61 @@
 6. [Greedy and DP Methods](#Greedy-and-DP-Methods)
 7. [Printing gymnastics](#Printing-gymnastics)
 
+## Slow Pointer Fast Pointer Problems
+
+Here we have one pointer that moves fast and another pointer that moves slow. Termination condition is reached when slow pointer catches up to fast pointer or until pointer reaches end of list/string/whatever.
+
+### Shortest Distance to a Character
+
+- 3 pointers: p1, p2 and current. p2 is fast pointer, current is slow pointer
+- Current iterates over string assigning numeric values in the array
+- p1 points to index of 'C' which is left of current 
+    - initialized at -1 in the beginning meaning no 'C' on left of current
+- p2 points to index of 'C' which is right of current
+    - In the end it is S.length() meaning there is no 'C' on right of current
+    
+Code:
+
+    class Solution {
+        private int fill(int[] a, int p1, int p2, int current){
+            while(current <= p2) {
+                if(current == a.length)
+                    break;
+                if(current == p2 && p2 < a.length)
+                    a[current] = 0;
+                else if(p1 == -1)
+                    a[current] = Math.abs(current-p2);
+                else if(p2 >= a.length)
+                    a[current] = Math.abs(current-p1);
+                else
+                    a[current] = Math.min( Math.abs(current-p2), Math.abs(current-p1) );
+                current++;
+            }
+            return current;
+        }
+        
+        public int[] shortestToChar(String S, char C) {
+            int p1 = -1;
+            int p2 = 0;
+            int current = 0;
+            int[] a = new int[S.length()];
+            while(current < S.length()) {
+                // find p2
+                while(p2 != S.length() && S.charAt(p2) != C)
+                    p2++;
+                // fill array values using current
+                current = fill(a, p1, p2, current);
+                // set p1 = p2 and repeat
+                p1 = p2;
+                p2++;            
+            }
+            return a;
+        }
+    }
+
 ## Partition Problems
 
-In these problems we try to partition an array into different segments. The technique used here is the 2 pointer technique (slow/fast method) where it terminates when fast pointer reaches n. 
+In these problems we try to partition an array into different segments. The technique used here is a variation of the 2 pointer technique (slow/fast method) where it terminates when fast pointer reaches n. 
 
 The slow pointer points to the last index of a partition and the fast pointer iterates through the list. If it encounters something that should belong to the slow pointer, we increment first partition put new element at end of partition and continue.
 
