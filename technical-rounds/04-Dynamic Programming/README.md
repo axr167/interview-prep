@@ -795,3 +795,14 @@ Bottom up optimized
         - f(i,j) = f(i+1, j) || f(i,j+1) if (i < s.length())
                  = f(i,j+1) if(i==s.length())
     */
+
+# Partition Equal Subset Sum
+
+    /*
+        Logic: Either pick the element or dont
+        
+        f(p, i) = false // if i == a.length
+        f(p, i) = true if (p+a[i] = s- (p+a[i]))
+        f(p, i) = f(p+a[i], i+1) || f(p, i+1)
+        
+    */
