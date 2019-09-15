@@ -2,9 +2,8 @@
 # Primitive Types
 
 ## Bit manipulation
----------------------------------------------
 
-### POSITIVE AND NEGATIVE INTEGERS
+### Positive and Negative Integers
 
 In Java, integers are stored as 32 bit values of 0s or 1s.
 
@@ -30,7 +29,7 @@ Here the leftmost bit also known as the **most significant bit** denotes the sig
     - Change all the 0s to 1s and all the 1s to 0s. This becomes 00000000000000000000000000000010
     - Now add 1 to it. It becomes 00000000000000000000000000000011. This is binary of 3
 
-## BASIC OPERATORS
+### Basic Operators
 
 The basic operators are:
 
