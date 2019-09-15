@@ -1,3 +1,5 @@
+Note: read this https://catonmat.net/low-level-bit-hacks
+
 
 # Primitive Types
 
