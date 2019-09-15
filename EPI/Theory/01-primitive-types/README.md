@@ -39,3 +39,5 @@ The basic operators are:
     - Note that ~0 = -1 because 0 gets converted to 11111111111111111111111111111111
 - XOR (^): 1^1 = 0, 1^0 = 1, 0^0 = 0
 
+### Shifting bits
+
