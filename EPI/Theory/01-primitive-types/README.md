@@ -128,7 +128,9 @@ Consider the string `11010111`. Let us find the parity of that.
 - The parity of `1010` is equal to parity of `10 XOR 10`. This is `00`
 - The parity of `00` is equal to the parity of `0 XOR 0`. This is `0`
 
-Hence we can conclude that the given number has an even parity. Note that we can perform the XOR of the 2 parts by simply right shifting the number (n/2) times.
+Hence we can conclude that the given number has an even parity. 
+
+Note that we can perform the XOR of the 2 parts by simply **right shifting the number (n/2) times**.
 
 - `11010111 >>> 4` equals `00001101`. Now we can consider only the 4 rightmosr digits of the 2 values in our XOR which is `0111` and `1101`. 
 - The value of `11010111 ^ 00001101` is `11011010`. We are interested only in the last 4 digits `1010` to continue the operation. So we right shift by 2 and so on.
