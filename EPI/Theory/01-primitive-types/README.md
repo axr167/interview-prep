@@ -107,3 +107,28 @@ We can use this in any problem where we have to count the number of set bits or 
 
 ---------------------------------------------------
 
+### Associative Property and Commutative Property
+
+These properties can be used to quickly perform some operations parallelly or by reordering input in certain ways. These properties are described below:
+
+- The **Associative Property** says that **(a+b)+c == a+(b+c)**
+- The **Commutative Property** says that **a+b == b+a**
+
+These properties can be applied to boolean operations as well.
+
+To understand how they speed up certain operations let us consider the following problem: **Find the parity of a binary string**. If the string has odd number of 1s the parity is 1 else it is 0.
+
+- Normally we would have solved this problem by counting the number of 1s. 
+- Even if we skip all 0s and directly count the 1s using the **lowest set bit** trick in the previous section, the worst case complexity is still n.
+- We can use the **Associative and Commutative properties** to reduce the complexity to log(n).
+
+Consider the string ```11010111```. Let us find the parity of that.
+
+- The parity od ```11010111``` is equal to parity of ```1101 XOR 0111```. This is ``1010`` now we must find its parity
+- The parity of ``1010`` is equal to parity of `10 XOR 10`. This is `00`
+- The parity of `00` is equal to the parity of `0 XOR 0`. This is `0`
+
+Hence we can conclude that the given number has an even parity. Note that we can perform the XOR of the 2 parts by simply right shifting the number (n/2) times.
+
+- ```11010111 >>> 4``` equals ```00001101```. Now we can consider only the 4 rightmosr digits of the 2 values in our XOR which is ```0111``` and ```1101```.
+- 
