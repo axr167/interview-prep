@@ -41,3 +41,23 @@ The basic operators are:
 
 ### Shifting bits
 
+We can shift bits to the left or to the right.
+
+- To **shift bits left** we can use **<<**. 
+    - For example **0010 << 1** shifts the bits once to the left. It becomes **0100**.
+    - Note that **shifting left by 1** is the equivalent of **multiplying by 2**
+- To **shift bits right** we can use **>> or >>>**
+    - For example **0010 >> 1** shifts the bits once to the right. It becomes **0001**
+    - Note that **shifting right by 1** is the equivalent of **dividing by 2**
+
+Let us consider the case of **right shift**. Here we have either **>> or >>>**. These are the arithmetic and logical right shifts.
+
+- **>>** is the **arithmetic right shift**. Every time we shift right, **the value it inserts is the value of the signed bit**.
+    - For example if we have x = -32 (11111111111111111111111111100000) 
+    - Doing x >> 1 gives us -16 (11111111111111111111111111110000). Since the sign bit was 1, it was the value inserted.
+- **>>>** is the **logical right shift**. Every time we shift left, **the value it inserts is 0**.
+    - For example if we have x = -32 (11111111111111111111111111100000)
+    - Doing x >>> 1 gives us 2147483632 (01111111111111111111111111110000). Here the new bit inserted was 0
+
+Note that **java does not have logical left shift**. This is because logical left shifts are redundant. We **always insert 0 for left shifts** and it makes no sense inserting a 1 so unlike right shifts, in left shift the logical left shift is not needed.
+
