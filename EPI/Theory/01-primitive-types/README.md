@@ -3,6 +3,8 @@
 
 ## Bit manipulation
 
+--------------------------------------------
+
 ### Positive and Negative Integers
 
 In Java, integers are stored as **32 bit values** of 0s or 1s.
