@@ -74,7 +74,7 @@ Note that **java does not have logical left shift**. This is because logical lef
 Bit masking is the act of performing a boolean operation on a number to get our desired result. Consider the example shown below:
 
 - Let's say we have **01010000101010101**. 
-- Our desired result is **01010000000000000** - of the 4 leftmost digits we want to get all the 1s
+- Our desired result is **01010000000000000** - we want to get a result where the only 1s come from the 4 leftmost digits of the original number
 - To get our desired result we can simply do **01010000101010101** (original number) & **11110000000000000**
 - This operation gives us **01010000000000000** (desired result)
 
