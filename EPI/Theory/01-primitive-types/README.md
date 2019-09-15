@@ -29,6 +29,8 @@ To **change a sign** of a number do the following:
     - Change all the 0s to 1s and all the 1s to 0s. This becomes 00000000000000000000000000000010
     - Now add 1 to it. It becomes 00000000000000000000000000000011. This is binary of 3
 
+----------------------------------------------
+
 ### Basic Operators
 
 The basic operators are:
@@ -38,6 +40,8 @@ The basic operators are:
 - NOT(~): Converts 0s to 1s and 1s to 0s
     - Note that ~0 = -1 because 0 gets converted to 11111111111111111111111111111111
 - XOR (^): 1^1 = 0, 1^0 = 1, 0^0 = 0
+
+----------------------------------------
 
 ### Shifting bits
 
@@ -60,4 +64,10 @@ Let us consider the case of **right shift**. Here we have either **>> or >>>**. 
     - Doing x >>> 1 gives us 2147483632 (01111111111111111111111111110000). Here the new bit inserted was 0
 
 Note that **java does not have logical left shift**. This is because logical left shifts are redundant. We **always insert 0 for left shifts** and it makes no sense inserting a 1 so unlike right shifts, in left shift the logical left shift is not needed.
+
+---------------------------------------------
+
+### Bit masks
+
+
 
