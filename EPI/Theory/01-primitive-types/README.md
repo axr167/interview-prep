@@ -1,5 +1,7 @@
 Note: read this https://catonmat.net/low-level-bit-hacks
 
+TO-DO: learn how arithmetic operations are done at the bit level
+
 
 # Primitive Types
 
