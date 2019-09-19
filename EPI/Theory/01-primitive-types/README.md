@@ -82,11 +82,13 @@ Bit masking is the act of performing a boolean operation on a number to get our 
 
 Here the number we used to get the result `11110000000000000` is the **bit mask**
 
+Since bit masks can isolate chunks of the input, they are often used in solutions that make use of hashmaps to perform repeated operations quickly.
+
 ------------------------------------------------
 
-### Lowest set bit
+### Lowest set bit and lowest bit not set
 
-It is important to memorize ways to find the lowest set bit as it can help in several bit manipulation problems. Consider the following table:
+It is important to memorize ways to find the lowest set bit and the lowest bit that is not set as it can help in several bit manipulation problems. Consider the following table:
 
     ----------------------------------------------
     x           |   0   0   1   0   1   1   0   0
@@ -105,7 +107,24 @@ From the table, we can make the following observations:
 - The result of **x & (x-1) drops the least significant set bit** of x
 - The result of **x & ~(x-1) isolates the least significant set bit** of x
 
-We can use this in any problem where we have to count the number of set bits or find the least significant set bit as the above operations do this in O(1) time.
+Similarly consider the following table:
+
+    ----------------------------------------------
+    x           |   0   0   1   0   1   1   0   0
+    ----------------------------------------------
+    ~x          |   1   1   0   1   0   0   1   1
+    ----------------------------------------------
+    (x+1)       |   0   0   1   0   1   1   0   1
+    ----------------------------------------------
+    ~(x+1)      |   1   1   0   1   0   1   0   0
+    ==============================================
+    ~x & (x+1)  |   0   0   0   0   0   0   0   1
+    
+From the table we can make the following observation:
+
+- The result og ~x & (x+1) isolates the first bit that is not set
+
+We can use this in any problem where we have to count the number of set bits or find the least significant set/not set bit.
 
 ---------------------------------------------------
 
