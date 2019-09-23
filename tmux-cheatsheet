@@ -12,3 +12,9 @@ Panes
   - Ctrl-b <arrow-key>: navigate between panes
 
 To close pane/window exit terminal session
+
+Mouse support:
+
+set -g mode-mouse on
+
+source ~/.tmux.conf //restart tmux
