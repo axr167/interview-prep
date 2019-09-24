@@ -1,5 +1,5 @@
 
-### Random intellij stuff
+## Random intellij stuff
 
 To enable vi keybinding do the following:
   - https://www.jetbrains.com/help/idea/using-product-as-the-vim-editor.html
