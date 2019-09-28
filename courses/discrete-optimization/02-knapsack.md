@@ -31,6 +31,7 @@ Example
 
 1. The matrix dp[][] is as follows:
 
+<pre>
       i\j   |    0       1       2       3       4       5       6       7       8       9       10      11    
     ========================================================================================================
             |
@@ -43,6 +44,7 @@ Example
        3    |    0       0       0       0       8       10      10      10      15      18      18      18
             |
        4    |    0       0       0       4       8       10      10      12      15      18      18      19
+</pre>
 
 2. Row 4 (index 3) in dp[][] corresponds to item 3 so I compare the dp[3][9] (bottom right corner) with dp[2][9]. Since both values are the same I know **item 3 was not chosen**. I go to dp[2][9].
 3. I compare dp[2][9] to dp[1][9]. Since the values are different, I know **item 2 was chosen**. I go to dp[1][9 - weight of item 2] => dp[1][4].
