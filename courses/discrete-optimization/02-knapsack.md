@@ -1,5 +1,5 @@
 
-## Problem: Solve Knapsack for a bunch of datasets
+# Problem: Solve Knapsack for a bunch of datasets
 
 Need to return the following:
 
@@ -16,7 +16,7 @@ Example
 - The bottom array means items 0,1 were not picked and items 2,3 were picked to get optimal value
 
 
-## Approach 1: Dynamic Programming (not optimized for space)
+# Approach 1: Dynamic Programming (not optimized for space)
 
 **The recurrence is:**
 
@@ -51,8 +51,9 @@ Example
 4. Compare dp[2][0] with dp[1][0]. The values are the same so **Item 2 was not chosen**. Go to dp[i-1][j] => dp[1][0].
 5. Compare dp[1][0] with dp[0][0]. The values are the same so **Item 1 was not chosen**. Go to dp[0][0]. This is the terminal state so we end.
 
+-------------------------------------------
 
-DP solution with time and space O(n^2):
+### DP solution with time and space O(n^2):
 
 
     private static void backtrace(int[][] dp, int[] weight, int[] taken) {
@@ -91,5 +92,40 @@ DP solution with time and space O(n^2):
         return dp[n-1][k]; // Returns optimal value
     }
     
-    
+
+**It is possible to space-optimize knapsackDP by using 2 arrays instead of a matrix as follows:**
+
+    private static int knapsackDP(int[] v, int[] w, int k, int[] taken) {
+        int[] row0 = new int[k+1];
+        int[] row1 = new int[k+1];
+        
+        for(int i=0; i<=w.length; i++) {
+            for(int j=0; j<=k; j++) {
+                if(i==0) {
+                    row1[j] = 0;
+                } else {
+                    if(w[i-1] <= j) {
+                        row1[j] = Math.max(row0[j], v[i-1]+ row0[j-w[i-1]]);
+                    } else {
+                        row1[j] = row0[j];
+                    }
+                }
+            }
+            for(int j = 0; j< row0.length; j++)
+                row0[j] = row1[j];
+        }
+        
+        return row1[k]; // Returns optimal value
+    }
+
+However if we do this we will have at most 2 rows 
+
+    row0 =      0       0       0       0       8       10      10      10      15      18      18      18
+    row1 =      0       0       0       4       8       10      10      12      15      18      18      19
+
+With only this much information I am not sure how to do the backtrace. Hence approach 2
+
+
+# Approach 2: Branch and Bound using DFS
+
 
