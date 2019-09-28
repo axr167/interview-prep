@@ -56,7 +56,7 @@ Example
 ### DP solution with time and space O(n^2):
 
 
-    private static void backtrace(int[][] dp, int[] weight, int[] taken) {
+    private static void backtraceDP(int[][] dp, int[] weight, int[] taken) {
         int i = dp.length-1;
         int j = dp[0].length-1;
 
@@ -88,7 +88,7 @@ Example
                 }
             }
         }
-        backtrace(dp, w, taken); // Stores path in taken
+        backtraceDP(dp, w, taken); // Stores path in taken
         return dp[n-1][k]; // Returns optimal value
     }
     
