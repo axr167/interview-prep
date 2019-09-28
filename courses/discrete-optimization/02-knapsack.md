@@ -46,12 +46,50 @@ Example
        4    |    0       0       0       4       8       10      10      12      15      18      18      19
 </pre>
 
-2. Row 4 (index 3) in dp[][] corresponds to item 3 so I compare the dp[3][9] (bottom right corner) with dp[2][9]. Since both values are the same I know **item 3 was not chosen**. I go to dp[2][9].
-3. I compare dp[2][9] to dp[1][9]. Since the values are different, I know **item 2 was chosen**. I go to dp[1][9 - weight of item 2] => dp[1][4].
-4. I compare dp[1][4] with dp[0][4]. The values are different so I know **item 1 was chosen**. I go to dp[0][4 - weight of item 1] => dp[0][0].
-5. dp[0][0] is the terminal state so I return.
+2. Start at bottom right corner dp[4][11]. Compare it with previous row dp[3][11]. Value 19 != 18. Hence **Item 4 was chosen**. If item is chosen go to dp[i-1][ j-weight[chosen_item] ] => dp[3][8]
+3. Compare dp[3][8] with dp[2][8]. It is different so **Item 3 was chosen**. Go to dp[i-1][ j-weight[chosen_item] ] => dp[2][0]
+4. Compare dp[2][0] with dp[1][0]. The values are the same so **Item 2 was not chosen**. Go to dp[i-1][j] => dp[1][0].
+5. Compare dp[1][0] with dp[0][0]. The values are the same so **Item 1 was not chosen**. Go to dp[0][0]. This is the terminal state so we end.
 
 
 DP solution with time and space O(n^2):
 
+
+    private static void backtrace(int[][] dp, int[] weight, int[] taken) {
+        int i = dp.length-1;
+        int j = dp[0].length-1;
+
+        while(i != 0 ) {
+            if(dp[i][j] == dp[i-1][j]) {
+                i = i-1;
+            } else {
+                taken[i-1] = 1;
+                j = j-weight[i-1];
+                i = i-1;
+            }
+        }
+    }
+
+    private static int knapsackDP(int[] v, int[] w, int k, int[] taken) {
+        int n = w.length+1;
+        int[][] dp = new int[n][k+1];
+
+        for(int i=0; i < n; i++) {
+            for(int j=0; j<=k; j++) {
+                if(i == 0) {
+                    dp[i][j] = 0;
+                } else {
+                    if(w[i-1] > j) {
+                        dp[i][j] = dp[i-1][j];
+                    } else {
+                        dp[i][j] = Math.max(dp[i-1][j], v[i-1] + dp[i-1][j-w[i-1]]);
+                    }
+                }
+            }
+        }
+        backtrace(dp, w, taken); // Stores path in taken
+        return dp[n-1][k]; // Returns optimal value
+    }
+    
+    
 
