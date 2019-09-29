@@ -32,6 +32,6 @@ Generally speaking techniques like DP, CP and MIP give high quality solutions an
 
 ## Constraint Programming
 
-- Good for problems like n-queens, graph coloring etc where we have to find any feasible solution as opposed to maximizing or minimizing a value.
+- Good for problems like n-queens, graph coloring etc where we have to find any feasible solution as opposed to maximizing or minimizing a value. But since it can find all feasible solutions given enough time it can find the optimal feasible solution.
 - Unlike branch and bound this is branch and prune. We make a random choice and prune based on that choice.
   
