@@ -128,4 +128,59 @@ With only this much information I am not sure how to do the backtrace. Hence app
 
 # Approach 2: Branch and Bound using DFS
 
+This needs to be optimized (gives 3/10 - integer relaxation gives 3/10 and capacity relaxation gives overflow error) but logic is fine (I think)
 
+    static class Node {
+        int current_value;
+        int weight;
+        int optimal_value;
+        int item;
+        public Node parent = null;
+        public Node child_1 = null;
+        public Node child_0 = null;
+
+        public Node(int current_value, int weight, int optimal_value, int item){
+            this.current_value = current_value;
+            this.weight = weight;
+            this.optimal_value = optimal_value;
+            this.item = item;
+        }
+    }
+    static Node optimalNode;
+
+    private static void backtraceDfs(Node optimal, int[] taken) {
+        while(optimal.parent!=null) {
+            if(optimal.current_value != optimal.parent.current_value)
+                taken[optimal.item-1] = 1;
+            optimal = optimal.parent;
+        }
+    }
+
+    private static void knapsackDfs(int[] v, int[] w, int k, Node currentNode){
+
+        if(currentNode.current_value > optimalNode.current_value && currentNode.weight <= k)
+            optimalNode = currentNode;
+        if(currentNode.item == v.length)
+            return;
+        if(currentNode.weight > k)
+            return;
+        if(optimalNode.current_value > currentNode.optimal_value)      // pruning
+            return;
+
+        currentNode.child_1 = new Node(
+                currentNode.current_value + v[currentNode.item],
+                currentNode.weight + w[currentNode.item],
+                currentNode.optimal_value,
+                currentNode.item+1);
+
+        currentNode.child_0 = new Node(
+                currentNode.current_value,
+                currentNode.weight,
+                currentNode.optimal_value - v[currentNode.item],
+                currentNode.item+1);
+        currentNode.child_0.parent = currentNode;
+        currentNode.child_1.parent = currentNode;
+
+        knapsackDfs(v, w, k, currentNode.child_1);
+        knapsackDfs(v, w, k, currentNode.child_0);
+    }
