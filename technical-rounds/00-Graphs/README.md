@@ -200,26 +200,7 @@ Hence in this scenario a node has 3 states: Visited; Visited and in Stack; Unvis
 
 # Topological sort
 
-If there exists a fixed ordering of entities or if there exists a dependency of elements without any circular dependencies (cycles) then we can use topological sort to find the correct order in which entities may be arranged.
-
-To do this in linear time we need both the graph and the reverse graph. The process is explained as follows:
-
-    - Build the 2 lists named graph and reverse_graph
-    - Find all the elements with no dependencies
-        - An element in the graph has no dependency if its set of outgoing edges is null
-        - All all the elements with no dependencies in a queue
-    - While queue is not empty 
-        - pop element 'e' from queue and append it to list/array/string
-        - get set of all incoming edges in graph that connect to the element 'e' and delete them
-            - This can be done in linear time using the reverse graph
-            - go to reverse_graph and get set of all edges outgoing from 'e'
-            - These are the incoming edges to 'e' in graph
-        - for each incoming edge 'i' in the set
-            - get the set of edges outgoing from 'i' in graph and delete 'e' from the set
-            - After deleting 'e', if 'i' points to empty set it means there are no more dependencies for i
-                - add 'i' to queue if 'i' has no more dependencies
-
-This gives us a topologically sorted 
+Please see interview prep v2: https://github.com/anirudhrathinam94/interview-prep-v2/tree/master/Graphs
         
 
 # Questions:
@@ -291,80 +272,4 @@ After this just do a variation of dijkstra.
 
 ### 6. Topological Sort problem 1: Alien dictionary
 
-**Given an alien dictionary find the ordering of characters assuming that the dictionary is complete and there exists an ordering.**
-
-The solution is:
-
-    class Solution {
-
-        private int len(String a, String b) {
-            if(a.length() < b.length())
-                return a.length();
-            return b.length();
-        }
-
-        // Build Graph and Reverse Graph
-        private void buildGraphs(Map<Character, Set<Character>> g, Map<Character, Set<Character>> rg, String[] a) {
-            for(int i=0; i<a.length-1; i++) {
-                String w1 = a[i];
-                String w2 = a[i+1];
-                for(int j=0; j<w1.length(); j++) {
-                    if(!g.containsKey(w1.charAt(j)))
-                        g.put(w1.charAt(j), new HashSet<Character>());
-                    if(!rg.containsKey(w1.charAt(j))) 
-                        rg.put(w1.charAt(j), new HashSet<Character>());
-                }
-
-                for(int j=0; j<w2.length(); j++) {
-                    if(!g.containsKey(w2.charAt(j)))
-                        g.put(w2.charAt(j), new HashSet<Character>());
-                    if(!rg.containsKey(w2.charAt(j))) 
-                        rg.put(w2.charAt(j), new HashSet<Character>());
-                }
-
-                for(int j=0; j<len(w1, w2); j++) {
-                    if(w1.charAt(j) != w2.charAt(j)) {
-                        g.get(w1.charAt(j)).add(w2.charAt(j));
-                        rg.get(w2.charAt(j)).add(w1.charAt(j));
-                        break;
-                    }
-                }
-            }
-        }
-
-        // topological sort
-        private String topSort(Map<Character, Set<Character>> g, Map<Character, Set<Character>> rg) {
-            StringBuilder sb = new StringBuilder();
-            Queue<Character> q = new LinkedList<>();
-            for(Character key: g.keySet()) {
-                if(g.get(key).isEmpty())
-                    q.add(key);
-            }
-            while(!q.isEmpty()) {
-                char c = q.remove();
-                sb.append(c);
-                // get all elements that point to c using reverse graph
-                Set<Character> links = rg.get(c);
-                //remove link to c from elements in original graph. if element has no outgoing edges add to queue
-                for(char e: links) {
-                    g.get(e).remove(c);
-                    if(g.get(e).isEmpty())
-                        q.add(e);
-                }
-            }
-            return sb.reverse().toString();
-        }
-
-        public String alienOrder(String[] words) {
-            if(words.length == 0)
-                return "";
-            if(words.length == 1)
-                return ""+words[0].charAt(0);
-            Map<Character, Set<Character>> graph = new HashMap<>();
-            Map<Character, Set<Character>> rev_graph = new HashMap<>();
-            buildGraphs(graph, rev_graph, words);        
-
-            return topSort(graph, rev_graph);
-
-        }
-    }
+Please see interview prep v2: https://github.com/anirudhrathinam94/interview-prep-v2/tree/master/Graphs
